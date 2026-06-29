@@ -1,0 +1,25 @@
+{
+  "wrapper": "div.collection-wrapper",
+  "sections": {
+    "main": {
+      "type": "template--search",
+      "settings": {
+        "desktop_position": "sidebar",
+        "enable_filtering": true,
+        "enable_sorting": true
+      }
+    },
+    "ba0289a9-189c-44b4-a569-0217c0002607": {
+      "type": "newsletter",
+      "settings": {
+        "colors": "light",
+        "newsletter_heading": "Sign up to our newsletter",
+        "newsletter_description": "<p>Get priority access to events and exclusive offers</p>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "ba0289a9-189c-44b4-a569-0217c0002607"
+  ]
+}
