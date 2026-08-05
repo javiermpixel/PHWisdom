@@ -1,1 +1,172 @@
-{"wrapper":"div.collection-wrapper.wrapper","sections":{"collection-header-spotlight":{"type":"collection-header","settings":{"show_breadcrumbs":true,"show_title":true,"show_description":true,"show_image_desktop":true,"image_desktop":"shopify:\/\/shop_images\/RL_Energy_Hike_Rasberry_Mango_Limeade-70.jpg","min_height_desktop":"300","content_position":"left","caption_width_desktop":70,"show_image_mobile":true,"image_mobile":"shopify:\/\/shop_images\/RL_Energy_Hike_Rasberry_Mango_Limeade-70.jpg","min_height_mobile":"400","content_position_mobile":"bottom_center","enable_parallax":true,"enable_fade":true,"section_width":"full","section_margin_top":0,"section_margin_bottom":0,"colors":"dark","caption_bg_color":"rgba(0,0,0,0)","image_overlay_color":"#242424","image_overlay_opacity":26}},"product-grid":{"type":"template--collection","custom_css":[".grid-view-item .grid-view-item-image:not(:last-child) {margin-bottom: 1em; border: 1px #ccc solid;}"],"settings":{"products-per-page":10,"desktop-products-per-row":4,"mobile-products-per-row":"2","pagination_options":"pagination_infinite_scrolling","desktop_position":"topbar","enable_collection_title":false,"enable_collection_description":false,"enable_filtering":true,"show_swatch_filter_labels":true,"enable_sorting":true}},"image_with_text_6w7Ja3":{"type":"image-with-text","settings":{"image":"shopify:\/\/shop_images\/3_5.webp","title":"Elevate your every day with these simple, clean, and real favorites that inspire a healthier you.","text":"<p>Real Salt is unrefined, ancient sea salt that makes every dish healthier and more delicious.<\/p><p>Our Re-Lyte line is packed with essential electrolytes that nurture your body and fuel your journey.<\/p><p>Earthpaste is a natural toothpaste made with simple ingredients that keep your mouth refreshingly clean.<\/p>","button_label":"","button_link":"shopify:\/\/collections\/bestsellers","buttons_style":"filled","override_button_colors":false,"button_background_color":"#e68819","button_text_color":"#ffffff","section_padding_top":10,"section_padding_bottom":60,"text_overlapping_image":false,"section-width":"full","layout":"left","text_alignment":"center","colors":"light"}},"collage-builder-00":{"type":"collage","blocks":{"collage-builder-block-00":{"type":"image","settings":{"desktop_image":"shopify:\/\/shop_images\/Real_Salt_LIfestyle_Shakers_1.jpg","mobile_image":"shopify:\/\/shop_images\/Real_Salt_LIfestyle_Shakers_1.jpg","heading":"Seasonings","heading_size":30,"url":"shopify:\/\/collections\/seasonings","button_label":"","buttons_style":"filled","override_button_colors":false,"button_background_color":"#ffffff","button_color":"#ffffff","desktop_position":"md-min-align-top md-min-justify-left","mobile_position":"md-max-align-center md-max-justify-left","text_color":"#ffffff","overlay_color":"rgba(0,0,0,0)"}},"collage-builder-block-01":{"type":"image","settings":{"desktop_image":"shopify:\/\/shop_images\/Redmond_Life_Earth_Paste_Lifestyle_family_04326.jpg","heading":"Earthpaste","heading_size":28,"url":"shopify:\/\/collections\/earthpaste-all","button_label":"","buttons_style":"filled","override_button_colors":false,"button_background_color":"#e68819","button_color":"#ffffff","desktop_position":"md-min-align-top md-min-justify-left","mobile_position":"md-max-align-center md-max-justify-left","text_color":"#ffffff","overlay_color":"rgba(0,0,0,0)"}}},"block_order":["collage-builder-block-00","collage-builder-block-01"],"settings":{"title":"","description":"","section_padding_top":0,"section_padding_bottom":60,"remove_spacing":false,"section_width":"content","width_1":"2","height_1":"4","width_2":"2","height_2":"4","width_3":"3","height_3":"3","width_4":"2","height_4":"2","width_5":"2","height_5":"2","width_6":"1","height_6":"4","block_alignment":"center","color_scheme":"white"}},"navigation_banner_hM7878":{"type":"navigation-banner","settings":{"title":"","description":"","banner_linklist":"main-menu","collection_list":[],"buttons_style":"outlined","override_button_colors":false,"nav_background_color":"#e68819","nav_text_color":"#ffffff","section_padding_top":0,"section_padding_bottom":60,"layout_style":"grid","navigation_position":"center","colors":"white"}}},"order":["collection-header-spotlight","product-grid","image_with_text_6w7Ja3","collage-builder-00","navigation_banner_hM7878"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "wrapper": "div.collection-wrapper.wrapper",
+  "sections": {
+    "collection-header-spotlight": {
+      "type": "collection-header",
+      "settings": {
+        "show_breadcrumbs": true,
+        "show_title": true,
+        "show_description": true,
+        "show_image_desktop": true,
+        "image_desktop": "shopify://shop_images/Ph_Wisdom_Web_Banners_Seasonings_v0826_R2.jpg",
+        "min_height_desktop": "original",
+        "content_position": "left",
+        "caption_width_desktop": 70,
+        "show_image_mobile": true,
+        "image_mobile": "shopify://shop_images/Ph_Wisdom_Web_Banners_Seasonings_v0826_R2.jpg",
+        "min_height_mobile": "400",
+        "content_position_mobile": "bottom_center",
+        "enable_parallax": true,
+        "enable_fade": true,
+        "section_width": "full",
+        "section_margin_top": 0,
+        "section_margin_bottom": 0,
+        "colors": "dark",
+        "caption_bg_color": "rgba(0,0,0,0)",
+        "image_overlay_color": "#242424",
+        "image_overlay_opacity": 26
+      }
+    },
+    "product-grid": {
+      "type": "template--collection",
+      "custom_css": [
+        ".grid-view-item .grid-view-item-image:not(:last-child) {margin-bottom: 1em; border: 1px #ccc solid;}"
+      ],
+      "settings": {
+        "products-per-page": 10,
+        "desktop-products-per-row": 4,
+        "mobile-products-per-row": "2",
+        "pagination_options": "pagination_infinite_scrolling",
+        "desktop_position": "topbar",
+        "enable_collection_title": false,
+        "enable_collection_description": false,
+        "enable_filtering": true,
+        "show_swatch_filter_labels": true,
+        "enable_sorting": true
+      }
+    },
+    "image_with_text_6w7Ja3": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "shopify://shop_images/3_5.webp",
+        "title": "Elevate your every day with these simple, clean, and real favorites that inspire a healthier you.",
+        "text": "<p>Real Salt is unrefined, ancient sea salt that makes every dish healthier and more delicious.</p><p>Our Re-Lyte line is packed with essential electrolytes that nurture your body and fuel your journey.</p><p>Earthpaste is a natural toothpaste made with simple ingredients that keep your mouth refreshingly clean.</p>",
+        "button_label": "",
+        "button_link": "shopify://collections/bestsellers",
+        "buttons_style": "filled",
+        "override_button_colors": false,
+        "button_background_color": "#e68819",
+        "button_text_color": "#ffffff",
+        "section_padding_top": 10,
+        "section_padding_bottom": 60,
+        "text_overlapping_image": false,
+        "section-width": "full",
+        "layout": "left",
+        "text_alignment": "center",
+        "colors": "light"
+      }
+    },
+    "collage-builder-00": {
+      "type": "collage",
+      "blocks": {
+        "collage-builder-block-00": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Real_Salt_LIfestyle_Shakers_1.jpg",
+            "mobile_image": "shopify://shop_images/Real_Salt_LIfestyle_Shakers_1.jpg",
+            "heading": "Seasonings",
+            "heading_size": 30,
+            "url": "shopify://collections/seasonings",
+            "button_label": "",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "button_background_color": "#ffffff",
+            "button_color": "#ffffff",
+            "desktop_position": "md-min-align-top md-min-justify-left",
+            "mobile_position": "md-max-align-center md-max-justify-left",
+            "text_color": "#ffffff",
+            "overlay_color": "rgba(0,0,0,0)"
+          }
+        },
+        "collage-builder-block-01": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Redmond_Life_Earth_Paste_Lifestyle_family_04326.jpg",
+            "heading": "Earthpaste",
+            "heading_size": 28,
+            "url": "shopify://collections/earthpaste-all",
+            "button_label": "",
+            "buttons_style": "filled",
+            "override_button_colors": false,
+            "button_background_color": "#e68819",
+            "button_color": "#ffffff",
+            "desktop_position": "md-min-align-top md-min-justify-left",
+            "mobile_position": "md-max-align-center md-max-justify-left",
+            "text_color": "#ffffff",
+            "overlay_color": "rgba(0,0,0,0)"
+          }
+        }
+      },
+      "block_order": [
+        "collage-builder-block-00",
+        "collage-builder-block-01"
+      ],
+      "settings": {
+        "title": "",
+        "description": "",
+        "section_padding_top": 0,
+        "section_padding_bottom": 60,
+        "remove_spacing": false,
+        "section_width": "content",
+        "width_1": "2",
+        "height_1": "4",
+        "width_2": "2",
+        "height_2": "4",
+        "width_3": "3",
+        "height_3": "3",
+        "width_4": "2",
+        "height_4": "2",
+        "width_5": "2",
+        "height_5": "2",
+        "width_6": "1",
+        "height_6": "4",
+        "block_alignment": "center",
+        "color_scheme": "white"
+      }
+    },
+    "navigation_banner_hM7878": {
+      "type": "navigation-banner",
+      "settings": {
+        "title": "",
+        "description": "",
+        "banner_linklist": "main-menu",
+        "collection_list": [],
+        "buttons_style": "outlined",
+        "override_button_colors": false,
+        "nav_background_color": "#e68819",
+        "nav_text_color": "#ffffff",
+        "section_padding_top": 0,
+        "section_padding_bottom": 60,
+        "layout_style": "grid",
+        "navigation_position": "center",
+        "colors": "white"
+      }
+    }
+  },
+  "order": [
+    "collection-header-spotlight",
+    "product-grid",
+    "image_with_text_6w7Ja3",
+    "collage-builder-00",
+    "navigation_banner_hM7878"
+  ]
+}
