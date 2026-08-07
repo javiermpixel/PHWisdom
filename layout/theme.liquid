@@ -245,7 +245,17 @@
       <div class="wrapper main-content page-main--wrapper">
     {% endif %}
 
-        {% capture ICART_FULL_PAGE_LAYOUT %}{{ content_for_layout }}{% endcapture %}{% include 'icart-variables', ICART_FULL_PAGE_LAYOUT: ICART_FULL_PAGE_LAYOUT %}
+        {% comment %}
+          Keep the cart page functional when the iCart full-page app is slow or
+          unavailable. iCart can still power its app embed/cart drawer elsewhere,
+          but /cart should always render Shopify's native cart markup directly.
+        {% endcomment %}
+        {% if template == 'cart' %}
+          {{ content_for_layout }}
+        {% else %}
+          {% capture ICART_FULL_PAGE_LAYOUT %}{{ content_for_layout }}{% endcapture %}
+          {% include 'icart-variables', ICART_FULL_PAGE_LAYOUT: ICART_FULL_PAGE_LAYOUT %}
+        {% endif %}
       </div>
   </div>
 
