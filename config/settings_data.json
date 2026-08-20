@@ -175,6 +175,11 @@
         "type": "shopify://apps/yotpo-product-photo-reviews/blocks/settings/eb7dfd7d-db44-4334-bc49-c893b51b36cf",
         "disabled": false,
         "settings": {}
+      },
+      "14421132865913305101": {
+        "type": "shopify://apps/ab-google-analytics/blocks/analytics/2fc433fa-79f5-4d1d-bab2-983d42099561",
+        "disabled": false,
+        "settings": {}
       }
     }
   },
