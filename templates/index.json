@@ -15,7 +15,8 @@
         "slide_1": {
           "type": "slide",
           "settings": {
-            "heading": "Natural Body Care\nEssentials",
+            "image": "shopify://shop_images/phw-hero-relyte.jpg",
+            "heading": "Re-Lyte Electrolyte Mix",
             "button_label": "Shop Now",
             "button_link": "shopify://collections/redmond-clay-1",
             "overlay_opacity": 30
@@ -77,7 +78,8 @@
         "accessibility_label": "Featured promotions",
         "autoplay": true,
         "autoplay_speed": 5,
-        "card_1_heading": "Re-Lyte Electrolyte Mix",
+        "card_1_image": "shopify://shop_images/phw-hero-clay.png",
+        "card_1_heading": "Natural Body Care Essentials",
         "card_1_link": "shopify://collections/re-lyte",
         "card_2_heading": "Salt & Seasonings",
         "card_2_link": "shopify://collections/real-salt"
