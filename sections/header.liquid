@@ -65,7 +65,14 @@ Testing Cypress integration
       <li>
         <a href="{{ routes.search_url }}" class="search-button standalone-icon--wrapper" aria-label="{{ 'layout.header.search' | t }}">
           {% if section.settings.show_icons %}
-            {% render 'theme-icon' with icon: 'search', iconSize: 20 %}
+            <img
+              class="phw-navbar-icon"
+              src="https://cdn.shopify.com/s/files/1/0611/7025/4082/files/search-big-1.svg?v=1788196768"
+              alt=""
+              width="24"
+              height="24"
+              loading="eager"
+            >
           {% else %}
             <span class="header--supporting-text">{{ 'layout.header.search' | t }}</span>
           {% endif %}
@@ -78,7 +85,14 @@ Testing Cypress integration
         <li>
           <a href="{{ routes.account_url }}" title="{{ 'layout.customer.account' | t }}" class="account-button standalone-icon--wrapper">
             {% if section.settings.show_icons %}
-              {% render 'theme-icon' with icon: 'user', iconSize: 20 %}
+              <img
+                class="phw-navbar-icon"
+                src="https://cdn.shopify.com/s/files/1/0611/7025/4082/files/User_Profile.svg?v=1788196757"
+                alt=""
+                width="24"
+                height="24"
+                loading="eager"
+              >
             {% else %}
               <span class="header--supporting-text">{{ 'layout.header.account' | t }}</span>
             {% endif %}
@@ -88,7 +102,14 @@ Testing Cypress integration
         <li>
           <a href="{{ routes.account_login_url }}" aria-label="{{ 'layout.customer.log_in' | t }}" class="log-in-button standalone-icon--wrapper">
             {% if section.settings.show_icons %}
-              {% render 'theme-icon' with icon: 'user', iconSize: 20 %}
+              <img
+                class="phw-navbar-icon"
+                src="https://cdn.shopify.com/s/files/1/0611/7025/4082/files/User_Profile.svg?v=1788196757"
+                alt=""
+                width="24"
+                height="24"
+                loading="eager"
+              >
             {% else %}
               <span class="header--supporting-text">{{ 'layout.header.account' | t }}</span>
             {% endif %}
@@ -106,7 +127,14 @@ Testing Cypress integration
         aria-label="{{ 'layout.header.your_cart' | t }}"
       >
         {% if section.settings.show_icons %}
-          {% render 'theme-icon' with icon: section.settings.cart-style %}
+          <img
+            class="phw-navbar-icon"
+            src="https://cdn.shopify.com/s/files/1/0611/7025/4082/files/Shopping_Cart.svg?v=1788196763"
+            alt=""
+            width="24"
+            height="24"
+            loading="eager"
+          >
           {% if section.settings.cart_count %}                                                                                                                                          
               <span 
                 data-cart-count-indicator
@@ -780,7 +808,7 @@ Testing Cypress integration
     </div>
   {% endcapture %}
 
-  <header class="site-header wrapper-spacing--h {% if section.settings.sticky_header %} {% endif %}{% if section.settings.logo-placement == 'above' %} logo_above{% endif %}{% if collection-overlay or homepage-overlay or list-collection-overlay or contact-overlay %} overlay-header{% endif %}{% if section.settings.dropdown_alignment == 'center' %} dropdown-alignment--center{% endif %}{% if section.settings.overlay_logo %} overlay-logo{% endif %}">
+  <header class="site-header phw-navbar-redesign wrapper-spacing--h {% if section.settings.sticky_header %} {% endif %}{% if section.settings.logo-placement == 'above' %} logo_above{% endif %}{% if collection-overlay or homepage-overlay or list-collection-overlay or contact-overlay %} overlay-header{% endif %}{% if section.settings.dropdown_alignment == 'center' %} dropdown-alignment--center{% endif %}{% if section.settings.overlay_logo %} overlay-logo{% endif %}">
     <div class="site-header__wrapper site-header__wrapper--logo-{{ section.settings.logo-placement }} site-header__wrapper--{% if top_links != blank %}with{% else %}without{% endif %}-menu">
       <div class="site-header__wrapper__left">
         {% if section.settings.logo-placement == 'left' %}

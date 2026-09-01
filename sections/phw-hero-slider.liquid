@@ -1,0 +1,87 @@
+{{ 'section-phw-hero-slider.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'component-phw-hero-slider.js' | asset_url }}" defer="defer"></script>
+
+<phw-hero-slider class="phw-hero" data-autoplay="{% if section.settings.autoplay %}{{ section.settings.autoplay_speed | times: 1000 }}{% else %}0{% endif %}">
+  <div class="phw-hero__grid">
+    <div class="phw-hero__slider" role="region" aria-roledescription="carousel" aria-label="{{ section.settings.accessibility_label | escape }}" tabindex="0">
+      {% for block in section.blocks %}
+        <article class="phw-hero__slide{% if forloop.first %} is-active{% endif %}" data-phw-slide aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}" {{ block.shopify_attributes }}>
+          <div class="phw-hero__media">
+            {% if block.settings.image != blank %}
+              {% assign slide_alt = block.settings.image.alt | default: block.settings.heading %}
+              {{ block.settings.image | image_url: width: 1800 | image_tag: class: 'phw-hero__image', widths: '600, 900, 1200, 1600, 1800', sizes: '(min-width: 990px) 57vw, 100vw', alt: slide_alt, loading: 'eager' }}
+            {% else %}
+              <img class="phw-hero__default-base" src="{{ 'phw-hero-clay-base.png' | asset_url }}" alt="" width="3000" height="2000" loading="eager">
+              <img class="phw-hero__default-product" src="{{ 'phw-hero-clay.png' | asset_url }}" alt="" width="2048" height="2048" loading="eager">
+            {% endif %}
+            <div class="phw-hero__overlay" style="opacity:{{ block.settings.overlay_opacity | divided_by: 100.0 }}"></div>
+          </div>
+          <div class="phw-hero__content">
+            {% if block.settings.heading != blank %}<h2 class="phw-hero__heading">{{ block.settings.heading | newline_to_br }}</h2>{% endif %}
+            {% if block.settings.button_label != blank %}<a class="phw-hero__button" href="{{ block.settings.button_link | default: routes.all_products_collection_url }}">{{ block.settings.button_label | escape }}</a>{% endif %}
+          </div>
+        </article>
+      {% endfor %}
+
+      {% if section.blocks.size > 1 %}
+        <div class="phw-hero__controls">
+          <button class="phw-hero__arrow" type="button" data-phw-prev aria-label="Previous slide"><img src="{{ 'phw-chevron-left.svg' | asset_url }}" alt="" width="20" height="20"></button>
+          <button class="phw-hero__arrow" type="button" data-phw-next aria-label="Next slide"><img src="{{ 'phw-chevron-right.svg' | asset_url }}" alt="" width="20" height="20"></button>
+        </div>
+        <ol class="phw-hero__dots" aria-label="Choose a slide">
+          {% for block in section.blocks %}<li><button class="phw-hero__dot{% if forloop.first %} is-active{% endif %}" type="button" data-phw-dot aria-label="Go to slide {{ forloop.index }}" aria-current="{% if forloop.first %}true{% else %}false{% endif %}"></button></li>{% endfor %}
+        </ol>
+      {% endif %}
+    </div>
+
+    <div class="phw-hero__cards">
+      <a class="phw-hero__card" href="{{ section.settings.card_1_link | default: routes.all_products_collection_url }}">
+        {% if section.settings.card_1_image != blank %}
+          {% assign card_1_alt = section.settings.card_1_image.alt | default: section.settings.card_1_heading %}
+          {{ section.settings.card_1_image | image_url: width: 1200 | image_tag: class: 'phw-hero__card-image', widths: '400, 800, 1200', sizes: '(min-width: 990px) 41vw, 50vw', alt: card_1_alt, loading: 'eager' }}
+        {% else %}<img class="phw-hero__card-image" src="{{ 'phw-hero-relyte.png' | asset_url }}" alt="" width="3000" height="2000" loading="eager">{% endif %}
+        <span class="phw-hero__card-label">{{ section.settings.card_1_heading | escape }}</span>
+      </a>
+      <a class="phw-hero__card" href="{{ section.settings.card_2_link | default: routes.all_products_collection_url }}">
+        {% if section.settings.card_2_image != blank %}
+          {% assign card_2_alt = section.settings.card_2_image.alt | default: section.settings.card_2_heading %}
+          {{ section.settings.card_2_image | image_url: width: 1200 | image_tag: class: 'phw-hero__card-image', widths: '400, 800, 1200', sizes: '(min-width: 990px) 41vw, 50vw', alt: card_2_alt, loading: 'eager' }}
+        {% else %}<img class="phw-hero__card-image" src="{{ 'phw-hero-salt.png' | asset_url }}" alt="" width="3000" height="2000" loading="eager">{% endif %}
+        <span class="phw-hero__card-label">{{ section.settings.card_2_heading | escape }}</span>
+      </a>
+    </div>
+  </div>
+</phw-hero-slider>
+
+{% schema %}
+{
+  "name": "PHW hero slider",
+  "tag": "section",
+  "class": "phw-hero-section",
+  "max_blocks": 5,
+  "settings": [
+    {"type":"text","id":"accessibility_label","label":"Accessibility label","default":"Featured promotions"},
+    {"type":"checkbox","id":"autoplay","label":"Auto-rotate slides","default":true},
+    {"type":"range","id":"autoplay_speed","label":"Change slide every","min":3,"max":9,"step":1,"unit":"s","default":5},
+    {"type":"header","content":"Top card"},
+    {"type":"image_picker","id":"card_1_image","label":"Image"},
+    {"type":"text","id":"card_1_heading","label":"Label","default":"Re-Lyte Electrolyte Mix"},
+    {"type":"url","id":"card_1_link","label":"Link"},
+    {"type":"header","content":"Bottom card"},
+    {"type":"image_picker","id":"card_2_image","label":"Image"},
+    {"type":"text","id":"card_2_heading","label":"Label","default":"Salt & Seasonings"},
+    {"type":"url","id":"card_2_link","label":"Link"}
+  ],
+  "blocks": [{
+    "type":"slide","name":"Slide","settings":[
+      {"type":"image_picker","id":"image","label":"Image"},
+      {"type":"textarea","id":"heading","label":"Heading","default":"Natural Body Care\nEssentials"},
+      {"type":"text","id":"button_label","label":"Button label","default":"Shop Now"},
+      {"type":"url","id":"button_link","label":"Button link"},
+      {"type":"range","id":"overlay_opacity","label":"Overlay opacity","min":0,"max":70,"step":5,"unit":"%","default":30}
+    ]
+  }],
+  "presets": [{"name":"PHW hero slider","blocks":[{"type":"slide"},{"type":"slide"},{"type":"slide"},{"type":"slide"},{"type":"slide"}]}],
+  "enabled_on": {"templates":["index"]}
+}
+{% endschema %}

@@ -1,1 +1,131 @@
 /* Place any CSS overrides in this file. */
+
+/* PH Wisdom navbar redesign — Figma node 44:3141. */
+@media screen and (min-width: 990px) {
+  .phw-navbar-redesign {
+    background: #fff !important;
+    color: #000 !important;
+    padding-inline: 48px;
+  }
+
+  .phw-navbar-redesign .site-header__wrapper {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    min-height: 92px;
+    width: 100%;
+  }
+
+  .phw-navbar-redesign .site-header__wrapper__left,
+  .phw-navbar-redesign .site-header__wrapper__center,
+  .phw-navbar-redesign .site-header__wrapper__right {
+    min-width: 0;
+  }
+
+  .phw-navbar-redesign .site-header__wrapper__left {
+    justify-self: start;
+  }
+
+  .phw-navbar-redesign .site-header__wrapper__center {
+    justify-self: center;
+  }
+
+  .phw-navbar-redesign .site-header__wrapper__right {
+    justify-self: end;
+    margin-right: 0;
+  }
+
+  .phw-navbar-redesign .site-title {
+    padding: 16px 0;
+  }
+
+  .phw-navbar-redesign .site-header__logo-image,
+  .phw-navbar-redesign .site-header__logo-overlay-image {
+    display: block;
+  }
+
+  .phw-navbar-redesign .site-header__wrapper .logo_image,
+  .phw-navbar-redesign .site-header__wrapper .logo_overlay,
+  .phw-navbar-redesign .site-header__wrapper .logo_hover {
+    display: block;
+    width: 164px !important;
+    max-width: 164px !important;
+    height: 60px;
+    object-fit: contain;
+  }
+
+  .phw-navbar-redesign .site-header__nav,
+  .phw-navbar-redesign .site-nav {
+    height: 100%;
+  }
+
+  .phw-navbar-redesign .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin: 0;
+  }
+
+  .phw-navbar-redesign .site-nav > li {
+    margin: 0;
+  }
+
+  .phw-navbar-redesign .site-nav > li > .site-nav__link {
+    color: #000 !important;
+    font-family: "Figtree", var(--navigation-font-stack), sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: .7px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .phw-navbar-redesign .site-nav--link-wrapper {
+    padding: 0;
+  }
+
+  .phw-navbar-redesign .site-header__links {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 0;
+  }
+
+  .phw-navbar-redesign .site-header__links > li {
+    margin: 0;
+  }
+
+  .phw-navbar-redesign .site-header__links .standalone-icon--wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    padding: 0;
+    color: #000 !important;
+  }
+
+  .phw-navbar-redesign .site-header__links svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .phw-navbar-redesign .phw-navbar-icon {
+    display: block;
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+
+  .phw-navbar-redesign .opacity-logo {
+    display: none;
+  }
+
+  .phw-navbar-redesign .hover-logo {
+    display: block;
+    opacity: 1;
+  }
+}
