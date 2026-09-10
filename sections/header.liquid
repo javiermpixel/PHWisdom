@@ -2,6 +2,9 @@
 Testing Cypress integration
 {% endcomment %}
 
+{{ 'phw-megamenu.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'phw-megamenu.js' | asset_url }}" defer="defer"></script>
+
 {{ 'component-mobile-menu.min.css' | asset_url | stylesheet_tag: preload: true }}
 
 {% assign overlay_opacity = section.settings.overlay_opacity | divided_by: 100.0 %}
@@ -204,6 +207,18 @@ Testing Cypress integration
       <ul class="mobile-nav mobile-nav--main">
         {% assign menu = linklists[section.settings.main_linklist] %}
         {% for link in menu.links %}
+          {% assign shop_trigger = section.settings.phw_shop_trigger | strip | downcase %}
+          {% assign current_title = link.title | strip | downcase %}
+          {% if section.settings.phw_shop_enabled and current_title == shop_trigger %}
+            <li class="mobile-nav__item top-level phw-shop-mobile">
+              <details class="phw-shop-disclosure">
+                <summary>{{ link.title | escape }}</summary>
+                {% render 'phw-shop-megamenu', section: section, shop_link: link, mobile: true %}
+              </details>
+            </li>
+            {% continue %}
+          {% endif %}
+
           {% liquid 
             assign link-title = link.title | strip | downcase
             assign is-mega-menu = false
@@ -1207,6 +1222,70 @@ Testing Cypress integration
           "label": "t:all.Right"
         }
       ]
+    },
+    {
+      "type": "header",
+      "content": "PH Wisdom Shop megamenu"
+    },
+    {
+      "type": "checkbox",
+      "id": "phw_shop_enabled",
+      "label": "Enable Shop megamenu",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "phw_shop_trigger",
+      "label": "Menu item name",
+      "default": "Shop"
+    },
+    {
+      "type": "text",
+      "id": "phw_categories_heading",
+      "label": "Categories heading",
+      "default": "Shop by Category"
+    },
+    {
+      "type": "text",
+      "id": "phw_brands_heading",
+      "label": "Brands heading",
+      "default": "Shop by Brand"
+    },
+    {
+      "type": "text",
+      "id": "phw_products_heading",
+      "label": "Products heading",
+      "default": "Shop by Product"
+    },
+    {
+      "type": "text",
+      "id": "phw_explore_label",
+      "label": "Category link label",
+      "default": "Explore"
+    },
+    {
+      "type": "text",
+      "id": "phw_shop_all_label",
+      "label": "Shop all link label",
+      "default": "Shop all"
+    },
+    {
+      "type": "link_list",
+      "id": "phw_brands_menu",
+      "label": "Brands menu",
+      "info": "Optional: overrides the Shop brand blocks. Link each brand to its collection."
+    },
+    {
+      "type": "product_list",
+      "id": "phw_products",
+      "label": "Featured products",
+      "limit": 12
+    },
+    {
+      "type": "collection",
+      "id": "phw_product_collection",
+      "label": "Fallback product collection",
+      "info": "Used when no featured products are selected."
     }
   ],
   "blocks": [
@@ -1351,6 +1430,62 @@ Testing Cypress integration
           "id": "show_promo_2_in_mobile_drawer",
           "label": "t:all.Show_in_mobile_drawer",
           "default": true
+        }
+      ]
+    },
+    {
+      "type": "phw_category",
+      "name": "Shop category",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title override"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Small heading"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Short description"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Editorial image",
+          "info": "Falls back to the collection image or its first product."
+        },
+        {
+          "type": "text",
+          "id": "fallback_asset",
+          "label": "Theme image filename",
+          "info": "Optional bundled image; an editorial image takes priority."
+        }
+      ]
+    },
+    {
+      "type": "phw_brand",
+      "name": "Shop brand",
+      "limit": 16,
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Brand collection"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Name override"
         }
       ]
     }

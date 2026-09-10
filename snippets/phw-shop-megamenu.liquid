@@ -1,0 +1,77 @@
+{% liquid
+  assign categories = section.blocks | where: 'type', 'phw_category'
+  assign brands = section.blocks | where: 'type', 'phw_brand'
+  assign products = section.settings.phw_products
+  if products == blank
+    assign products = section.settings.phw_product_collection.products
+  endif
+%}
+<div class="phw-shop-panel{% if mobile %} phw-shop-panel--mobile{% endif %}">
+  <div class="phw-shop-heading-row">
+    <h2>{{ section.settings.phw_categories_heading | default: 'Shop by Category' | escape }}</h2>
+    <a class="phw-shop-all" href="{{ shop_link.url }}">{{ section.settings.phw_shop_all_label | default: 'Shop all' | escape }}</a>
+  </div>
+  <div class="phw-shop-categories">
+    {% for block in categories %}
+      {% liquid
+        assign category = block.settings.collection
+        assign title = block.settings.title | default: category.title
+        assign category_image = block.settings.image
+        assign bundled_image = block.settings.fallback_asset
+      %}
+      {% if category != blank %}
+        <a class="phw-shop-category" href="{{ category.url }}" {{ block.shopify_attributes }}>
+          <span class="phw-shop-category-copy">
+            {% if block.settings.eyebrow != blank %}<span class="phw-shop-eyebrow">{{ block.settings.eyebrow | escape }}</span>{% endif %}
+            <strong>{{ title | escape }}</strong>
+            <span class="phw-shop-description">{{ block.settings.description | escape }}</span>
+          </span>
+          {% if category_image != blank %}
+            {{ category_image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'phw-shop-category-image', widths: '240,400,600', sizes: '(min-width: 990px) 16vw, 45vw', alt: title }}
+          {% elsif bundled_image != blank %}
+            <img class="phw-shop-category-image" src="{{ bundled_image | asset_img_url: '600x' }}" alt="{{ title | escape }}" width="400" height="216" loading="lazy">
+          {% elsif category.featured_image != blank %}
+            {{ category.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'phw-shop-category-image', alt: title }}
+          {% endif %}
+          <span class="phw-shop-explore">{{ section.settings.phw_explore_label | default: 'Explore' | escape }}</span>
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="phw-shop-bottom">
+    <div class="phw-shop-brands">
+      <h2>{{ section.settings.phw_brands_heading | default: 'Shop by Brand' | escape }}</h2>
+      <div class="phw-shop-brand-list">
+        {% if section.settings.phw_brands_menu != blank %}
+          {% for brand_link in section.settings.phw_brands_menu.links %}
+            <a href="{{ brand_link.url }}">{{ brand_link.title | escape }}</a>
+          {% endfor %}
+        {% else %}
+          {% for block in brands %}
+            {% assign brand = block.settings.collection %}
+            {% if brand != blank %}<a href="{{ brand.url }}" {{ block.shopify_attributes }}>{{ block.settings.title | default: brand.title | escape }}</a>{% endif %}
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+    {% if products != blank %}
+      <div class="phw-shop-products">
+        <div class="phw-shop-heading-row">
+          <h2>{{ section.settings.phw_products_heading | default: 'Shop by Product' | escape }}</h2>
+          <div class="phw-shop-controls">
+            <button type="button" data-phw-scroll="-1" aria-label="Previous products">{% render 'theme-icon', icon: 'chevron_left', iconSize: 20 %}</button>
+            <button type="button" data-phw-scroll="1" aria-label="Next products">{% render 'theme-icon', icon: 'chevron_right', iconSize: 20 %}</button>
+          </div>
+        </div>
+        <div class="phw-shop-product-list" tabindex="0" role="region" aria-label="{{ section.settings.phw_products_heading | default: 'Shop by Product' | escape }}">
+          {% for product in products limit: 12 %}
+            <a class="phw-shop-product" href="{{ product.url }}">
+              {% if product.featured_image != blank %}{{ product.featured_image | image_url: width: 320 | image_tag: loading: 'lazy', alt: product.title }}{% endif %}
+              <span>{{ product.title | escape }}</span>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
