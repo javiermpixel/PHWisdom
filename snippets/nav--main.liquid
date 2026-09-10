@@ -3,6 +3,17 @@
 %}
 
 {% for link in menu.links %}
+  {% assign shop_trigger = section.settings.phw_shop_trigger | strip | downcase %}
+  {% assign current_title = link.title | strip | downcase %}
+  {% if section.settings.phw_shop_enabled and current_title == shop_trigger %}
+    <li class="phw-shop-nav">
+      <details class="phw-shop-disclosure phw-shop-desktop">
+        <summary class="site-nav__link">{{ link.title | escape }}</summary>
+        {% render 'phw-shop-megamenu', section: section, shop_link: link %}
+      </details>
+    </li>
+    {% continue %}
+  {% endif %}
 
   {% if link.links != blank %}
     {% assign link-title = link.title | strip | downcase %}

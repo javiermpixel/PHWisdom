@@ -1,0 +1,64 @@
+/* PH Wisdom — Figma 44:3197. Scoped to the Shop disclosure. */
+.phw-shop-disclosure > summary {list-style:none;cursor:pointer;}
+.phw-shop-disclosure > summary::-webkit-details-marker {display:none;}
+.phw-shop-disclosure[open] > summary {font-weight:700;text-decoration:underline;text-underline-offset:4px;}
+.phw-shop-panel {box-sizing:border-box;max-width:100vw;font-family:"Figtree",var(--body-font-stack),sans-serif;color:#1e221e;background:#fff;text-align:left;white-space:normal;letter-spacing:normal;text-transform:none;line-height:1.35;overflow-x:hidden;}
+.phw-shop-panel * {box-sizing:border-box;}
+.phw-shop-panel a {color:inherit;text-decoration:none;}
+.phw-shop-panel h2 {font-family:inherit;font-size:14px;font-weight:700;line-height:1.3;margin:0;letter-spacing:normal;text-transform:none;}
+.phw-shop-heading-row {display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px;}
+.phw-shop-panel .phw-shop-all {font-size:11px;text-decoration:underline;text-underline-offset:3px;}
+.phw-shop-categories {display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-bottom:16px;}
+.phw-shop-category {display:flex;min-width:0;flex-direction:column;gap:10px;padding:10px;border-radius:12px;}
+.phw-shop-category:hover {background:#f6f8f3;}
+.phw-shop-category-copy {display:flex;flex-direction:column;gap:4px;min-height:68px;}
+.phw-shop-eyebrow {font-size:9px;font-weight:700;text-transform:uppercase;color:#72943f;}
+.phw-shop-category strong {font-size:13px;line-height:1.2;}
+.phw-shop-description {font-size:11px;color:#5f6561;}
+.phw-shop-category-image {display:block;width:100%;height:108px;object-fit:cover;border-radius:6px;}
+.phw-shop-panel .phw-shop-explore {font-size:9px;color:#0ba5ec;text-transform:uppercase;text-decoration:underline;}
+.phw-shop-bottom {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);}
+.phw-shop-brands {padding:16px 24px 16px 0;border-right:1px solid #dce5df;}
+.phw-shop-brand-list {display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+.phw-shop-brand-list a {font-size:11px;color:#5f6561;padding:8px 16px;border:1px solid #d5d7da;border-radius:24px;}
+.phw-shop-brand-list a:hover {border-color:#72943f;background:#f6f8f3;}
+.phw-shop-products {min-width:0;padding:16px 0 0 16px;}
+.phw-shop-products .phw-shop-heading-row {min-height:36px;margin-top:-8px;margin-bottom:12px;}
+.phw-shop-controls {display:flex;gap:6px;}
+.phw-shop-controls button {display:flex;align-items:center;justify-content:center;width:36px;height:36px;padding:8px;background:white;color:#1e221e;border:1px solid #e6e7ea;border-radius:8px;cursor:pointer;}
+.phw-shop-controls button:disabled {opacity:.35;cursor:default;}
+.phw-shop-product-list {display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;padding-bottom:8px;}
+.phw-shop-product {flex:0 0 157px;min-width:0;border:1px solid #d5d7da;border-radius:8px;padding:8px 16px;display:flex;flex-direction:column;gap:8px;scroll-snap-align:start;}
+.phw-shop-product img {display:block;width:123px;height:108px;object-fit:contain;}
+.phw-shop-product span {font-size:11px;line-height:1.35;color:#5f6561;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:30px;}
+.phw-shop-panel a:focus-visible,.phw-shop-disclosure summary:focus-visible,.phw-shop-panel button:focus-visible,.phw-shop-product-list:focus-visible {outline:2px solid #72943f;outline-offset:3px;}
+@media(min-width:990px) {
+  .phw-navbar-redesign {position:relative;}
+  /* Override the theme's .site-nav > li positioning: the panel belongs to the header. */
+  .site-header.phw-navbar-redesign .site-header__wrapper,
+  .site-header.phw-navbar-redesign .site-header__wrapper__left,
+  .site-header.phw-navbar-redesign .site-header__nav,
+  .site-header.phw-navbar-redesign .site-nav,
+  .site-header.phw-navbar-redesign .site-nav > li.phw-shop-nav,
+  .site-header.phw-navbar-redesign .phw-shop-desktop {position:static;}
+  .phw-shop-desktop > summary.site-nav__link {font-family:"Figtree",var(--navigation-font-stack),sans-serif;font-size:14px;letter-spacing:.7px;text-transform:uppercase;font-weight:300;color:#000;padding:0;}
+  .phw-shop-desktop[open] > summary.site-nav__link {font-weight:700;}
+  .phw-shop-desktop > .phw-shop-panel {position:absolute;top:100%;left:0;width:100%;z-index:100;padding:20px 24px 16px;border:1px solid #e6e7ea;border-top:0;border-radius:0 0 16px 16px;box-shadow:0 12px 12px #1e221e12;max-height:calc(100dvh - 120px);overflow-y:auto;}
+}
+@media(min-width:1600px) {
+  .phw-shop-category-image {height:clamp(128px,5vw,164px);}
+}
+@media(max-width:989px) {
+  .phw-shop-mobile > details > summary {padding:16px 20px;font-size:16px;}
+  .phw-shop-mobile > details > summary::after {content:'+';float:right;}
+  .phw-shop-mobile > details[open] > summary::after {content:'−';}
+  .phw-shop-panel--mobile {padding:12px 16px;}
+  .phw-shop-categories {grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;}
+  .phw-shop-category {padding:6px;}
+  .phw-shop-category-copy {min-height:0;}
+  .phw-shop-category-image {height:90px;}
+  .phw-shop-bottom {grid-template-columns:minmax(0,1fr);}
+  .phw-shop-brands {border-right:0;border-bottom:1px solid #dce5df;padding:16px 0;}
+  .phw-shop-products {padding:20px 0 0;}
+  .phw-shop-panel .phw-shop-brand-list a {padding:10px 14px;}
+}
