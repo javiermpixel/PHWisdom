@@ -70,7 +70,7 @@
           "type": "text-with-icon",
           "settings": {
             "icon": "truck",
-            "text": "Free shipping when you spend over £50",
+            "text": "Free shipping",
             "link": "",
             "margin_bottom": 30,
             "text_color": "#242424"
