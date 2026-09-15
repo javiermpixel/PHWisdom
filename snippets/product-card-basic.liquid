@@ -37,7 +37,7 @@
         {% if card_product.variants.size > 1 %}
           <div class="text-link-animated">
             <a class="btn--underlined-with-icon" href="{{ card_product.url }}" data-quick-view-link>
-              {% render 'theme-icon' with icon: 'shopping-bag', iconSize: 14 %}
+              {% render 'theme-icon' with icon, icon: 'shopping-bag', iconSize: 14 %}
               <span>{{ 'products.product.view_options' | t }}</span>
             </a>
           </div>
@@ -58,7 +58,7 @@
             <input type="hidden" name="sections" value="cart-drawer" />
             <div class="product-card-basic__add-button text-link-animated">
               <button class="btn--underlined btn--underlined-with-icon" type="submit">
-                {% render 'theme-icon' with icon: 'shopping-bag', iconSize: 14, iconClasses: 'btn--underlined-with-icon__icon' %}
+                {% render 'theme-icon' with icon, icon: 'shopping-bag', iconSize: 14, iconClasses: 'btn--underlined-with-icon__icon' %}
                 <span>
                   {% if preorder_product %}{{ 'products.product.preorder' | t }}{% else %}{{ 'products.product.add_to_cart' | t }}{% endif %}
                 </span>
@@ -72,4 +72,18 @@
       </safe-load-scripts>
     </div>
   </div>
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'theme-icon' with icon: 'shopping-bag', iconSize: 14 %}"
+  to: "{% render 'theme-icon' with icon, icon: 'shopping-bag', iconSize: 14 %}"
+  position: 1635..1706
+- from: "{% render 'theme-icon' with icon: 'shopping-bag', iconSize: 14, iconClasses:
+    'btn--underlined-with-icon__icon' %}"
+  to: "{% render 'theme-icon' with icon, icon: 'shopping-bag', iconSize: 14, iconClasses:
+    'btn--underlined-with-icon__icon' %}"
+  position: 2666..2785
+{%- endcomment -%}

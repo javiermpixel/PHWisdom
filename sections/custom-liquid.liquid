@@ -18,7 +18,7 @@
 >
 	<div {% unless full_width %}class="width--{{ section.settings.section_width }}"{% endunless %}>
     {% comment %} Section title and description {% endcomment %}
-    {% render 'dynamic-section-header' with section_title: section.settings.title, section_description: section.settings.description %}
+    {% render 'dynamic-section-header' with section_title, section_title: section.settings.title, section_description: section.settings.description %}
 
     <div class="rte text-link-animated">
       {{ section.settings.custom_liquid }}
@@ -128,4 +128,15 @@
     }
   ]
 }
-{% endschema %}
+{% endschema %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'dynamic-section-header' with section_title: section.settings.title,
+    section_description: section.settings.description %}"
+  to: "{% render 'dynamic-section-header' with section_title, section_title: section.settings.title,
+    section_description: section.settings.description %}"
+  position: 774..920
+{%- endcomment -%}

@@ -110,22 +110,10 @@ var theme = {
 					{% if section.settings.button_text != blank %}
             {% assign button_link = 'https://maps.google.com?daddr=' | append: section.settings.map_address | escape %}
             {% if section.settings.override_button_colors %}
-              {% render 'button-color-overrides' with
-                id: section.id,
-                style: section.settings.buttons_style,
-                text_color: section.settings.button_text_color,
-                background_color: section.settings.button_background_color
-              %}
+              {% render 'button-color-overrides' with id, id: section.id, style: section.settings.buttons_style, text_color: section.settings.button_text_color, background_color: section.settings.button_background_color %}
             {% endif %}
             
-            {% render 'dynamic-section-button' with
-              id: section.id,
-              link: button_link,
-              label: section.settings.button_text,
-              style: section.settings.buttons_style,
-              a_classes: 'homepage-featured-box-btn map_section__directions-btn',
-              attributes: 'target="_blank"'
-            %}
+            {% render 'dynamic-section-button' with id, id: section.id, link: button_link, label: section.settings.button_text, style: section.settings.buttons_style, a_classes: 'homepage-featured-box-btn map_section__directions-btn', attributes: 'target="_blank"' %}
 					{% endif %}
 
 				</div>
@@ -314,3 +302,35 @@ var theme = {
   }
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'button-color-overrides' with
+                    id: section.id,
+                    style: section.settings.buttons_style,
+                    text_color: section.settings.button_text_color,
+                    background_color: section.settings.button_background_color
+                  %}
+  to: "{% render 'button-color-overrides' with id, id: section.id, style: section.settings.buttons_style,
+    text_color: section.settings.button_text_color, background_color: section.settings.button_background_color
+    %}"
+  position: 5017..5225
+- from: |-
+    {% render 'dynamic-section-button' with
+                  id: section.id,
+                  link: button_link,
+                  label: section.settings.button_text,
+                  style: section.settings.buttons_style,
+                  a_classes: 'homepage-featured-box-btn map_section__directions-btn',
+                  attributes: 'target="_blank"'
+                %}
+  to: '{% render ''dynamic-section-button'' with id, id: section.id, link: button_link,
+    label: section.settings.button_text, style: section.settings.buttons_style, a_classes:
+    ''homepage-featured-box-btn map_section__directions-btn'', attributes: ''target="_blank"''
+    %}'
+  position: 5275..5530
+{% endcomment %}

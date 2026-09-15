@@ -14,12 +14,7 @@
 
 {% if section.settings.override_button_colors %}
   {% assign grid_item_id = 'grid-item--' | append: section.id %}
-  {% render 'button-color-overrides' with
-    id: grid_item_id,
-    style: settings.quick_shop_button_style,
-    text_color: section.settings.button_text_color,
-    background_color: section.settings.button_background_color
-  %}
+  {% render 'button-color-overrides' with id, id: grid_item_id, style: settings.quick_shop_button_style, text_color: section.settings.button_text_color, background_color: section.settings.button_background_color %}
 {% endif %}
 
   {% assign no_of_placeholder_products_to_show = 3 %}
@@ -34,7 +29,7 @@
 
   <div class="width--narrow">
     {% comment %} Section title and description {% endcomment %}
-    {% render 'dynamic-section-header' with section_title: section.settings.title, section_description: section.settings.description %}
+    {% render 'dynamic-section-header' with section_title, section_title: section.settings.title, section_description: section.settings.description %}
 
     {% if section.blocks.size > 0 %}
       <shop-the-look class="shop-the-look__content" data-section-id="{{ section.id }}">
@@ -106,12 +101,7 @@
         {% comment %} 'View products' button on mobile {% endcomment %}
         {% assign view_products_id = 'view-products--' | append: section.id %}
         {% if section.settings.override_button_colors %}
-          {% render 'button-color-overrides' with
-            id: view_products_id,
-            style: 'filled',
-            text_color: section.settings.button_text_color,
-            background_color: section.settings.button_background_color
-          %}
+          {% render 'button-color-overrides' with id, id: view_products_id, style: 'filled', text_color: section.settings.button_text_color, background_color: section.settings.button_background_color %}
         {% endif %}
         <div class="shop-the-look__open-modal-btn-container">
           <button class="btn dynamic-section-button--{{ view_products_id }}" type="button" data-open-modal-btn>{{ 'sections.shop_the_look.view_products' | t }}</button>
@@ -192,7 +182,7 @@
           {% comment %} Mobile modal close (X) button {% endcomment %}
           <button type="button" data-close-modal-btn class="shop-the-look__modal-close icon-fallback-text standalone-icon--wrapper" aria-label="{{ 'general.accessibility.dismiss.close' | t }}">
             <span class="fallback-text">{{ 'general.accessibility.dismiss.close' | t }}</span>
-            {% render 'theme-icon' with icon: 'close', iconSize: 20 %}
+            {% render 'theme-icon' with icon, icon: 'close', iconSize: 20 %}
           </button>
         </div>
       </shop-the-look>
@@ -490,3 +480,40 @@
   }
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'button-color-overrides' with
+        id: grid_item_id,
+        style: settings.quick_shop_button_style,
+        text_color: section.settings.button_text_color,
+        background_color: section.settings.button_background_color
+      %}
+  to: "{% render 'button-color-overrides' with id, id: grid_item_id, style: settings.quick_shop_button_style,
+    text_color: section.settings.button_text_color, background_color: section.settings.button_background_color
+    %}"
+  position: 715..927
+- from: "{% render 'dynamic-section-header' with section_title: section.settings.title,
+    section_description: section.settings.description %}"
+  to: "{% render 'dynamic-section-header' with section_title, section_title: section.settings.title,
+    section_description: section.settings.description %}"
+  position: 1595..1741
+- from: |-
+    {% render 'button-color-overrides' with
+                id: view_products_id,
+                style: 'filled',
+                text_color: section.settings.button_text_color,
+                background_color: section.settings.button_background_color
+              %}
+  to: "{% render 'button-color-overrides' with id, id: view_products_id, style: 'filled',
+    text_color: section.settings.button_text_color, background_color: section.settings.button_background_color
+    %}"
+  position: 5425..5617
+- from: "{% render 'theme-icon' with icon: 'close', iconSize: 20 %}"
+  to: "{% render 'theme-icon' with icon, icon: 'close', iconSize: 20 %}"
+  position: 10519..10583
+{% endcomment %}

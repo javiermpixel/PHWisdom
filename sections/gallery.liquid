@@ -22,7 +22,7 @@
     <div class="homepage-gallery-background{% if section.settings.section-width == 'content' %} width--content{% endif %}">
 
       {% comment %} Section title and description {% endcomment %}
-      {% render 'dynamic-section-header' with section_title: section.settings.title, section_description: section.settings.description %}
+      {% render 'dynamic-section-header' with section_title, section_title: section.settings.title, section_description: section.settings.description %}
 
         <div class="gallery-grid gallery-grid--items-{{ section.blocks.size }} expand-grid{% if section.settings.remove-spacing %} remove-spacing{% else %} keep-spacing{% endif %}{% if no_images %} no-user-images{% endif %} content-position-{{ section.settings.content-position }}{% if section.settings.full-width %} gallery-full-width{% endif %}">
           {% for block in section.blocks %}
@@ -88,22 +88,10 @@
 
                         {% if block.settings.overlay-btn-text != blank %}
                           {% if block.settings.override_button_colors %}
-                            {% render 'button-color-overrides' with
-                              id: block.id,
-                              style: section.settings.buttons_style,
-                              text_color: block.settings.button_text_color,
-                              background_color: block.settings.button_background_color
-                            %}
+                            {% render 'button-color-overrides' with id, id: block.id, style: section.settings.buttons_style, text_color: block.settings.button_text_color, background_color: block.settings.button_background_color %}
                           {% endif %}
                           
-                          {% render 'dynamic-section-button' with
-                            id: block.id,
-                            link: block.settings.link,
-                            label: block.settings.overlay-btn-text,
-                            style: section.settings.buttons_style,
-                            a_classes: 'homepage-featured-box-btn',
-                            wrapper: false
-                          %}
+                          {% render 'dynamic-section-button' with id, id: block.id, link: block.settings.link, label: block.settings.overlay-btn-text, style: section.settings.buttons_style, a_classes: 'homepage-featured-box-btn', wrapper: false %}
                         {% endif %}
                       </div>
                     {% endif %}
@@ -411,3 +399,39 @@
   }
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'dynamic-section-header' with section_title: section.settings.title,
+    section_description: section.settings.description %}"
+  to: "{% render 'dynamic-section-header' with section_title, section_title: section.settings.title,
+    section_description: section.settings.description %}"
+  position: 983..1129
+- from: |-
+    {% render 'button-color-overrides' with
+                                  id: block.id,
+                                  style: section.settings.buttons_style,
+                                  text_color: block.settings.button_text_color,
+                                  background_color: block.settings.button_background_color
+                                %}
+  to: "{% render 'button-color-overrides' with id, id: block.id, style: section.settings.buttons_style,
+    text_color: block.settings.button_text_color, background_color: block.settings.button_background_color
+    %}"
+  position: 6059..6261
+- from: |-
+    {% render 'dynamic-section-button' with
+                                id: block.id,
+                                link: block.settings.link,
+                                label: block.settings.overlay-btn-text,
+                                style: section.settings.buttons_style,
+                                a_classes: 'homepage-featured-box-btn',
+                                wrapper: false
+                              %}
+  to: "{% render 'dynamic-section-button' with id, id: block.id, link: block.settings.link,
+    label: block.settings.overlay-btn-text, style: section.settings.buttons_style,
+    a_classes: 'homepage-featured-box-btn', wrapper: false %}"
+  position: 6353..6574
+{% endcomment %}

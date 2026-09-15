@@ -22,12 +22,7 @@
 {% if block.settings.override_button_colors %}
   {% assign btn_id = block.id %}
 
-  {% render 'button-color-overrides' with
-    id: btn_id,
-    style: 'filled',
-    text_color: block.settings.button_text_color,
-    background_color: block.settings.button_background_color
-  %}
+  {% render 'button-color-overrides' with id, id: btn_id, style: 'filled', text_color: block.settings.button_text_color, background_color: block.settings.button_background_color %}
 
   <style>
     .dynamic-section-button--{{ btn_id }}--dynamic .shopify-payment-button__button--unbranded {
@@ -176,7 +171,7 @@
             </span>
 
             {% comment %} ===== Loading icon ===== {% endcomment %}
-            {% render 'theme-icon' with icon: 'circle-notch', iconClasses: 'spin js fa-2x hidden', iconAttributes: loading_icon_attributes, iconSize: '1.6em', icon_fill: settings.color_primary_button_text %}<span class="sr-only">{{ 'collections.paginate.loading' | t }}</span>
+            {% render 'theme-icon' with icon, icon: 'circle-notch', iconClasses: 'spin js fa-2x hidden', iconAttributes: loading_icon_attributes, iconSize: '1.6em', icon_fill: settings.color_primary_button_text %}<span class="sr-only">{{ 'collections.paginate.loading' | t }}</span>
           </button>
 
           {% comment %} ===== Dynamic buttons ===== {% endcomment %}
@@ -263,3 +258,28 @@
     </div>
   {%- endif -%}
 </div>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'button-color-overrides' with
+        id: btn_id,
+        style: 'filled',
+        text_color: block.settings.button_text_color,
+        background_color: block.settings.button_background_color
+      %}
+  to: "{% render 'button-color-overrides' with id, id: btn_id, style: 'filled', text_color:
+    block.settings.button_text_color, background_color: block.settings.button_background_color
+    %}"
+  position: 1333..1511
+- from: "{% render 'theme-icon' with icon: 'circle-notch', iconClasses: 'spin js fa-2x
+    hidden', iconAttributes: loading_icon_attributes, iconSize: '1.6em', icon_fill:
+    settings.color_primary_button_text %}"
+  to: "{% render 'theme-icon' with icon, icon: 'circle-notch', iconClasses: 'spin
+    js fa-2x hidden', iconAttributes: loading_icon_attributes, iconSize: '1.6em',
+    icon_fill: settings.color_primary_button_text %}"
+  position: 7465..7666
+{% endcomment %}

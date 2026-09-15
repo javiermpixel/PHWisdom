@@ -97,7 +97,7 @@
     <div class="hero-video--wrapper">
         <div class="hero-video--media type-{{ type }}">
             {% if section.settings.video %}
-                {% render 'native-video' with video: section.settings.video, autoplay: true, loop: true, muted: true, overlay: false, controls: false %}
+                {% render 'native-video' with video, video: section.settings.video, autoplay: true, loop: true, muted: true, overlay: false, controls: false %}
             {% elsif section.settings.url %}
               <wetheme-video
                 section-id="{{ section.id }}"
@@ -132,22 +132,9 @@
                     </div>
 									{% endunless %}
                     {% if section.settings.button_label != blank %}
-                      {% render 'dynamic-section-button' with
-                        id: section.id,
-                        link: section.settings.link,
-                        label: section.settings.button_label,
-                        style: section.settings.buttons_style,
-                        div_classes: 'homepage-section-btn-container',
-                        a_classes: 'homepage-section-btn',
-                        attributes: 'data-section-main-link'
-                      %}
+                      {% render 'dynamic-section-button' with id, id: section.id, link: section.settings.link, label: section.settings.button_label, style: section.settings.buttons_style, div_classes: 'homepage-section-btn-container', a_classes: 'homepage-section-btn', attributes: 'data-section-main-link' %}
                       {% if section.settings.override_button_colors %}
-                        {% render 'button-color-overrides' with
-                          id: section.id,
-                          style: section.settings.buttons_style,
-                          text_color: section.settings.button-text,
-                          background_color: section.settings.button-background
-                        %}
+                        {% render 'button-color-overrides' with id, id: section.id, style: section.settings.buttons_style, text_color: section.settings.button-text, background_color: section.settings.button-background %}
                       {% endif %}
                     {% endif %}
                 </div>
@@ -471,3 +458,41 @@
   }
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'native-video' with video: section.settings.video, autoplay: true,
+    loop: true, muted: true, overlay: false, controls: false %}"
+  to: "{% render 'native-video' with video, video: section.settings.video, autoplay:
+    true, loop: true, muted: true, overlay: false, controls: false %}"
+  position: 3249..3392
+- from: |-
+    {% render 'dynamic-section-button' with
+                            id: section.id,
+                            link: section.settings.link,
+                            label: section.settings.button_label,
+                            style: section.settings.buttons_style,
+                            div_classes: 'homepage-section-btn-container',
+                            a_classes: 'homepage-section-btn',
+                            attributes: 'data-section-main-link'
+                          %}
+  to: "{% render 'dynamic-section-button' with id, id: section.id, link: section.settings.link,
+    label: section.settings.button_label, style: section.settings.buttons_style, div_classes:
+    'homepage-section-btn-container', a_classes: 'homepage-section-btn', attributes:
+    'data-section-main-link' %}"
+  position: 5447..5734
+- from: |-
+    {% render 'button-color-overrides' with
+                              id: section.id,
+                              style: section.settings.buttons_style,
+                              text_color: section.settings.button-text,
+                              background_color: section.settings.button-background
+                            %}
+  to: "{% render 'button-color-overrides' with id, id: section.id, style: section.settings.buttons_style,
+    text_color: section.settings.button-text, background_color: section.settings.button-background
+    %}"
+  position: 5830..6026
+{% endcomment %}

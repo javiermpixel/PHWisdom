@@ -48,7 +48,7 @@
       <rect width="16" height="16" stroke="currentColor" fill="none" stroke-width="1"></rect>
     </svg>
 
-    {% render 'theme-icon' with icon: 'checkmark', iconSize: 14, iconClasses: 'icon icon-checkmark checkbox-icon', iconAttributes: 'aria-hidden="true" focusable="false"' %}
+    {% render 'theme-icon' with icon, icon: 'checkmark', iconSize: 14, iconClasses: 'icon icon-checkmark checkbox-icon', iconAttributes: 'aria-hidden="true" focusable="false"' %}
 
     {{ label }}
   </div>
@@ -57,3 +57,17 @@
     <div class="form-input-hint">{{ hint_text }}</div>
   {% endif %}
 </div>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: '{% render ''theme-icon'' with icon: ''checkmark'', iconSize: 14, iconClasses:
+    ''icon icon-checkmark checkbox-icon'', iconAttributes: ''aria-hidden="true" focusable="false"''
+    %}'
+  to: '{% render ''theme-icon'' with icon, icon: ''checkmark'', iconSize: 14, iconClasses:
+    ''icon icon-checkmark checkbox-icon'', iconAttributes: ''aria-hidden="true" focusable="false"''
+    %}'
+  position: 2434..2608
+{% endcomment %}

@@ -8,7 +8,7 @@
   >
 
     {% comment %} Section title and description {% endcomment %}
-    {% render 'dynamic-section-header' with section_title: section.settings.title, section_description: section.settings.description %}
+    {% render 'dynamic-section-header' with section_title, section_title: section.settings.title, section_description: section.settings.description %}
 
     <scrolling-banner
       class="animation-direction-{{ section.settings.animation_direction }}"
@@ -68,7 +68,7 @@
                       {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
                       {{ 'product-' | append: current | placeholder_svg_tag: 'icon icon--placeholder' }}
                     {% else %}
-                      {% render 'responsive-image' with block.settings.image, default_size: block.settings.height_mobile, class: 'content-image' | append: 'x', blur: false %}
+                      {% render 'responsive-image' with block.settings.image, default_size: block.settings.height_mobile, class: 'content-image', append: 'x', blur: false %}
                     {% endif %}
                   {% if block.settings.link %}
                     </a>
@@ -524,4 +524,20 @@
     }
   ]
 }
-{% endschema %}
+{% endschema %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'dynamic-section-header' with section_title: section.settings.title,
+    section_description: section.settings.description %}"
+  to: "{% render 'dynamic-section-header' with section_title, section_title: section.settings.title,
+    section_description: section.settings.description %}"
+  position: 574..720
+- from: "{% render 'responsive-image' with block.settings.image, default_size: block.settings.height_mobile,
+    class: 'content-image' | append: 'x', blur: false %}"
+  to: "{% render 'responsive-image' with block.settings.image, default_size: block.settings.height_mobile,
+    class: 'content-image', append: 'x', blur: false %}"
+  position: 3684..3835
+{%- endcomment -%}

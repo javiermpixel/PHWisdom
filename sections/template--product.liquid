@@ -357,16 +357,7 @@
                         style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px"
                       {% endif %}
                     >
-                      {% render 'product-options' with product: product, 
-                        size_option_name: block.settings.size_option_name, 
-                        size_guide_page: block.settings.size_guide_page,
-                        size_guide_label: block.settings.size_guide_label,
-                        variant_style: options_block.settings.variant_style, 
-                        section_id: section.id, 
-                        current_variant: current_variant, 
-                        hide_out_of_stock_variants: options_block.settings.hide_out_of_stock_variants, 
-                        block_attributes: options_block.shopify_attributes
-                      %}
+                      {% render 'product-options' with product, product: product, size_option_name: block.settings.size_option_name, size_guide_page: block.settings.size_guide_page, size_guide_label: block.settings.size_guide_label, variant_style: options_block.settings.variant_style, section_id: section.id, current_variant: current_variant, hide_out_of_stock_variants: options_block.settings.hide_out_of_stock_variants, block_attributes: options_block.shopify_attributes %}
 
                       {% if show_size_guide_below_options %}
                         <div data-size-guide-below-options{% if product.has_only_default_variant %} class="no-spacing"{% endif %}>
@@ -390,7 +381,7 @@
                       style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px" 
                       {{ block.shopify_attributes }}
                     >
-                      {%- render 'complementary-products-block' with title: block.settings.title, products_limit: block.settings.products_limit, collapsible: block.settings.collapsible_tab, open_close_icon: block.settings.open_close_icon, custom_icon: block.settings.custom_icon, icon: block.settings.icon, id: block.id -%}
+                      {%- render 'complementary-products-block' with title, title: block.settings.title, products_limit: block.settings.products_limit, collapsible: block.settings.collapsible_tab, open_close_icon: block.settings.open_close_icon, custom_icon: block.settings.custom_icon, icon: block.settings.icon, id: block.id -%}
                     </div>
 
                   {% when 'cross-sells' %}
@@ -406,7 +397,7 @@
                         {%- assign cross_sells_products = block.settings.cross_sell_product_1 | append: ',' | append: block.settings.cross_sell_product_2 | append: ',' | append: block.settings.cross_sell_product_3 | split: ',' | compact -%}
                         <div class="cross-sell-block">
                           {% unless block.settings.collapsible_tab %}
-                            {% render 'cross-sells' with title: block.settings.title, cross_sells_products: cross_sells_products, id: block.id %}
+                            {% render 'cross-sells' with title, title: block.settings.title, cross_sells_products: cross_sells_products, id: block.id %}
                           {% else %}
                             {% liquid
                               if block.settings.custom_icon
@@ -424,8 +415,8 @@
                                   {% render 'text-with-icon', icon: icon, custom_icon: custom_icon, text: block.settings.title, text_classes: 'label-font' %}
                                   <span class="inline-icon--wrapper icon--right">
                                     {% if block.settings.open_close_icon == "plus_minus" %}
-                                      {% render 'theme-icon' with icon: 'plus', iconClasses: 'plus-icon' %}
-                                      {% render 'theme-icon' with icon: 'minus', iconClasses: 'minus-icon' %}
+                                      {% render 'theme-icon' with icon, icon: 'plus', iconClasses: 'plus-icon' %}
+                                      {% render 'theme-icon' with icon, icon: 'minus', iconClasses: 'minus-icon' %}
                                     {% elsif block.settings.open_close_icon == "caret" %}
                                       {% render 'theme-icon', icon: 'chevron_down', iconClasses: 'chevron-down' %}
                                     {% endif %}
@@ -435,7 +426,7 @@
                           
                               <div class="collapsible-content">
                                 <div class="content rte">
-                                  {% render 'cross-sells' with title: blank, cross_sells_products: cross_sells_products, id: block.id %}
+                                  {% render 'cross-sells' with title, title: "", cross_sells_products: cross_sells_products, id: block.id %}
                                 </div>
                               </div>
                             </div>
@@ -492,7 +483,7 @@
                         %}
 
                         <div class="{{ spacing_classes }} product__meta--giftwrap" style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px" {{ block.shopify_attributes }}>
-                          {% render 'form-input--checkbox' with id: field_id, form_id: product_form_id, name: field_name, label_text: giftwrap_label %}
+                          {% render 'form-input--checkbox' with id, id: field_id, form_id: product_form_id, name: field_name, label_text: giftwrap_label %}
                         </div>
                       {% endif %}
                     {%- endif -%}
@@ -511,12 +502,7 @@
 
                   {% when 'button' %}
                     {% if block.settings.override_button_colors %}
-                      {% render 'button-color-overrides' with
-                        id: block.id,
-                        style: block.settings.button_style,
-                        text_color: block.settings.button_text_color,
-                        background_color: block.settings.button_background_color
-                      %}
+                      {% render 'button-color-overrides' with id, id: block.id, style: block.settings.button_style, text_color: block.settings.button_text_color, background_color: block.settings.button_background_color %}
                     {% endif %}
 
                     <div
@@ -537,25 +523,12 @@
                           assign button_attributes = 'target="_blank" rel="noopener noreferrer"'
                         endif
                       -%}
-                      {% render 'dynamic-section-button' with
-                        id: block.id,
-                        link: block.settings.button_link,
-                        label: block.settings.button_label,
-                        style: block.settings.button_style,
-                        wrapper: false,
-                        a_classes: button_classes,
-                        attributes: button_attributes
-                      %}
+                      {% render 'dynamic-section-button' with id, id: block.id, link: block.settings.button_link, label: block.settings.button_label, style: block.settings.button_style, wrapper: false, a_classes: button_classes, attributes: button_attributes %}
                     </div>
 
                   {% when 'modal' %}
                     {% if block.settings.override_button_colors %}
-                      {% render 'button-color-overrides' with
-                        id: block.id,
-                        style: block.settings.button_style,
-                        text_color: block.settings.button_text_color,
-                        background_color: block.settings.button_background_color
-                      %}
+                      {% render 'button-color-overrides' with id, id: block.id, style: block.settings.button_style, text_color: block.settings.button_text_color, background_color: block.settings.button_background_color %}
                     {% endif %}
 
                     <div
@@ -589,16 +562,7 @@
                               assign button_attributes = 'data-modal-button'
                             %}
 
-                            {% render 'dynamic-section-button' with
-                              id: block.id,
-                              label: block.settings.modal_button_label,
-                              style: block.settings.button_style,
-                              wrapper: false,
-                              a_classes: button_classes,
-                              attributes: button_attributes,
-                              has_link: false,
-                              aria_label: block.settings.modal_button_label
-                            %}
+                            {% render 'dynamic-section-button' with id, id: block.id, label: block.settings.modal_button_label, style: block.settings.button_style, wrapper: false, a_classes: button_classes, attributes: button_attributes, has_link: false, aria_label: block.settings.modal_button_label %}
                           {%- endif -%}
 
                           <template>
@@ -609,7 +573,7 @@
                               {% comment %} Close icon {% endcomment %}
                               <button type="button" data-close class="button-unstyled icon-fallback-text standalone-icon--wrapper" aria-label="{{ 'general.accessibility.dismiss.close' | t }}">
                                 <span class="fallback-text">{{ 'general.accessibility.dismiss.close' | t }}</span>
-                                {% render 'theme-icon' with icon: 'close', iconSize: 20 %}
+                                {% render 'theme-icon' with icon, icon: 'close', iconSize: 20 %}
                               </button>
 
                               <div class="theme-modal--inner">
@@ -644,7 +608,7 @@
                   
                   {% when 'buy_buttons' %}
                     {% comment %} ===== PAYMENT BUTTONS BLOCK ===== {% endcomment %}
-                    {% render 'payment-buttons' with product: product, block: block, product_form_id: product_form_id, section_id: section.id, show_buy_now: block.settings.show_smart_checkout, gift_card_form_enabled: block.settings.enable_gift_card_recipient_form %}
+                    {% render 'payment-buttons' with product, product: product, block: block, product_form_id: product_form_id, section_id: section.id, show_buy_now: block.settings.show_smart_checkout, gift_card_form_enabled: block.settings.enable_gift_card_recipient_form %}
 
                   {% when 'local_pickup' %}
                     {% comment %} ===== LOCAL PICKUP BLOCK ===== {% endcomment %}
@@ -656,7 +620,7 @@
                       style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px" 
                       {{ block.shopify_attributes }}
                     >
-                      {% render 'store-availability' with product_variant: current_variant %}
+                      {% render 'store-availability' with product_variant, product_variant: current_variant %}
                     </div>
 
                   {% when 'trust_badges' %}
@@ -851,14 +815,7 @@
 
                     {%- if icon != 'none' or  block.settings.text != blank -%}
                       <div class="{{ spacing_classes }}" data-updates-on-change data-update-id="item-{{ block.id }}" {{ styles }}>
-                        {% render 'text-with-icon' with icon: icon, 
-                          custom_icon: custom_icon, 
-                          text: block.settings.text, 
-                          link: block.settings.link, 
-                          borders: true, 
-                          block_attributes: block.shopify_attributes,
-                          classes: classes
-                        %}
+                        {% render 'text-with-icon' with icon, icon: icon, custom_icon: custom_icon, text: block.settings.text, link: block.settings.link, borders: true, block_attributes: block.shopify_attributes, classes: classes %}
                       </div>
                     {%- endif -%}
 
@@ -871,21 +828,7 @@
                       class="{{ spacing_classes }}" 
                       style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px"
                     >
-                      {% render 'stock-level-indicator' with 
-                        block_attributes: block.shopify_attributes,
-                        stock_product: product,
-                        stock_variant: current_variant,
-                        stock_style: block.settings.stock-level-indicator-style,
-                        stock_bar_color: block.settings.bar-indicator-color,
-                        stock_indicator_animation: block.settings.stock_indicator_animation,
-                        stock_amt: block.settings.stock-range,
-                        stock_notice: block.settings.stock-level-notice,
-                        show_stock_count: block.settings.show-stock-count,
-                        preorder_message: block.settings.preorder-message,
-                        in_stock_message: block.settings.in-stock-message,
-                        low_stock_message: block.settings.low-stock-message,
-                        out_of_stock_message: block.settings.out-of-stock-message
-                      %}
+                      {% render 'stock-level-indicator' with block_attributes, block_attributes: block.shopify_attributes, stock_product: product, stock_variant: current_variant, stock_style: block.settings.stock-level-indicator-style, stock_bar_color: block.settings.bar-indicator-color, stock_indicator_animation: block.settings.stock_indicator_animation, stock_amt: block.settings.stock-range, stock_notice: block.settings.stock-level-notice, show_stock_count: block.settings.show-stock-count, preorder_message: block.settings.preorder-message, in_stock_message: block.settings.in-stock-message, low_stock_message: block.settings.low-stock-message, out_of_stock_message: block.settings.out-of-stock-message %}
                     </div>
 
                   {%- when 'star_rating' -%}
@@ -914,15 +857,7 @@
                       {{ block.shopify_attributes }}
                     >
                       {%- unless no_reviews and block.settings.show_product_rating_if_no_reviews == false -%}
-                        {% render 'reviews-star-rating' with
-                          rating_product: product,
-                          show_product_rating_if_no_reviews: block.settings.show_product_rating_if_no_reviews,
-                          show_rating_as: block.settings.show_rating_as,
-                          star_color: settings.star_rating_color,
-                          star_size: block.settings.star_size,
-                          no_reviews_label: block.settings.no_reviews_label,
-                          classes: spacing_classes
-                        %}
+                        {% render 'reviews-star-rating' with rating_product, rating_product: product, show_product_rating_if_no_reviews: block.settings.show_product_rating_if_no_reviews, show_rating_as: block.settings.show_rating_as, star_color: settings.star_rating_color, star_size: block.settings.star_size, no_reviews_label: block.settings.no_reviews_label, classes: spacing_classes %}
                       {%- endunless -%}
                     </div>
                   
@@ -939,7 +874,7 @@
                         {{ block.shopify_attributes }}
                       >
                         {% unless current_variant.available %}
-                          {% render 'out-of-stock-form' with product: product %}
+                          {% render 'out-of-stock-form' with product, product: product %}
                           <div class="shopify-disclaimer--hidden">{{ 'shopify.online_store.spam_detection.disclaimer_html' | t }}</div>
                         {% endunless %}
                       </div>
@@ -978,7 +913,7 @@
                       style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px;" 
                       {{ block.shopify_attributes }}
                     >
-                      {% render 'form-file-upload' with id: field_id, form_id: product_form_id, name: field_name, has_label: true, label: file_upload_label, required: block.settings.file_upload_required, secondary_label: secondary_label, hint_text: block.settings.file_upload_hint %}
+                      {% render 'form-file-upload' with id, id: field_id, form_id: product_form_id, name: field_name, has_label: true, label: file_upload_label, required: block.settings.file_upload_required, secondary_label: secondary_label, hint_text: block.settings.file_upload_hint %}
                     </div>
                   {% when 'checkbox' %}
                     {% liquid
@@ -1002,7 +937,7 @@
                       style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px;" 
                       {{ block.shopify_attributes }}
                     >
-                      {% render 'form-input--checkbox' with id: field_id, form_id: product_form_id, name: field_name, label_text: checkbox_label, required: block.settings.checkbox_required, hint_text: block.settings.checkbox_hint, error_message: error_text %}
+                      {% render 'form-input--checkbox' with id, id: field_id, form_id: product_form_id, name: field_name, label_text: checkbox_label, required: block.settings.checkbox_required, hint_text: block.settings.checkbox_hint, error_message: error_text %}
                     </div>
                   {% when 'dropdown' %}
                     {% liquid
@@ -1026,7 +961,7 @@
                       style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px;" 
                       {{ block.shopify_attributes }}
                     >
-                      {% render 'form-input--dropdown' with id: field_id, form_id: product_form_id, name: field_name, label_text: dropdown_label, required: block.settings.dropdown_required, hint_text: block.settings.dropdown_hint, error_message: error_text, options: block.settings.dropdown_options %}
+                      {% render 'form-input--dropdown' with id, id: field_id, form_id: product_form_id, name: field_name, label_text: dropdown_label, required: block.settings.dropdown_required, hint_text: block.settings.dropdown_hint, error_message: error_text, options: block.settings.dropdown_options %}
                     </div>
                   {% when 'radio_buttons' %}
                     {% liquid
@@ -1041,7 +976,7 @@
                       style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px;" 
                       {{ block.shopify_attributes }}
                     >
-                      {% render 'form-input--radio-buttons' with id: field_id, form_id: product_form_id, name: field_name, label_text: label_formatted, hint_text: block.settings.radio_hint, options: block.settings.radio_options %}
+                      {% render 'form-input--radio-buttons' with id, id: field_id, form_id: product_form_id, name: field_name, label_text: label_formatted, hint_text: block.settings.radio_hint, options: block.settings.radio_options %}
                     </div>
                   {% when 'text_field' %}
                     {% if block.settings.title != blank %}
@@ -1074,7 +1009,7 @@
                         {{ block.shopify_attributes }}
                       >
                         {% if block.settings.text_field_size == 'single' %}
-                          {% render 'form-input' with type: text, id: field_id, form_id: product_form_id, name: field_name, has_label: true, animate_label: false, label_text: field_label, required: block.settings.text_field_required, max_characters: max_characters, data_aid: 'custom-text-field', secondary_label: max_characters_message, classes: 'width-full', error_message: error_text, label_class: 'label-font', hint_text: block.settings.text_field_hint %}
+                          {% render 'form-input' with type, type: text, id: field_id, form_id: product_form_id, name: field_name, has_label: true, animate_label: false, label_text: field_label, required: block.settings.text_field_required, max_characters: max_characters, data_aid: 'custom-text-field', secondary_label: max_characters_message, classes: 'width-full', error_message: error_text, label_class: 'label-font', hint_text: block.settings.text_field_hint %}
                         {% else %}
                           {% render 'form-input--textarea', id: field_id, form_id: product_form_id, name: field_name, has_label: true, animate_label: false, label_text: field_label, required: block.settings.text_field_required, max_characters: max_characters, data_aid: 'custom-text-field', secondary_label: max_characters_message, classes: 'width-full', rows: 6, error_message: error_text, label_class: 'label-font', hint_text: block.settings.text_field_hint %}
                         {% endif %}
@@ -1092,7 +1027,7 @@
 
 {% if settings.enable_quick_shop_desktop or settings.enable_quick_shop_mobile %}
   <template data-quick-view-product>
-    {% render 'quick-view-product' with product: product, section: section %}
+    {% render 'quick-view-product' with product, product: product, section: section %}
   </template>
 {% endif %}
 
@@ -3669,4 +3604,215 @@
     }
   ]
 }
-{% endschema %}
+{% endschema %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'product-options' with product: product, \n                        size_option_name:
+    block.settings.size_option_name, \n                        size_guide_page: block.settings.size_guide_page,\n
+    \                       size_guide_label: block.settings.size_guide_label,\n                        variant_style:
+    options_block.settings.variant_style, \n                        section_id: section.id,
+    \n                        current_variant: current_variant, \n                        hide_out_of_stock_variants:
+    options_block.settings.hide_out_of_stock_variants, \n                        block_attributes:
+    options_block.shopify_attributes\n                      %}"
+  to: "{% render 'product-options' with product, product: product, size_option_name:
+    block.settings.size_option_name, size_guide_page: block.settings.size_guide_page,
+    size_guide_label: block.settings.size_guide_label, variant_style: options_block.settings.variant_style,
+    section_id: section.id, current_variant: current_variant, hide_out_of_stock_variants:
+    options_block.settings.hide_out_of_stock_variants, block_attributes: options_block.shopify_attributes
+    %}"
+  position: 18603..19057
+- from: "{%- render 'complementary-products-block' with title: block.settings.title,
+    products_limit: block.settings.products_limit, collapsible: block.settings.collapsible_tab,
+    open_close_icon: block.settings.open_close_icon, custom_icon: block.settings.custom_icon,
+    icon: block.settings.icon, id: block.id -%}"
+  to: "{%- render 'complementary-products-block' with title, title: block.settings.title,
+    products_limit: block.settings.products_limit, collapsible: block.settings.collapsible_tab,
+    open_close_icon: block.settings.open_close_icon, custom_icon: block.settings.custom_icon,
+    icon: block.settings.icon, id: block.id -%}"
+  position: 20680..20988
+- from: "{% render 'cross-sells' with title: block.settings.title, cross_sells_products:
+    cross_sells_products, id: block.id %}"
+  to: "{% render 'cross-sells' with title, title: block.settings.title, cross_sells_products:
+    cross_sells_products, id: block.id %}"
+  position: 22215..22339
+- from: "{% render 'theme-icon' with icon: 'plus', iconClasses: 'plus-icon' %}"
+  to: "{% render 'theme-icon' with icon, icon: 'plus', iconClasses: 'plus-icon' %}"
+  position: 23381..23456
+- from: "{% render 'theme-icon' with icon: 'minus', iconClasses: 'minus-icon' %}"
+  to: "{% render 'theme-icon' with icon, icon: 'minus', iconClasses: 'minus-icon'
+    %}"
+  position: 23495..23572
+- from: "{% render 'cross-sells' with title: blank, cross_sells_products: cross_sells_products,
+    id: block.id %}"
+  to: '{% render ''cross-sells'' with title, title: "", cross_sells_products: cross_sells_products,
+    id: block.id %}'
+  position: 24142..24248
+- from: "{% render 'form-input--checkbox' with id: field_id, form_id: product_form_id,
+    name: field_name, label_text: giftwrap_label %}"
+  to: "{% render 'form-input--checkbox' with id, id: field_id, form_id: product_form_id,
+    name: field_name, label_text: giftwrap_label %}"
+  position: 27422..27551
+- from: |-
+    {% render 'button-color-overrides' with
+                            id: block.id,
+                            style: block.settings.button_style,
+                            text_color: block.settings.button_text_color,
+                            background_color: block.settings.button_background_color
+                          %}
+  to: "{% render 'button-color-overrides' with id, id: block.id, style: block.settings.button_style,
+    text_color: block.settings.button_text_color, background_color: block.settings.button_background_color
+    %}"
+  position: 28506..28705
+- from: |-
+    {% render 'dynamic-section-button' with
+                            id: block.id,
+                            link: block.settings.button_link,
+                            label: block.settings.button_label,
+                            style: block.settings.button_style,
+                            wrapper: false,
+                            a_classes: button_classes,
+                            attributes: button_attributes
+                          %}
+  to: "{% render 'dynamic-section-button' with id, id: block.id, link: block.settings.button_link,
+    label: block.settings.button_label, style: block.settings.button_style, wrapper:
+    false, a_classes: button_classes, attributes: button_attributes %}"
+  position: 29737..29976
+- from: |-
+    {% render 'button-color-overrides' with
+                            id: block.id,
+                            style: block.settings.button_style,
+                            text_color: block.settings.button_text_color,
+                            background_color: block.settings.button_background_color
+                          %}
+  to: "{% render 'button-color-overrides' with id, id: block.id, style: block.settings.button_style,
+    text_color: block.settings.button_text_color, background_color: block.settings.button_background_color
+    %}"
+  position: 30131..30330
+- from: |-
+    {% render 'dynamic-section-button' with
+                                  id: block.id,
+                                  label: block.settings.modal_button_label,
+                                  style: block.settings.button_style,
+                                  wrapper: false,
+                                  a_classes: button_classes,
+                                  attributes: button_attributes,
+                                  has_link: false,
+                                  aria_label: block.settings.modal_button_label
+                                %}
+  to: "{% render 'dynamic-section-button' with id, id: block.id, label: block.settings.modal_button_label,
+    style: block.settings.button_style, wrapper: false, a_classes: button_classes,
+    attributes: button_attributes, has_link: false, aria_label: block.settings.modal_button_label
+    %}"
+  position: 32036..32311
+- from: "{% render 'theme-icon' with icon: 'close', iconSize: 20 %}"
+  to: "{% render 'theme-icon' with icon, icon: 'close', iconSize: 20 %}"
+  position: 32974..33038
+- from: "{% render 'payment-buttons' with product: product, block: block, product_form_id:
+    product_form_id, section_id: section.id, show_buy_now: block.settings.show_smart_checkout,
+    gift_card_form_enabled: block.settings.enable_gift_card_recipient_form %}"
+  to: "{% render 'payment-buttons' with product, product: product, block: block, product_form_id:
+    product_form_id, section_id: section.id, show_buy_now: block.settings.show_smart_checkout,
+    gift_card_form_enabled: block.settings.enable_gift_card_recipient_form %}"
+  position: 34959..35214
+- from: "{% render 'store-availability' with product_variant: current_variant %}"
+  to: "{% render 'store-availability' with product_variant, product_variant: current_variant
+    %}"
+  position: 35766..35854
+- from: "{% render 'text-with-icon' with icon: icon, \n                          custom_icon:
+    custom_icon, \n                          text: block.settings.text, \n                          link:
+    block.settings.link, \n                          borders: true, \n                          block_attributes:
+    block.shopify_attributes,\n                          classes: classes\n                        %}"
+  to: "{% render 'text-with-icon' with icon, icon: icon, custom_icon: custom_icon,
+    text: block.settings.text, link: block.settings.link, borders: true, block_attributes:
+    block.shopify_attributes, classes: classes %}"
+  position: 46888..47096
+- from: "{% render 'stock-level-indicator' with \n                        block_attributes:
+    block.shopify_attributes,\n                        stock_product: product,\n                        stock_variant:
+    current_variant,\n                        stock_style: block.settings.stock-level-indicator-style,\n
+    \                       stock_bar_color: block.settings.bar-indicator-color,\n
+    \                       stock_indicator_animation: block.settings.stock_indicator_animation,\n
+    \                       stock_amt: block.settings.stock-range,\n                        stock_notice:
+    block.settings.stock-level-notice,\n                        show_stock_count:
+    block.settings.show-stock-count,\n                        preorder_message: block.settings.preorder-message,\n
+    \                       in_stock_message: block.settings.in-stock-message,\n                        low_stock_message:
+    block.settings.low-stock-message,\n                        out_of_stock_message:
+    block.settings.out-of-stock-message\n                      %}"
+  to: "{% render 'stock-level-indicator' with block_attributes, block_attributes:
+    block.shopify_attributes, stock_product: product, stock_variant: current_variant,
+    stock_style: block.settings.stock-level-indicator-style, stock_bar_color: block.settings.bar-indicator-color,
+    stock_indicator_animation: block.settings.stock_indicator_animation, stock_amt:
+    block.settings.stock-range, stock_notice: block.settings.stock-level-notice, show_stock_count:
+    block.settings.show-stock-count, preorder_message: block.settings.preorder-message,
+    in_stock_message: block.settings.in-stock-message, low_stock_message: block.settings.low-stock-message,
+    out_of_stock_message: block.settings.out-of-stock-message %}"
+  position: 47675..48365
+- from: |-
+    {% render 'reviews-star-rating' with
+                              rating_product: product,
+                              show_product_rating_if_no_reviews: block.settings.show_product_rating_if_no_reviews,
+                              show_rating_as: block.settings.show_rating_as,
+                              star_color: settings.star_rating_color,
+                              star_size: block.settings.star_size,
+                              no_reviews_label: block.settings.no_reviews_label,
+                              classes: spacing_classes
+                            %}
+  to: "{% render 'reviews-star-rating' with rating_product, rating_product: product,
+    show_product_rating_if_no_reviews: block.settings.show_product_rating_if_no_reviews,
+    show_rating_as: block.settings.show_rating_as, star_color: settings.star_rating_color,
+    star_size: block.settings.star_size, no_reviews_label: block.settings.no_reviews_label,
+    classes: spacing_classes %}"
+  position: 49915..50280
+- from: "{% render 'out-of-stock-form' with product: product %}"
+  to: "{% render 'out-of-stock-form' with product, product: product %}"
+  position: 51125..51188
+- from: "{% render 'form-file-upload' with id: field_id, form_id: product_form_id,
+    name: field_name, has_label: true, label: file_upload_label, required: block.settings.file_upload_required,
+    secondary_label: secondary_label, hint_text: block.settings.file_upload_hint %}"
+  to: "{% render 'form-file-upload' with id, id: field_id, form_id: product_form_id,
+    name: field_name, has_label: true, label: file_upload_label, required: block.settings.file_upload_required,
+    secondary_label: secondary_label, hint_text: block.settings.file_upload_hint %}"
+  position: 53447..53712
+- from: "{% render 'form-input--checkbox' with id: field_id, form_id: product_form_id,
+    name: field_name, label_text: checkbox_label, required: block.settings.checkbox_required,
+    hint_text: block.settings.checkbox_hint, error_message: error_text %}"
+  to: "{% render 'form-input--checkbox' with id, id: field_id, form_id: product_form_id,
+    name: field_name, label_text: checkbox_label, required: block.settings.checkbox_required,
+    hint_text: block.settings.checkbox_hint, error_message: error_text %}"
+  position: 54907..55148
+- from: "{% render 'form-input--dropdown' with id: field_id, form_id: product_form_id,
+    name: field_name, label_text: dropdown_label, required: block.settings.dropdown_required,
+    hint_text: block.settings.dropdown_hint, error_message: error_text, options: block.settings.dropdown_options
+    %}"
+  to: "{% render 'form-input--dropdown' with id, id: field_id, form_id: product_form_id,
+    name: field_name, label_text: dropdown_label, required: block.settings.dropdown_required,
+    hint_text: block.settings.dropdown_hint, error_message: error_text, options: block.settings.dropdown_options
+    %}"
+  position: 56343..56626
+- from: "{% render 'form-input--radio-buttons' with id: field_id, form_id: product_form_id,
+    name: field_name, label_text: label_formatted, hint_text: block.settings.radio_hint,
+    options: block.settings.radio_options %}"
+  to: "{% render 'form-input--radio-buttons' with id, id: field_id, form_id: product_form_id,
+    name: field_name, label_text: label_formatted, hint_text: block.settings.radio_hint,
+    options: block.settings.radio_options %}"
+  position: 57321..57533
+- from: "{% render 'form-input' with type: text, id: field_id, form_id: product_form_id,
+    name: field_name, has_label: true, animate_label: false, label_text: field_label,
+    required: block.settings.text_field_required, max_characters: max_characters,
+    data_aid: 'custom-text-field', secondary_label: max_characters_message, classes:
+    'width-full', error_message: error_text, label_class: 'label-font', hint_text:
+    block.settings.text_field_hint %}"
+  to: "{% render 'form-input' with type, type: text, id: field_id, form_id: product_form_id,
+    name: field_name, has_label: true, animate_label: false, label_text: field_label,
+    required: block.settings.text_field_required, max_characters: max_characters,
+    data_aid: 'custom-text-field', secondary_label: max_characters_message, classes:
+    'width-full', error_message: error_text, label_class: 'label-font', hint_text:
+    block.settings.text_field_hint %}"
+  position: 59408..59847
+- from: "{% render 'quick-view-product' with product: product, section: section %}"
+  to: "{% render 'quick-view-product' with product, product: product, section: section
+    %}"
+  position: 60730..60812
+{%- endcomment -%}

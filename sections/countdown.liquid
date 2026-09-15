@@ -147,15 +147,7 @@
 
               {% when 'countdown_timer' %}
 
-                {% render 'countdown-timer' with
-                  timer_id: section.id,
-                  end_date_setting: block.settings.end_date,
-                  end_time_setting: block.settings.end_time,
-                  hide_when_complete: block.settings.hide_when_complete,
-                  time_labels: block.settings.time_labels,
-                  is_block: true,
-                  background_color_override: section.settings.text_color
-                %}
+                {% render 'countdown-timer' with timer_id, timer_id: section.id, end_date_setting: block.settings.end_date, end_time_setting: block.settings.end_time, hide_when_complete: block.settings.hide_when_complete, time_labels: block.settings.time_labels, is_block: true, background_color_override: section.settings.text_color %}
 
               {% when 'subheading' %}
 
@@ -183,23 +175,10 @@
                     {% if section.settings.image != blank %}
                       {% assign desktop_only = true %}
                     {% endif %}
-                    {% render 'button-color-overrides' with
-                      id: block.id,
-                      style: block.settings.buttons_style,
-                      text_color: block.settings.button_text_color,
-                      background_color: block.settings.button_background_color,
-                      desktop_only: desktop_only
-                    %}
+                    {% render 'button-color-overrides' with id, id: block.id, style: block.settings.buttons_style, text_color: block.settings.button_text_color, background_color: block.settings.button_background_color, desktop_only: desktop_only %}
                   {% endif %}
 
-                  {% render 'dynamic-section-button' with
-                    id: block.id,
-                    link: block.settings.link,
-                    label: block.settings.label,
-                    style: block.settings.buttons_style,
-                    a_classes: 'homepage-featured-box-btn countdown__button'
-                    attributes: block.shopify_attributes
-                  %}
+                  {% render 'dynamic-section-button' with id, id: block.id, link: block.settings.link, label: block.settings.label, style: block.settings.buttons_style, a_classes: 'homepage-featured-box-btn countdown__button', attributes: block.shopify_attributes %}
                 {% endif %}
 
               {% when 'timer_complete_message' %}
@@ -523,3 +502,50 @@
   }
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'countdown-timer' with
+                      timer_id: section.id,
+                      end_date_setting: block.settings.end_date,
+                      end_time_setting: block.settings.end_time,
+                      hide_when_complete: block.settings.hide_when_complete,
+                      time_labels: block.settings.time_labels,
+                      is_block: true,
+                      background_color_override: section.settings.text_color
+                    %}
+  to: "{% render 'countdown-timer' with timer_id, timer_id: section.id, end_date_setting:
+    block.settings.end_date, end_time_setting: block.settings.end_time, hide_when_complete:
+    block.settings.hide_when_complete, time_labels: block.settings.time_labels, is_block:
+    true, background_color_override: section.settings.text_color %}"
+  position: 4860..5180
+- from: |-
+    {% render 'button-color-overrides' with
+                          id: block.id,
+                          style: block.settings.buttons_style,
+                          text_color: block.settings.button_text_color,
+                          background_color: block.settings.button_background_color,
+                          desktop_only: desktop_only
+                        %}
+  to: "{% render 'button-color-overrides' with id, id: block.id, style: block.settings.buttons_style,
+    text_color: block.settings.button_text_color, background_color: block.settings.button_background_color,
+    desktop_only: desktop_only %}"
+  position: 6290..6518
+- from: |-
+    {% render 'dynamic-section-button' with
+                        id: block.id,
+                        link: block.settings.link,
+                        label: block.settings.label,
+                        style: block.settings.buttons_style,
+                        a_classes: 'homepage-featured-box-btn countdown__button'
+                        attributes: block.shopify_attributes
+                      %}
+  to: "{% render 'dynamic-section-button' with id, id: block.id, link: block.settings.link,
+    label: block.settings.label, style: block.settings.buttons_style, a_classes: 'homepage-featured-box-btn
+    countdown__button', attributes: block.shopify_attributes %}"
+  position: 6568..6816
+{% endcomment %}

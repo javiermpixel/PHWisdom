@@ -17,13 +17,38 @@ Parameters:
       {% assign option_idx = forloop.index0 %}
       {% if variant_style == 'dropdowns' %}
         <div class="selector-wrapper js{% if hide_default_title == true %} hide{% endif %}">
-          {%- render 'variant-dropdown' with dropdown_option: option, option_index: option_idx, product: product, size_option_name: size_option_name, size_guide_page: size_guide_page, size_guide_label: size_guide_label, hide_out_of_stock_variants: hide_out_of_stock_variants, dropdown_section_id: section_id -%}
+          {%- render 'variant-dropdown' with dropdown_option, dropdown_option: option, option_index: option_idx, product: product, size_option_name: size_option_name, size_guide_page: size_guide_page, size_guide_label: size_guide_label, hide_out_of_stock_variants: hide_out_of_stock_variants, dropdown_section_id: section_id -%}
         </div>
       {% else %}
         {% if hide_default_title == false %}
-          {% render 'swatch' with swatch_option: option, option_index: option_idx, size_option_name: size_option_name, size_guide_page: size_guide_page, size_guide_label: size_guide_label, hide_out_of_stock_variants: hide_out_of_stock_variants, swatch_section_id: section_id %}
+          {% render 'swatch' with swatch_option, swatch_option: option, option_index: option_idx, size_option_name: size_option_name, size_guide_page: size_guide_page, size_guide_label: size_guide_label, hide_out_of_stock_variants: hide_out_of_stock_variants, swatch_section_id: section_id %}
         {% endif %}
       {% endif %}
     {% endfor %}
   </div>
 {% endif %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'variant-dropdown' with dropdown_option: option, option_index:
+    option_idx, product: product, size_option_name: size_option_name, size_guide_page:
+    size_guide_page, size_guide_label: size_guide_label, hide_out_of_stock_variants:
+    hide_out_of_stock_variants, dropdown_section_id: section_id -%}"
+  to: "{%- render 'variant-dropdown' with dropdown_option, dropdown_option: option,
+    option_index: option_idx, product: product, size_option_name: size_option_name,
+    size_guide_page: size_guide_page, size_guide_label: size_guide_label, hide_out_of_stock_variants:
+    hide_out_of_stock_variants, dropdown_section_id: section_id -%}"
+  position: 743..1061
+- from: "{% render 'swatch' with swatch_option: option, option_index: option_idx,
+    size_option_name: size_option_name, size_guide_page: size_guide_page, size_guide_label:
+    size_guide_label, hide_out_of_stock_variants: hide_out_of_stock_variants, swatch_section_id:
+    section_id %}"
+  to: "{% render 'swatch' with swatch_option, swatch_option: option, option_index:
+    option_idx, size_option_name: size_option_name, size_guide_page: size_guide_page,
+    size_guide_label: size_guide_label, hide_out_of_stock_variants: hide_out_of_stock_variants,
+    swatch_section_id: section_id %}"
+  position: 1149..1431
+{% endcomment %}

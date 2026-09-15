@@ -10,7 +10,7 @@
   <div class="{% unless request.design_mode %}show-on-scroll{% endunless %} width--content">
 
     {% comment %} Section title and description {% endcomment %}
-    {% render 'dynamic-section-header' with section_title: section.settings.title, section_description: section.settings.description %}
+    {% render 'dynamic-section-header' with section_title, section_title: section.settings.title, section_description: section.settings.description %}
 
     {% if section.blocks.size > 0 %}
       <ul class="visual-navigation__list{% if request.visual_preview_mode %} visual-navigation__list--no-wrap{% endif %}">
@@ -237,3 +237,15 @@
   }
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'dynamic-section-header' with section_title: section.settings.title,
+    section_description: section.settings.description %}"
+  to: "{% render 'dynamic-section-header' with section_title, section_title: section.settings.title,
+    section_description: section.settings.description %}"
+  position: 636..782
+{% endcomment %}

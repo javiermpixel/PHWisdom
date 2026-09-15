@@ -169,14 +169,7 @@
                 {% endcapture %}
 
                 {%- if icon != 'none' or  block.settings.text != blank -%}
-                  {% render 'text-with-icon' with icon: icon, 
-                    block_attributes: block.shopify_attributes,
-                    attributes: block_attr,
-                    custom_icon: custom_icon, 
-                    text: block.settings.text, 
-                    link: block.settings.link, 
-                    link_attr: link_attr
-                  %}
+                  {% render 'text-with-icon' with icon, icon: icon, block_attributes: block.shopify_attributes, attributes: block_attr, custom_icon: custom_icon, text: block.settings.text, link: block.settings.link, link_attr: link_attr %}
                 {%- endif -%}
 
               {% when 'page' %}
@@ -187,32 +180,15 @@
               {% when 'button' %}
                 {% unless block.settings.first_button_label == blank and block.settings.second_button_label == blank %}
                   {% if block.settings.override_button_colors %}
-                    {% render 'button-color-overrides' with
-                      id: block.id,
-                      style: block.settings.buttons_style,
-                      text_color: block.settings.buttons_text,
-                      background_color: block.settings.buttons_background
-                    %}
+                    {% render 'button-color-overrides' with id, id: block.id, style: block.settings.buttons_style, text_color: block.settings.buttons_text, background_color: block.settings.buttons_background %}
                   {% endif %}
                   
                   <div class="image-with-text-overlay__buttons{% if block.settings.buttons_style == 'underlined' %} text-link-animated{% endif %}" style="padding-bottom: {{ block.settings.buttons_bottom_spacing }}px;" {{ block.shopify_attributes }}>
                     {% if block.settings.first_button_label != blank %}
-                      {% render 'dynamic-section-button' with
-                        id: block.id,
-                        link: block.settings.first_button_link,
-                        label: block.settings.first_button_label,
-                        style: block.settings.buttons_style,
-                        wrapper: false
-                      %}
+                      {% render 'dynamic-section-button' with id, id: block.id, link: block.settings.first_button_link, label: block.settings.first_button_label, style: block.settings.buttons_style, wrapper: false %}
                     {% endif %}
                     {% if block.settings.second_button_label != blank %}
-                      {% render 'dynamic-section-button' with
-                        id: block.id,
-                        link: block.settings.second_button_link,
-                        label: block.settings.second_button_label,
-                        style: block.settings.buttons_style,
-                        wrapper: false
-                      %}
+                      {% render 'dynamic-section-button' with id, id: block.id, link: block.settings.second_button_link, label: block.settings.second_button_label, style: block.settings.buttons_style, wrapper: false %}
                     {% endif %}
                   </div>
                 {% endunless %}
@@ -954,3 +930,53 @@
   }
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'text-with-icon' with icon: icon, \n                    block_attributes:
+    block.shopify_attributes,\n                    attributes: block_attr,\n                    custom_icon:
+    custom_icon, \n                    text: block.settings.text, \n                    link:
+    block.settings.link, \n                    link_attr: link_attr\n                  %}"
+  to: "{% render 'text-with-icon' with icon, icon: icon, block_attributes: block.shopify_attributes,
+    attributes: block_attr, custom_icon: custom_icon, text: block.settings.text, link:
+    block.settings.link, link_attr: link_attr %}"
+  position: 9032..9253
+- from: |-
+    {% render 'button-color-overrides' with
+                          id: block.id,
+                          style: block.settings.buttons_style,
+                          text_color: block.settings.buttons_text,
+                          background_color: block.settings.buttons_background
+                        %}
+  to: "{% render 'button-color-overrides' with id, id: block.id, style: block.settings.buttons_style,
+    text_color: block.settings.buttons_text, background_color: block.settings.buttons_background
+    %}"
+  position: 9857..10047
+- from: |-
+    {% render 'dynamic-section-button' with
+                            id: block.id,
+                            link: block.settings.first_button_link,
+                            label: block.settings.first_button_label,
+                            style: block.settings.buttons_style,
+                            wrapper: false
+                          %}
+  to: "{% render 'dynamic-section-button' with id, id: block.id, link: block.settings.first_button_link,
+    label: block.settings.first_button_label, style: block.settings.buttons_style,
+    wrapper: false %}"
+  position: 10441..10635
+- from: |-
+    {% render 'dynamic-section-button' with
+                            id: block.id,
+                            link: block.settings.second_button_link,
+                            label: block.settings.second_button_label,
+                            style: block.settings.buttons_style,
+                            wrapper: false
+                          %}
+  to: "{% render 'dynamic-section-button' with id, id: block.id, link: block.settings.second_button_link,
+    label: block.settings.second_button_label, style: block.settings.buttons_style,
+    wrapper: false %}"
+  position: 10763..10959
+{% endcomment %}

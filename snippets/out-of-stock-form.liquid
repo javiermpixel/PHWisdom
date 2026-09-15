@@ -42,7 +42,7 @@
             <input type="hidden" name="contact[body]" value="Please notify me when {{ product.title }} - {{ variant_title }} becomes available." />
           </div>
           <button class="standalone-icon--wrapper" type="submit">
-            {% render 'theme-icon' with icon: 'chevron_right', iconSize: 20 %}
+            {% render 'theme-icon' with icon, icon: 'chevron_right', iconSize: 20 %}
           </button>
           {{ 'shopify.online_store.spam_detection.disclaimer_html' | t }}
         </div>
@@ -50,3 +50,13 @@
     {% endform %}
   </out-of-stock-form>
 </transition>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'theme-icon' with icon: 'chevron_right', iconSize: 20 %}"
+  to: "{% render 'theme-icon' with icon, icon: 'chevron_right', iconSize: 20 %}"
+  position: 2081..2153
+{% endcomment %}

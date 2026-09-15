@@ -15,12 +15,7 @@
 {% assign grid_item_id = 'grid-item--' | append: section.id %}
 
 {% if section.settings.override_button_colors %}
-  {% render 'button-color-overrides' with
-    id: grid_item_id,
-    style: section.settings.buttons_style,
-    text_color: section.settings.button_text_color,
-    background_color: section.settings.button_background_color
-  %}
+  {% render 'button-color-overrides' with id, id: grid_item_id, style: section.settings.buttons_style, text_color: section.settings.button_text_color, background_color: section.settings.button_background_color %}
 {% endif %}
 
 <safe-load-scripts class="hidden">
@@ -52,12 +47,7 @@
 			<!-- navigation -->
       {% assign navigation_id = 'navigation--' | append: section.id %}
       {% if section.settings.override_button_colors %}
-        {% render 'button-color-overrides' with
-          id: navigation_id,
-          style: 'filled',
-          text_color: section.settings.button_text_color,
-          background_color: section.settings.button_background_color
-        %}
+        {% render 'button-color-overrides' with id, id: navigation_id, style: 'filled', text_color: section.settings.button_text_color, background_color: section.settings.button_background_color %}
       {% endif %}
       
       <div class="swiper-btn--wrapper small-hide swiper-btn-layout__{{ section.settings.hover_navigation_desktop }}">
@@ -120,13 +110,7 @@
 								{% endif %}
 
 								{% if block.settings.button_text != '' %}
-                  {% render 'dynamic-section-button' with
-                    id: grid_item_id,
-                    link: block.settings.button_link,
-                    label: block.settings.button_text,
-                    style: section.settings.buttons_style,
-                    div_classes: 'info-cols--link--wrapper'
-                  %}
+                  {% render 'dynamic-section-button' with id, id: grid_item_id, link: block.settings.button_link, label: block.settings.button_text, style: section.settings.buttons_style, div_classes: 'info-cols--link--wrapper' %}
 								{% endif %}
 
 							{% when 'video_and_text' %}
@@ -147,7 +131,7 @@
                   >
                     <div class="info-cols--video type-{{ type }} size-{{ block.settings.grid_video_size }}">
                       {% if block.settings.video %}
-                        {% render 'native-video' with video: block.settings.video, autoplay: true, loop: true, muted: true, overlay: true, overlay_button: false, controls: false %}
+                        {% render 'native-video' with video, video: block.settings.video, autoplay: true, loop: true, muted: true, overlay: true, overlay_button: false, controls: false %}
                       {% elsif block.settings.video_url %}
                         <wetheme-video
                         section-id="{{ block.id }}"
@@ -181,13 +165,7 @@
 								{% endif %}
 
 								{% if block.settings.button_text != '' %}
-                  {% render 'dynamic-section-button' with
-                    id: grid_item_id,
-                    link: block.settings.button_link,
-                    label: block.settings.button_text,
-                    style: section.settings.buttons_style,
-                    div_classes: 'info-cols--link--wrapper'
-                  %}
+                  {% render 'dynamic-section-button' with id, id: grid_item_id, link: block.settings.button_link, label: block.settings.button_text, style: section.settings.buttons_style, div_classes: 'info-cols--link--wrapper' %}
 								{% endif %}
 
 							{% when 'text' %}
@@ -209,13 +187,7 @@
 								{% endif %}
 
 								{% if block.settings.button_text != '' %}
-                  {% render 'dynamic-section-button' with
-                    id: grid_item_id,
-                    link: block.settings.button_link,
-                    label: block.settings.button_text,
-                    style: section.settings.buttons_style,
-                    div_classes: 'info-cols--link--wrapper'
-                  %}
+                  {% render 'dynamic-section-button' with id, id: grid_item_id, link: block.settings.button_link, label: block.settings.button_text, style: section.settings.buttons_style, div_classes: 'info-cols--link--wrapper' %}
 								{% endif %}
 
 						{% endcase %}
@@ -718,3 +690,75 @@
   }
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'button-color-overrides' with
+        id: grid_item_id,
+        style: section.settings.buttons_style,
+        text_color: section.settings.button_text_color,
+        background_color: section.settings.button_background_color
+      %}
+  to: "{% render 'button-color-overrides' with id, id: grid_item_id, style: section.settings.buttons_style,
+    text_color: section.settings.button_text_color, background_color: section.settings.button_background_color
+    %}"
+  position: 482..692
+- from: |-
+    {% render 'button-color-overrides' with
+              id: navigation_id,
+              style: 'filled',
+              text_color: section.settings.button_text_color,
+              background_color: section.settings.button_background_color
+            %}
+  to: "{% render 'button-color-overrides' with id, id: navigation_id, style: 'filled',
+    text_color: section.settings.button_text_color, background_color: section.settings.button_background_color
+    %}"
+  position: 2347..2536
+- from: |-
+    {% render 'dynamic-section-button' with
+                        id: grid_item_id,
+                        link: block.settings.button_link,
+                        label: block.settings.button_text,
+                        style: section.settings.buttons_style,
+                        div_classes: 'info-cols--link--wrapper'
+                      %}
+  to: "{% render 'dynamic-section-button' with id, id: grid_item_id, link: block.settings.button_link,
+    label: block.settings.button_text, style: section.settings.buttons_style, div_classes:
+    'info-cols--link--wrapper' %}"
+  position: 5394..5606
+- from: "{% render 'native-video' with video: block.settings.video, autoplay: true,
+    loop: true, muted: true, overlay: true, overlay_button: false, controls: false
+    %}"
+  to: "{% render 'native-video' with video, video: block.settings.video, autoplay:
+    true, loop: true, muted: true, overlay: true, overlay_button: false, controls:
+    false %}"
+  position: 6685..6848
+- from: |-
+    {% render 'dynamic-section-button' with
+                        id: grid_item_id,
+                        link: block.settings.button_link,
+                        label: block.settings.button_text,
+                        style: section.settings.buttons_style,
+                        div_classes: 'info-cols--link--wrapper'
+                      %}
+  to: "{% render 'dynamic-section-button' with id, id: grid_item_id, link: block.settings.button_link,
+    label: block.settings.button_text, style: section.settings.buttons_style, div_classes:
+    'info-cols--link--wrapper' %}"
+  position: 8223..8435
+- from: |-
+    {% render 'dynamic-section-button' with
+                        id: grid_item_id,
+                        link: block.settings.button_link,
+                        label: block.settings.button_text,
+                        style: section.settings.buttons_style,
+                        div_classes: 'info-cols--link--wrapper'
+                      %}
+  to: "{% render 'dynamic-section-button' with id, id: grid_item_id, link: block.settings.button_link,
+    label: block.settings.button_text, style: section.settings.buttons_style, div_classes:
+    'info-cols--link--wrapper' %}"
+  position: 9139..9351
+{% endcomment %}

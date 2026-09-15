@@ -22,7 +22,7 @@
 	<div class="product__send-as-gift">
 		{% assign field_name = gift_card_recipient_control_flag %}
 
-		{% render 'form-input--checkbox' with id: 'show_gift_card_recipient_checkbox', name: field_name, label_text: checkbox_label, attributes: 'data-recipient-form-trigger' %}
+		{% render 'form-input--checkbox' with id, id: 'show_gift_card_recipient_checkbox', name: field_name, label_text: checkbox_label, attributes: 'data-recipient-form-trigger' %}
 	</div>
 
 	{% liquid
@@ -45,7 +45,7 @@
 				assign formId = 'form_' | append: emailInputString | downcase | handleize
 				assign input_attr = 'aria-labelledby="' | append: formId | append: '" data-aid="email-input"'
 			%}
-			{% render 'form-input' with type: 'email', has_label: true, animate_label: false, label_text: emailInputString, id: formId, name: emailInputName, required: true, attributes: input_attr, disabled: true %}
+			{% render 'form-input' with type, type: 'email', has_label: true, animate_label: false, label_text: emailInputString, id: formId, name: emailInputName, required: true, attributes: input_attr, disabled: true %}
 		</div>
 		
 		{% comment %} ===== Name input ===== {% endcomment %}
@@ -54,7 +54,7 @@
 					assign formId = 'form_' | append: nameInputString | downcase | handleize
 					assign input_attr = 'aria-labelledby="' | append: formId | append: '" data-aid="name-input"'
 			%}
-			{% render 'form-input' with type: 'text', has_label: true, animate_label: false, label_text: nameInputString, id: formId, name: nameInputName, required: false, attributes: input_attr, disabled: true %}
+			{% render 'form-input' with type, type: 'text', has_label: true, animate_label: false, label_text: nameInputString, id: formId, name: nameInputName, required: false, attributes: input_attr, disabled: true %}
 		</div>
 
 		{% comment %} ===== Message input ===== {% endcomment %}
@@ -65,7 +65,44 @@
 			assign max_characters = 200
 			assign max_characters_message = 'gift_cards.recipient.max_characters' | t: max: max_characters
 			%}
-			{% render 'form-input--textarea' with has_label: true, animate_label: false, label_text: msgInputString, max_characters: max_characters, secondary_label: max_characters_message, id: formId, name: msgInputName, required: false, attributes: input_attr, disabled: true, container_classes: 'recipient-form-textarea-container' %}
+			{% render 'form-input--textarea' with has_label, has_label: true, animate_label: false, label_text: msgInputString, max_characters: max_characters, secondary_label: max_characters_message, id: formId, name: msgInputName, required: false, attributes: input_attr, disabled: true, container_classes: 'recipient-form-textarea-container' %}
 		</div>
 	</div>
-</recipient-form>
+</recipient-form>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'form-input--checkbox' with id: 'show_gift_card_recipient_checkbox',
+    name: field_name, label_text: checkbox_label, attributes: 'data-recipient-form-trigger'
+    %}"
+  to: "{% render 'form-input--checkbox' with id, id: 'show_gift_card_recipient_checkbox',
+    name: field_name, label_text: checkbox_label, attributes: 'data-recipient-form-trigger'
+    %}"
+  position: 825..998
+- from: "{% render 'form-input' with type: 'email', has_label: true, animate_label:
+    false, label_text: emailInputString, id: formId, name: emailInputName, required:
+    true, attributes: input_attr, disabled: true %}"
+  to: "{% render 'form-input' with type, type: 'email', has_label: true, animate_label:
+    false, label_text: emailInputString, id: formId, name: emailInputName, required:
+    true, attributes: input_attr, disabled: true %}"
+  position: 1802..2011
+- from: "{% render 'form-input' with type: 'text', has_label: true, animate_label:
+    false, label_text: nameInputString, id: formId, name: nameInputName, required:
+    false, attributes: input_attr, disabled: true %}"
+  to: "{% render 'form-input' with type, type: 'text', has_label: true, animate_label:
+    false, label_text: nameInputString, id: formId, name: nameInputName, required:
+    false, attributes: input_attr, disabled: true %}"
+  position: 2336..2543
+- from: "{% render 'form-input--textarea' with has_label: true, animate_label: false,
+    label_text: msgInputString, max_characters: max_characters, secondary_label: max_characters_message,
+    id: formId, name: msgInputName, required: false, attributes: input_attr, disabled:
+    true, container_classes: 'recipient-form-textarea-container' %}"
+  to: "{% render 'form-input--textarea' with has_label, has_label: true, animate_label:
+    false, label_text: msgInputString, max_characters: max_characters, secondary_label:
+    max_characters_message, id: formId, name: msgInputName, required: false, attributes:
+    input_attr, disabled: true, container_classes: 'recipient-form-textarea-container'
+    %}"
+  position: 2996..3331
+{%- endcomment -%}

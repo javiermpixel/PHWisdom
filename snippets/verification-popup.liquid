@@ -3,12 +3,7 @@
   {% assign background_opacity = settings.verification_background_opacity | divided_by: 100.0 %}
 
   {% if settings.verification-popup--override_button_colors %}
-    {% render 'button-color-overrides' with
-      id: 'verification-popup',
-      style: 'filled',
-      text_color: settings.verification-popup--button_text_color,
-      background_color: settings.verification-popup--button_background_color
-    %}
+    {% render 'button-color-overrides' with id, id: 'verification-popup', style: 'filled', text_color: settings.verification-popup--button_text_color, background_color: settings.verification-popup--button_background_color %}
   {% endif %}
 
   <div class="verification-popup-container" style="display: none" data-age-test-mode="{{ settings.verification-pop-up__test-mode }}" tabindex="-1">
@@ -130,3 +125,21 @@
   }
 {% endif %}
 </style>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'button-color-overrides' with
+          id: 'verification-popup',
+          style: 'filled',
+          text_color: settings.verification-popup--button_text_color,
+          background_color: settings.verification-popup--button_background_color
+        %}
+  to: "{% render 'button-color-overrides' with id, id: 'verification-popup', style:
+    'filled', text_color: settings.verification-popup--button_text_color, background_color:
+    settings.verification-popup--button_background_color %}"
+  position: 210..430
+{% endcomment %}

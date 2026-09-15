@@ -91,7 +91,7 @@
               <div class="media-buffer--right"></div>
               {% comment %} Loading icon {% endcomment %}
               <div class="hidden" data-media-loading-icon>
-                {% render 'theme-icon' with icon: 'circle-notch', iconClasses: 'spin js fa-2x', iconSize: '1.6em' %}
+                {% render 'theme-icon' with icon, icon: 'circle-notch', iconClasses: 'spin js fa-2x', iconSize: '1.6em' %}
               </div>
             </div>
           {%- else -%}
@@ -101,7 +101,7 @@
               <div class="media-buffer--right"></div>
               {% comment %} Loading icon {% endcomment %}
               <div class="hidden" data-media-loading-icon>
-                {% render 'theme-icon' with icon: 'circle-notch', iconClasses: 'spin js fa-2x', iconSize: '1.6em' %}
+                {% render 'theme-icon' with icon, icon: 'circle-notch', iconClasses: 'spin js fa-2x', iconSize: '1.6em' %}
               </div>
             </div>
           {%- endif -%}
@@ -114,7 +114,7 @@
             {{ delayed_media | media_tag: image_size: "2048x", class: video_class, autoplay: true, loop: enable_video_loop, controls: show_controls, muted: muted, preload: "none" }}
             {% comment %} Loading icon {% endcomment %}
             <div class="hidden" data-media-loading-icon>
-              {% render 'theme-icon' with icon: 'circle-notch', iconClasses: 'spin js fa-2x', iconSize: '1.6em' %}
+              {% render 'theme-icon' with icon, icon: 'circle-notch', iconClasses: 'spin js fa-2x', iconSize: '1.6em' %}
             </div>
           </div>
         {%- when 'model' -%}
@@ -136,7 +136,7 @@
         data-media-play-button
         aria-label="{{ 'general.accessibility.play_icon.play_media' | t }}"
       >
-        {% render 'theme-icon' with icon: 'play', iconSize: 20 %}
+        {% render 'theme-icon' with icon, icon: 'play', iconSize: 20 %}
       </button>
     {% endif %}
 
@@ -149,8 +149,35 @@
         data-media-play-button
         aria-label="{{ 'general.accessibility.3d_model.load_3d_model' | t }}"
       >
-        {% render 'theme-icon' with icon: 'cube', iconSize: 20 %}
+        {% render 'theme-icon' with icon, icon: 'cube', iconSize: 20 %}
       </button>
     {% endif %}
   </deferred-media>
-{% endif %}
+{% endif %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'theme-icon' with icon: 'circle-notch', iconClasses: 'spin js fa-2x',
+    iconSize: '1.6em' %}"
+  to: "{% render 'theme-icon' with icon, icon: 'circle-notch', iconClasses: 'spin
+    js fa-2x', iconSize: '1.6em' %}"
+  position: 4490..4596
+- from: "{% render 'theme-icon' with icon: 'circle-notch', iconClasses: 'spin js fa-2x',
+    iconSize: '1.6em' %}"
+  to: "{% render 'theme-icon' with icon, icon: 'circle-notch', iconClasses: 'spin
+    js fa-2x', iconSize: '1.6em' %}"
+  position: 5275..5381
+- from: "{% render 'theme-icon' with icon: 'circle-notch', iconClasses: 'spin js fa-2x',
+    iconSize: '1.6em' %}"
+  to: "{% render 'theme-icon' with icon, icon: 'circle-notch', iconClasses: 'spin
+    js fa-2x', iconSize: '1.6em' %}"
+  position: 6070..6176
+- from: "{% render 'theme-icon' with icon: 'play', iconSize: 20 %}"
+  to: "{% render 'theme-icon' with icon, icon: 'play', iconSize: 20 %}"
+  position: 7125..7188
+- from: "{% render 'theme-icon' with icon: 'cube', iconSize: 20 %}"
+  to: "{% render 'theme-icon' with icon, icon: 'cube', iconSize: 20 %}"
+  position: 7586..7649
+{%- endcomment -%}

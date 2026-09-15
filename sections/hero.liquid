@@ -33,20 +33,9 @@
                   {% endif %}
 
                   {% if section.settings.homepage-hero-image-button-label != empty %}
-                    {% render 'dynamic-section-button' with
-                      id: section.id,
-                      link: section.settings.homepage-hero-image-link,
-                      label: section.settings.homepage-hero-image-button-label,
-                      style: section.settings.buttons_style,
-                      wrapper: false
-                    %}
+                    {% render 'dynamic-section-button' with id, id: section.id, link: section.settings.homepage-hero-image-link, label: section.settings.homepage-hero-image-button-label, style: section.settings.buttons_style, wrapper: false %}
                     {% if section.settings.override_button_colors %}
-                      {% render 'button-color-overrides' with
-                        id: section.id,
-                        style: section.settings.buttons_style,
-                        text_color: section.settings.button_text_color,
-                        background_color: section.settings.button_background_color
-                      %}
+                      {% render 'button-color-overrides' with id, id: section.id, style: section.settings.buttons_style, text_color: section.settings.button_text_color, background_color: section.settings.button_background_color %}
                     {% endif %}
                   {% endif %}
                 </div>
@@ -59,7 +48,7 @@
                   </div>
                 {% else %}
                   {% assign hero_alt = section.settings.home-page-hero-image.alt | default: shop.name %}
-                  {% render 'responsive-image' with section.settings.home-page-hero-image, alt: hero_alt | escape %}
+                  {% render 'responsive-image' with section.settings.home-page-hero-image, alt: hero_alt %}
                 {% endif %}
               </div>
 
@@ -113,20 +102,9 @@
           {% endif %}
 
           {% if section.settings.homepage-hero-image-button-label != empty %}
-            {% render 'dynamic-section-button' with
-              id: section.id,
-              link: section.settings.homepage-hero-image-link,
-              label: section.settings.homepage-hero-image-button-label,
-              style: section.settings.buttons_style,
-              wrapper: false
-            %}
+            {% render 'dynamic-section-button' with id, id: section.id, link: section.settings.homepage-hero-image-link, label: section.settings.homepage-hero-image-button-label, style: section.settings.buttons_style, wrapper: false %}
             {% if section.settings.override_button_colors %}
-              {% render 'button-color-overrides' with
-                id: section.id,
-                style: section.settings.buttons_style,
-                text_color: section.settings.button_text_color,
-                background_color: section.settings.button_background_color
-              %}
+              {% render 'button-color-overrides' with id, id: section.id, style: section.settings.buttons_style, text_color: section.settings.button_text_color, background_color: section.settings.button_background_color %}
             {% endif %}
           {% endif %}
         </div>
@@ -163,7 +141,7 @@
                         <div class="homepage-hero-menu-indiv-image">
                           {% capture styles %}max-height: {{ height }}px; max-width: {{ block.settings.featured_image.width }}px;{% endcapture %}
                           {% assign menu_item_alt = block.settings.featured_image.alt | default: shop.name %}
-                          {% render 'responsive-image' with block.settings.featured_image, alt: menu_item_alt | escape, props: props, allow_stretch: true, styles: styles %}
+                          {% render 'responsive-image' with block.settings.featured_image, alt: menu_item_alt, props: props, allow_stretch: true, styles: styles %}
                         </div>
                       {% endif %}
                       <div class="homepage-hero-menu--indiv-text">
@@ -507,3 +485,66 @@
   }
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'dynamic-section-button' with
+                          id: section.id,
+                          link: section.settings.homepage-hero-image-link,
+                          label: section.settings.homepage-hero-image-button-label,
+                          style: section.settings.buttons_style,
+                          wrapper: false
+                        %}
+  to: "{% render 'dynamic-section-button' with id, id: section.id, link: section.settings.homepage-hero-image-link,
+    label: section.settings.homepage-hero-image-button-label, style: section.settings.buttons_style,
+    wrapper: false %}"
+  position: 2370..2593
+- from: |-
+    {% render 'button-color-overrides' with
+                            id: section.id,
+                            style: section.settings.buttons_style,
+                            text_color: section.settings.button_text_color,
+                            background_color: section.settings.button_background_color
+                          %}
+  to: "{% render 'button-color-overrides' with id, id: section.id, style: section.settings.buttons_style,
+    text_color: section.settings.button_text_color, background_color: section.settings.button_background_color
+    %}"
+  position: 2685..2893
+- from: "{% render 'responsive-image' with section.settings.home-page-hero-image,
+    alt: hero_alt | escape %}"
+  to: "{% render 'responsive-image' with section.settings.home-page-hero-image, alt:
+    hero_alt %}"
+  position: 3552..3641
+- from: |-
+    {% render 'dynamic-section-button' with
+                  id: section.id,
+                  link: section.settings.homepage-hero-image-link,
+                  label: section.settings.homepage-hero-image-button-label,
+                  style: section.settings.buttons_style,
+                  wrapper: false
+                %}
+  to: "{% render 'dynamic-section-button' with id, id: section.id, link: section.settings.homepage-hero-image-link,
+    label: section.settings.homepage-hero-image-button-label, style: section.settings.buttons_style,
+    wrapper: false %}"
+  position: 6322..6545
+- from: |-
+    {% render 'button-color-overrides' with
+                    id: section.id,
+                    style: section.settings.buttons_style,
+                    text_color: section.settings.button_text_color,
+                    background_color: section.settings.button_background_color
+                  %}
+  to: "{% render 'button-color-overrides' with id, id: section.id, style: section.settings.buttons_style,
+    text_color: section.settings.button_text_color, background_color: section.settings.button_background_color
+    %}"
+  position: 6621..6829
+- from: "{% render 'responsive-image' with block.settings.featured_image, alt: menu_item_alt
+    | escape, props: props, allow_stretch: true, styles: styles %}"
+  to: "{% render 'responsive-image' with block.settings.featured_image, alt: menu_item_alt,
+    props: props, allow_stretch: true, styles: styles %}"
+  position: 8756..8893
+{% endcomment %}

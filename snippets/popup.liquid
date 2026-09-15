@@ -28,12 +28,7 @@
   %}
 
   {% if settings.popup--show-newsletter and settings.popup--override_button_colors %}
-    {% render 'button-color-overrides' with
-      id: 'popup',
-      style: 'filled',
-      text_color: settings.popup--button_text_color,
-      background_color: settings.popup--button_background_color
-    %}
+    {% render 'button-color-overrides' with id, id: 'popup', style: 'filled', text_color: settings.popup--button_text_color, background_color: settings.popup--button_background_color %}
   {% endif %}
 
 <div id="popup" data-popup-color-scheme="{{ color_scheme_variable }}" data-desktop-type="{{ settings.desktop-popup-style }}" data-popup-time="{{ settings.pop-up-time }}" data-popup-delay="{{ settings.pop-up-delay }}" data-popup-test-mode="{{ settings.popup--test-mode }}" data-button-aria-label="{{ 'general.accessibility.dismiss.close' | t }}">
@@ -109,7 +104,7 @@
   {% comment %}We need slide-up for mobile (even when using fullscreen on desktop){% endcomment %}
   <div id="slide-up" class="color-scheme--{{ settings.newsletter_popup_color_scheme }}" style="visibility:hidden;">
     <a class="popup--close-btn standalone-icon--wrapper" tabindex="0" aria-label="{{ 'general.accessibility.dismiss.close' | t }}">
-      {% render 'theme-icon' with icon: 'close', iconSize: 20 %}
+      {% render 'theme-icon' with icon, icon: 'close', iconSize: 20 %}
     </a>
 
       {% if settings.popup-newsletter-top != blank %}
@@ -161,3 +156,24 @@
   </div>
 </div>
 {% endif %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'button-color-overrides' with
+          id: 'popup',
+          style: 'filled',
+          text_color: settings.popup--button_text_color,
+          background_color: settings.popup--button_background_color
+        %}
+  to: "{% render 'button-color-overrides' with id, id: 'popup', style: 'filled', text_color:
+    settings.popup--button_text_color, background_color: settings.popup--button_background_color
+    %}"
+  position: 993..1174
+- from: "{% render 'theme-icon' with icon: 'close', iconSize: 20 %}"
+  to: "{% render 'theme-icon' with icon, icon: 'close', iconSize: 20 %}"
+  position: 5030..5094
+{% endcomment %}

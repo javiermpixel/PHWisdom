@@ -175,18 +175,8 @@
     <script src="{{ 'component-cart-update.js' | asset_url }}" type="module" defer="defer" data-flow-load-key="component-cart-update"></script>
   </safe-load-scripts>
   {% if settings.drawer--override_button_colors %}
-    {% render 'button-color-overrides' with
-      id: 'drawer-filled',
-      style: 'filled',
-      text_color: settings.drawer--button_text_color,
-      background_color: settings.drawer--button_background_color
-    %}
-    {% render 'button-color-overrides' with
-      id: 'drawer-outlined',
-      style: 'outlined',
-      text_color: settings.drawer--button_text_color,
-      background_color: settings.drawer--button_background_color
-    %}
+    {% render 'button-color-overrides' with id, id: 'drawer-filled', style: 'filled', text_color: settings.drawer--button_text_color, background_color: settings.drawer--button_background_color %}
+    {% render 'button-color-overrides' with id, id: 'drawer-outlined', style: 'outlined', text_color: settings.drawer--button_text_color, background_color: settings.drawer--button_background_color %}
   {% endif %}
 
   {% comment %} Cart drawer {% endcomment %}
@@ -342,4 +332,32 @@
   {% endif %}
 
 </body>
-</html>
+</html>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'button-color-overrides' with
+          id: 'drawer-filled',
+          style: 'filled',
+          text_color: settings.drawer--button_text_color,
+          background_color: settings.drawer--button_background_color
+        %}
+  to: "{% render 'button-color-overrides' with id, id: 'drawer-filled', style: 'filled',
+    text_color: settings.drawer--button_text_color, background_color: settings.drawer--button_background_color
+    %}"
+  position: 7291..7482
+- from: |-
+    {% render 'button-color-overrides' with
+          id: 'drawer-outlined',
+          style: 'outlined',
+          text_color: settings.drawer--button_text_color,
+          background_color: settings.drawer--button_background_color
+        %}
+  to: "{% render 'button-color-overrides' with id, id: 'drawer-outlined', style: 'outlined',
+    text_color: settings.drawer--button_text_color, background_color: settings.drawer--button_background_color
+    %}"
+  position: 7487..7682
+{%- endcomment -%}

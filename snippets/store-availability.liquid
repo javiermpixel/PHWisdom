@@ -23,9 +23,9 @@
   <div class="store-availability-information inline-icon--wrapper">
     {%- assign closest_location = pick_up_availabilities.first -%}
     {%- if closest_location.available -%}
-      {% render 'theme-icon' with icon: 'checkmark', iconClasses: 'icon checkmark', iconAttributes: 'aria-hidden="true" focusable="false" role="presentation"' %}
+      {% render 'theme-icon' with icon, icon: 'checkmark', iconClasses: 'icon checkmark', iconAttributes: 'aria-hidden="true" focusable="false" role="presentation"' %}
     {%- else -%}
-      {% render 'theme-icon' with icon: 'close', iconClasses: 'icon close', iconAttributes: 'aria-hidden="true" focusable="false" role="presentation"' %}
+      {% render 'theme-icon' with icon, icon: 'close', iconClasses: 'icon close', iconAttributes: 'aria-hidden="true" focusable="false" role="presentation"' %}
     {%- endif -%}
     <div class="store-availability-information-container">
       {%- if closest_location.available -%}
@@ -86,7 +86,7 @@
         tabindex="-1"
         class="store-availabilities-modal__close icon-fallback-text standalone-icon--wrapper">
         <span class="fallback-text">{{ 'layout.drawers.close' | t }}</span>
-        {% render 'theme-icon' with icon: 'close', iconSize: 20 %}
+        {% render 'theme-icon' with icon, icon: 'close', iconSize: 20 %}
       </button>
     </div>
     <div class="store-availabilities-list">
@@ -99,9 +99,9 @@
           </div>
           <small class="store-availability-list__stock store-availability-small-text inline-icon--wrapper icon--left">
             {%- if availability.available -%}
-              {% render 'theme-icon' with icon: 'checkmark', iconClasses: 'icon checkmark', iconAttributes: 'aria-hidden="true" focusable="false" role="presentation"' %} {{ 'store_availability.general.pick_up_available' | t }}, {{ availability.pick_up_time | downcase }}
+              {% render 'theme-icon' with icon, icon: 'checkmark', iconClasses: 'icon checkmark', iconAttributes: 'aria-hidden="true" focusable="false" role="presentation"' %} {{ 'store_availability.general.pick_up_available' | t }}, {{ availability.pick_up_time | downcase }}
             {%- else -%}
-              {% render 'theme-icon' with icon: 'close', iconClasses: 'icon close', iconAttributes: 'aria-hidden="true" focusable="false" role="presentation"' %} {{ 'store_availability.general.pick_up_currently_unavailable' | t }}
+              {% render 'theme-icon' with icon, icon: 'close', iconClasses: 'icon close', iconAttributes: 'aria-hidden="true" focusable="false" role="presentation"' %} {{ 'store_availability.general.pick_up_currently_unavailable' | t }}
             {%- endif -%}
           </small>
           {%- assign address = availability.location.address -%}
@@ -117,4 +117,35 @@
       {%- endfor -%}
     </div>
   </div>
-</store-availability>
+</store-availability>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: '{% render ''theme-icon'' with icon: ''checkmark'', iconClasses: ''icon checkmark'',
+    iconAttributes: ''aria-hidden="true" focusable="false" role="presentation"'' %}'
+  to: '{% render ''theme-icon'' with icon, icon: ''checkmark'', iconClasses: ''icon
+    checkmark'', iconAttributes: ''aria-hidden="true" focusable="false" role="presentation"''
+    %}'
+  position: 1120..1281
+- from: '{% render ''theme-icon'' with icon: ''close'', iconClasses: ''icon close'',
+    iconAttributes: ''aria-hidden="true" focusable="false" role="presentation"'' %}'
+  to: '{% render ''theme-icon'' with icon, icon: ''close'', iconClasses: ''icon close'',
+    iconAttributes: ''aria-hidden="true" focusable="false" role="presentation"'' %}'
+  position: 1305..1458
+- from: "{% render 'theme-icon' with icon: 'close', iconSize: 20 %}"
+  to: "{% render 'theme-icon' with icon, icon: 'close', iconSize: 20 %}"
+  position: 4429..4493
+- from: '{% render ''theme-icon'' with icon: ''checkmark'', iconClasses: ''icon checkmark'',
+    iconAttributes: ''aria-hidden="true" focusable="false" role="presentation"'' %}'
+  to: '{% render ''theme-icon'' with icon, icon: ''checkmark'', iconClasses: ''icon
+    checkmark'', iconAttributes: ''aria-hidden="true" focusable="false" role="presentation"''
+    %}'
+  position: 5010..5171
+- from: '{% render ''theme-icon'' with icon: ''close'', iconClasses: ''icon close'',
+    iconAttributes: ''aria-hidden="true" focusable="false" role="presentation"'' %}'
+  to: '{% render ''theme-icon'' with icon, icon: ''close'', iconClasses: ''icon close'',
+    iconAttributes: ''aria-hidden="true" focusable="false" role="presentation"'' %}'
+  position: 5312..5465
+{%- endcomment -%}

@@ -1,12 +1,7 @@
 {{ 'section-video.min.css' | asset_url | stylesheet_tag }}
 
 {% if section.settings.override_button_colors %}
-  {% render 'button-color-overrides' with
-    id: section.id,
-    style: 'filled',
-    text_color: section.settings.button_text_color,
-    background_color: section.settings.button_background_color
-  %}
+  {% render 'button-color-overrides' with id, id: section.id, style: 'filled', text_color: section.settings.button_text_color, background_color: section.settings.button_background_color %}
 {% endif %}
 
 <div
@@ -17,7 +12,7 @@
 >
 
   {% comment %} Section title and description {% endcomment %}
-  {% render 'dynamic-section-header' with section_title: section.settings.title, section_description: section.settings.description, wrapper_classes: 'width--content' %}
+  {% render 'dynamic-section-header' with section_title, section_title: section.settings.title, section_description: section.settings.description, wrapper_classes: 'width--content' %}
 
   <div class="grid grid--center">
     {% assign type = 'mp4' %}
@@ -46,7 +41,7 @@
               assign play_icon_transform = 'translate3d(-50%, calc(-50% - 12px), 0);'
             endif
           -%}
-          {% render 'native-video' with video: section.settings.video, autoplay: section.settings.autoplay, loop: section.settings.loop, muted: muted, overlay: show_overlay, overlay_button: show_overlay_button, controls: section.settings.show_controls, scope_id: section.id %}
+          {% render 'native-video' with video, video: section.settings.video, autoplay: section.settings.autoplay, loop: section.settings.loop, muted: muted, overlay: show_overlay, overlay_button: show_overlay_button, controls: section.settings.show_controls, scope_id: section.id %}
         {% elsif section.settings.url %}
           <wetheme-video
           section-id="{{ section.id }}"
@@ -65,7 +60,7 @@
             {{ 'collection-4' | placeholder_svg_tag: 'icon icon--placeholder' }}
             <div class="homepage-video-content__placeholder-overlay" aria-hidden="true">
               <button class="round-icon-btn-lg btn dynamic-section-button--{{ section.id }}">
-                {% render 'theme-icon' with icon: 'play', iconSize: 20 %}
+                {% render 'theme-icon' with icon, icon: 'play', iconSize: 20 %}
               </button>
             </div>
           </div>
@@ -266,3 +261,40 @@
   }
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'button-color-overrides' with
+        id: section.id,
+        style: 'filled',
+        text_color: section.settings.button_text_color,
+        background_color: section.settings.button_background_color
+      %}
+  to: "{% render 'button-color-overrides' with id, id: section.id, style: 'filled',
+    text_color: section.settings.button_text_color, background_color: section.settings.button_background_color
+    %}"
+  position: 111..297
+- from: "{% render 'dynamic-section-header' with section_title: section.settings.title,
+    section_description: section.settings.description, wrapper_classes: 'width--content'
+    %}"
+  to: "{% render 'dynamic-section-header' with section_title, section_title: section.settings.title,
+    section_description: section.settings.description, wrapper_classes: 'width--content'
+    %}"
+  position: 700..881
+- from: "{% render 'native-video' with video: section.settings.video, autoplay: section.settings.autoplay,
+    loop: section.settings.loop, muted: muted, overlay: show_overlay, overlay_button:
+    show_overlay_button, controls: section.settings.show_controls, scope_id: section.id
+    %}"
+  to: "{% render 'native-video' with video, video: section.settings.video, autoplay:
+    section.settings.autoplay, loop: section.settings.loop, muted: muted, overlay:
+    show_overlay, overlay_button: show_overlay_button, controls: section.settings.show_controls,
+    scope_id: section.id %}"
+  position: 1969..2242
+- from: "{% render 'theme-icon' with icon: 'play', iconSize: 20 %}"
+  to: "{% render 'theme-icon' with icon, icon: 'play', iconSize: 20 %}"
+  position: 3252..3315
+{% endcomment %}

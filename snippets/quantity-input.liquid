@@ -24,7 +24,7 @@
       aria-label="{{ 'general.accessibility.quantity.decrease_quantity' | t }}" 
       class="js-qty__adjust js-qty__adjust--minus icon-fallback-text standalone-icon--wrapper"
     >
-      {% render 'theme-icon' with icon: 'minus', iconClasses: 'flex-full', iconAttributes: 'aria-hidden="true"' %}
+      {% render 'theme-icon' with icon, icon: 'minus', iconClasses: 'flex-full', iconAttributes: 'aria-hidden="true"' %}
       <span class="fallback-text">−</span>
     </button>
 
@@ -47,8 +47,24 @@
       aria-label="{{ 'general.accessibility.quantity.increase_quantity' | t }}" 
       class="js-qty__adjust js-qty__adjust--plus icon-fallback-text standalone-icon--wrapper"
     >
-      {% render 'theme-icon' with icon: 'plus', iconClasses: 'flex-full', iconAttributes: 'aria-hidden="true"' %}
+      {% render 'theme-icon' with icon, icon: 'plus', iconClasses: 'flex-full', iconAttributes: 'aria-hidden="true"' %}
       <span class="fallback-text">+</span>
     </button>
   </div>
-</quantity-input>
+</quantity-input>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: '{% render ''theme-icon'' with icon: ''minus'', iconClasses: ''flex-full'',
+    iconAttributes: ''aria-hidden="true"'' %}'
+  to: '{% render ''theme-icon'' with icon, icon: ''minus'', iconClasses: ''flex-full'',
+    iconAttributes: ''aria-hidden="true"'' %}'
+  position: 999..1113
+- from: '{% render ''theme-icon'' with icon: ''plus'', iconClasses: ''flex-full'',
+    iconAttributes: ''aria-hidden="true"'' %}'
+  to: '{% render ''theme-icon'' with icon, icon: ''plus'', iconClasses: ''flex-full'',
+    iconAttributes: ''aria-hidden="true"'' %}'
+  position: 1729..1842
+{%- endcomment -%}

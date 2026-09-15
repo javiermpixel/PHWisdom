@@ -61,17 +61,17 @@
     {% if product != blank %}
       {% if product.available %}
         {% if preorder_product %}
-          {% render 'badge' with badge: 'preorder', preorder_badge: preorder_string %}
+          {% render 'badge' with badge, badge: 'preorder', preorder_badge: preorder_string %}
         {% elsif custom_badge %}
-          {% render 'badge' with badge: 'custom', custom_badge: custom_badge %}
+          {% render 'badge' with badge, badge: 'custom', custom_badge: custom_badge %}
         {% else %}
-          {% render 'badge' with badge: 'sale', badge_product: product, use_variant: true %}
+          {% render 'badge' with badge, badge: 'sale', badge_product: product, use_variant: true %}
         {% endif %}
       {% else %}
-        {% render 'badge' with badge: 'sold-out', badge_product: product %}
+        {% render 'badge' with badge, badge: 'sold-out', badge_product: product %}
       {% endif %}
     {% else %}
-      {% render 'badge' with badge: 'sold-out' %}
+      {% render 'badge' with badge, badge: 'sold-out' %}
     {% endif %}
   {% endcapture %}
 {% endif %}
@@ -121,7 +121,7 @@
                   
                   </a>
                 {% else %}
-                  {% render 'deferred-media' with delayed_media: media, section_id: section.id, enable_video_loop: enable_video_loop, media_wrapper_classes: 'product-single__media__wrapper', aspect_ratio: section.settings.image_shape, enable_autoplay: enable_autoplay, media_product: product, media_type: 'grid', show_controls: show_video_controls %}
+                  {% render 'deferred-media' with delayed_media, delayed_media: media, section_id: section.id, enable_video_loop: enable_video_loop, media_wrapper_classes: 'product-single__media__wrapper', aspect_ratio: section.settings.image_shape, enable_autoplay: enable_autoplay, media_product: product, media_type: 'grid', show_controls: show_video_controls %}
                 {% endif %}
               {% endif %}
             {% endunless %}
@@ -162,7 +162,7 @@
                 
                 </a>
               {% else %}
-                {% render 'deferred-media' with delayed_media: media, section_id: section.id, enable_video_loop: enable_video_loop, media_wrapper_classes: 'product-single__media__wrapper', aspect_ratio: section.settings.image_shape, enable_autoplay: enable_autoplay, media_product: product, media_type: 'grid', show_controls: show_video_controls %}
+                {% render 'deferred-media' with delayed_media, delayed_media: media, section_id: section.id, enable_video_loop: enable_video_loop, media_wrapper_classes: 'product-single__media__wrapper', aspect_ratio: section.settings.image_shape, enable_autoplay: enable_autoplay, media_product: product, media_type: 'grid', show_controls: show_video_controls %}
               {% endif %}
             {% endunless %}
           {% endfor %}
@@ -196,7 +196,7 @@
                 
                 </a>
               {% else %}
-                {% render 'deferred-media' with delayed_media: media, section_id: section.id, enable_video_loop: enable_video_loop, media_wrapper_classes: 'product-single__media__wrapper', aspect_ratio: section.settings.image_shape, enable_autoplay: enable_autoplay, media_product: product, media_type: 'grid', show_controls: show_video_controls %}
+                {% render 'deferred-media' with delayed_media, delayed_media: media, section_id: section.id, enable_video_loop: enable_video_loop, media_wrapper_classes: 'product-single__media__wrapper', aspect_ratio: section.settings.image_shape, enable_autoplay: enable_autoplay, media_product: product, media_type: 'grid', show_controls: show_video_controls %}
               {% endif %}
             {% endif %}
           {% endfor %}
@@ -217,4 +217,62 @@
       </div>
     </div>
   </product-media-grid>
-{% endif %}
+{% endif %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'badge' with badge: 'preorder', preorder_badge: preorder_string
+    %}"
+  to: "{% render 'badge' with badge, badge: 'preorder', preorder_badge: preorder_string
+    %}"
+  position: 2040..2123
+- from: "{% render 'badge' with badge: 'custom', custom_badge: custom_badge %}"
+  to: "{% render 'badge' with badge, badge: 'custom', custom_badge: custom_badge %}"
+  position: 2167..2243
+- from: "{% render 'badge' with badge: 'sale', badge_product: product, use_variant:
+    true %}"
+  to: "{% render 'badge' with badge, badge: 'sale', badge_product: product, use_variant:
+    true %}"
+  position: 2273..2362
+- from: "{% render 'badge' with badge: 'sold-out', badge_product: product %}"
+  to: "{% render 'badge' with badge, badge: 'sold-out', badge_product: product %}"
+  position: 2408..2482
+- from: "{% render 'badge' with badge: 'sold-out' %}"
+  to: "{% render 'badge' with badge, badge: 'sold-out' %}"
+  position: 2522..2572
+- from: "{% render 'deferred-media' with delayed_media: media, section_id: section.id,
+    enable_video_loop: enable_video_loop, media_wrapper_classes: 'product-single__media__wrapper',
+    aspect_ratio: section.settings.image_shape, enable_autoplay: enable_autoplay,
+    media_product: product, media_type: 'grid', show_controls: show_video_controls
+    %}"
+  to: "{% render 'deferred-media' with delayed_media, delayed_media: media, section_id:
+    section.id, enable_video_loop: enable_video_loop, media_wrapper_classes: 'product-single__media__wrapper',
+    aspect_ratio: section.settings.image_shape, enable_autoplay: enable_autoplay,
+    media_product: product, media_type: 'grid', show_controls: show_video_controls
+    %}"
+  position: 4701..5048
+- from: "{% render 'deferred-media' with delayed_media: media, section_id: section.id,
+    enable_video_loop: enable_video_loop, media_wrapper_classes: 'product-single__media__wrapper',
+    aspect_ratio: section.settings.image_shape, enable_autoplay: enable_autoplay,
+    media_product: product, media_type: 'grid', show_controls: show_video_controls
+    %}"
+  to: "{% render 'deferred-media' with delayed_media, delayed_media: media, section_id:
+    section.id, enable_video_loop: enable_video_loop, media_wrapper_classes: 'product-single__media__wrapper',
+    aspect_ratio: section.settings.image_shape, enable_autoplay: enable_autoplay,
+    media_product: product, media_type: 'grid', show_controls: show_video_controls
+    %}"
+  position: 6613..6960
+- from: "{% render 'deferred-media' with delayed_media: media, section_id: section.id,
+    enable_video_loop: enable_video_loop, media_wrapper_classes: 'product-single__media__wrapper',
+    aspect_ratio: section.settings.image_shape, enable_autoplay: enable_autoplay,
+    media_product: product, media_type: 'grid', show_controls: show_video_controls
+    %}"
+  to: "{% render 'deferred-media' with delayed_media, delayed_media: media, section_id:
+    section.id, enable_video_loop: enable_video_loop, media_wrapper_classes: 'product-single__media__wrapper',
+    aspect_ratio: section.settings.image_shape, enable_autoplay: enable_autoplay,
+    media_product: product, media_type: 'grid', show_controls: show_video_controls
+    %}"
+  position: 8351..8698
+{%- endcomment -%}

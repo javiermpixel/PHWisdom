@@ -37,12 +37,7 @@
 
 {% if section.settings.override_button_colors %}
   {% assign grid_item_id = 'grid-item--' | append: section.id %}
-  {% render 'button-color-overrides' with
-    id: grid_item_id,
-    style: settings.quick_shop_button_style,
-    text_color: section.settings.button_text_color,
-    background_color: section.settings.button_background_color
-  %}
+  {% render 'button-color-overrides' with id, id: grid_item_id, style: settings.quick_shop_button_style, text_color: section.settings.button_text_color, background_color: section.settings.button_background_color %}
 {% endif %}
 
 {% unless request.visual_preview_mode %}
@@ -63,7 +58,7 @@
     <div class="product-page-related-products product-sticker-stop width--content">
       <div data-grid-slider-wrapper>
         {% comment %} Section title and description {% endcomment %}
-        {% render 'dynamic-section-header' with section_title: section.settings.title, section_description: section.settings.description, wrapper_classes: wrapper_classes %}
+        {% render 'dynamic-section-header' with section_title, section_title: section.settings.title, section_description: section.settings.description, wrapper_classes: wrapper_classes %}
 
         <div class="product-grid--wrapper{% if section.settings.layout_style == 'slider' %} product-grid--slider-enabled{% endif %}">
           {%- if section.settings.layout_style == 'slider' -%}
@@ -82,12 +77,7 @@
               </div>
             </div>
             {% if section.settings.override_button_colors %}
-              {% render 'button-color-overrides' with
-                id: navigation_id,
-                style: 'filled',
-                text_color: section.settings.button_text_color,
-                background_color: section.settings.button_background_color
-              %}
+              {% render 'button-color-overrides' with id, id: navigation_id, style: 'filled', text_color: section.settings.button_text_color, background_color: section.settings.button_background_color %}
             {% endif %}
 
             <grid-slider 
@@ -315,3 +305,39 @@
   }
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'button-color-overrides' with
+        id: grid_item_id,
+        style: settings.quick_shop_button_style,
+        text_color: section.settings.button_text_color,
+        background_color: section.settings.button_background_color
+      %}
+  to: "{% render 'button-color-overrides' with id, id: grid_item_id, style: settings.quick_shop_button_style,
+    text_color: section.settings.button_text_color, background_color: section.settings.button_background_color
+    %}"
+  position: 1261..1473
+- from: "{% render 'dynamic-section-header' with section_title: section.settings.title,
+    section_description: section.settings.description, wrapper_classes: wrapper_classes
+    %}"
+  to: "{% render 'dynamic-section-header' with section_title, section_title: section.settings.title,
+    section_description: section.settings.description, wrapper_classes: wrapper_classes
+    %}"
+  position: 2873..3053
+- from: |-
+    {% render 'button-color-overrides' with
+                    id: navigation_id,
+                    style: 'filled',
+                    text_color: section.settings.button_text_color,
+                    background_color: section.settings.button_background_color
+                  %}
+  to: "{% render 'button-color-overrides' with id, id: navigation_id, style: 'filled',
+    text_color: section.settings.button_text_color, background_color: section.settings.button_background_color
+    %}"
+  position: 4159..4348
+{% endcomment %}

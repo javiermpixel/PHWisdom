@@ -34,7 +34,7 @@
       <div class="video--video__text-block" data-selector="native-video-overlay">
         {% if overlay_button %}
           <button class="round-icon-btn-lg btn btn-hover-default icon-btn-focus dynamic-section-button--{{ section.id }}" tabindex="0" data-selector="native-video-play-button">
-            {% render 'theme-icon' with icon: 'play', iconSize: 20 %}
+            {% render 'theme-icon' with icon, icon: 'play', iconSize: 20 %}
           </button>
         {% endif %}
       </div>
@@ -50,4 +50,13 @@
 
 <safe-load-scripts class="hidden">
   <script src="{{ 'component-native-video.js' | asset_url }}" type="module" defer="defer" data-flow-load-key="component-native-video"></script>
-</safe-load-scripts>
+</safe-load-scripts>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'theme-icon' with icon: 'play', iconSize: 20 %}"
+  to: "{% render 'theme-icon' with icon, icon: 'play', iconSize: 20 %}"
+  position: 1606..1669
+{%- endcomment -%}

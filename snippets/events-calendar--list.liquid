@@ -27,7 +27,7 @@
             if day_time != ''
               assign divider = true
             endif
-            render 'price-currency-specified' with price: price, add_divider: divider
+            render 'price-currency-specified' with price, price: price, add_divider: divider
           endunless
         %}
         {% if day_time != '' %}
@@ -46,15 +46,33 @@
   </div>
 
   {% unless cta_text == blank %}
-    {% render 'dynamic-section-button' with
-      id: section_id,
-      link: cta_link,
-      label: cta_text,
-      style: cta_style,
-      div_classes: 'event-cta',
-      a_classes: 'event-cta-link--list',
-      attributes: 'data-section-main-link'
-    %}
+    {% render 'dynamic-section-button' with id, id: section_id, link: cta_link, label: cta_text, style: cta_style, div_classes: 'event-cta', a_classes: 'event-cta-link--list', attributes: 'data-section-main-link' %}
   {% endunless %}
 
 </div>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "            render 'price-currency-specified' with price: price, add_divider:
+    divider"
+  to: "            render 'price-currency-specified' with price, price: price, add_divider:
+    divider"
+  position: 920..1012
+- from: |-
+    {% render 'dynamic-section-button' with
+          id: section_id,
+          link: cta_link,
+          label: cta_text,
+          style: cta_style,
+          div_classes: 'event-cta',
+          a_classes: 'event-cta-link--list',
+          attributes: 'data-section-main-link'
+        %}
+  to: "{% render 'dynamic-section-button' with id, id: section_id, link: cta_link,
+    label: cta_text, style: cta_style, div_classes: 'event-cta', a_classes: 'event-cta-link--list',
+    attributes: 'data-section-main-link' %}"
+  position: 1455..1666
+{% endcomment %}

@@ -218,7 +218,7 @@
       {% comment %} Print link {% endcomment %}
       <div class="gift-card-print-link text-inline-link-animated">
         <a href="#" class="inline-icon--wrapper" onclick="window.print(); return false;" data-print-link>
-          {% render 'theme-icon' with icon: 'print' %}
+          {% render 'theme-icon' with icon, icon: 'print' %}
           {{ 'gift_cards.issued.print' | t }}
         </a>
       </div>
@@ -308,4 +308,13 @@
   ]
 }
 {% endschema %}
-{% # theme-check-enable %}
+{% # theme-check-enable %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'theme-icon' with icon: 'print' %}"
+  to: "{% render 'theme-icon' with icon, icon: 'print' %}"
+  position: 9238..9288
+{%- endcomment -%}

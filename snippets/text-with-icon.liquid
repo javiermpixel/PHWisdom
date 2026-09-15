@@ -11,7 +11,7 @@
     {% endif %}
 
       <div style="width:{{ iconSize }}px;">
-        {% render 'responsive-image' with icon, default_size: iconSize | append: 'x', blur: false %}
+        {% render 'responsive-image' with icon, default_size: iconSize, append: 'x', blur: false %}
       </div>
 
     {% if link %}
@@ -53,3 +53,15 @@
 
   </div>
 </div>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'responsive-image' with icon, default_size: iconSize | append:
+    'x', blur: false %}"
+  to: "{% render 'responsive-image' with icon, default_size: iconSize, append: 'x',
+    blur: false %}"
+  position: 597..688
+{% endcomment %}

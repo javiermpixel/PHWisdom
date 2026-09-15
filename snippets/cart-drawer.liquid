@@ -22,7 +22,7 @@
         class="global-drawer__close"
       >
         <span class="fallback-text">{{ 'general.accessibility.dismiss.close' | t }}</span>
-        {% render 'theme-icon' with icon: 'close', iconSize: 20 %}
+        {% render 'theme-icon' with icon, icon: 'close', iconSize: 20 %}
       </button>
       <div data-cart-dynamic-content="cart-header">
         <h3 class="cart-drawer__heading">{{ 'layout.cart.title' | t }} ({{ cart.item_count }})</h3>
@@ -213,7 +213,7 @@
                             aria-label="{{ 'general.accessibility.quantity.decrease_quantity' | t }} - {{ item.product.title }}"
                             class="cart-drawer__product-card--quantity--button"
                           >
-                            {% render 'theme-icon' with icon: 'minus', iconAttributes: 'aria-hidden="true"' %}
+                            {% render 'theme-icon' with icon, icon: 'minus', iconAttributes: 'aria-hidden="true"' %}
                             <span class="fallback-text">−</span>
                           </button>
 
@@ -236,7 +236,7 @@
                             aria-label="{{ 'general.accessibility.quantity.increase_quantity' | t }} - {{ item.product.title }}" 
                             class="cart-drawer__product-card--quantity--button"
                           >
-                            {% render 'theme-icon' with icon: 'plus', iconAttributes: 'aria-hidden="true"' %}
+                            {% render 'theme-icon' with icon, icon: 'plus', iconAttributes: 'aria-hidden="true"' %}
                             <span class="fallback-text">+</span>
                           </button>
                         </div>
@@ -247,7 +247,7 @@
                           data-cart-remove-item
                         >
                           <span class="fallback-text">{{ 'cart.general.remove' | t }}</span>
-                          {% render 'theme-icon' with icon: 'close', iconSize: 16 %}
+                          {% render 'theme-icon' with icon, icon: 'close', iconSize: 16 %}
                         </button>
                       </cart-quantity>
                     {% endif %}
@@ -338,7 +338,7 @@
                       {% if recommendations.performed? and recommendations.products_count > 0 %}
                         <div class="cart-drawer__recommendations-grid">
                           {% for recommendation in recommendations.products %}
-                            {% render 'product-card-basic' with card_product: recommendation, show_vendor: settings.cart_vendor_enable %}
+                            {% render 'product-card-basic' with card_product, card_product: recommendation, show_vendor: settings.cart_vendor_enable %}
                           {% endfor %}
                         </div>
                       {% endif %}
@@ -346,7 +346,7 @@
                   {% else %}
                     <div class="cart-drawer__recommendations-grid cart-drawer__recommendations-grid--empty">
                       {% for recommendation in settings.empty_cart_products.products %}
-                        {% render 'product-card-basic' with card_product: recommendation, show_vendor: settings.cart_vendor_enable %}
+                        {% render 'product-card-basic' with card_product, card_product: recommendation, show_vendor: settings.cart_vendor_enable %}
                       {% endfor %}
                     </div>
                   {% endif %}
@@ -377,7 +377,7 @@
                   data-edit-label="{{ 'cart.general.edit_note' | t }}"
                 >
                   <button data-cart-update-open class="cart-drawer__note--open inline-icon--wrapper icon--left">
-                    {% render 'theme-icon' with icon: 'note', iconSize: 16 %}
+                    {% render 'theme-icon' with icon, icon: 'note', iconSize: 16 %}
                     <span data-cart-update-open-text>{{ cart_note_label }}</span>
                   </button>
                   <span data-cart-update-close class="cart-drawer__note--modal-overlay"></span>
@@ -412,7 +412,7 @@
                   data-edit-label="{{ 'cart.general.edit_gift_note' | t }}"
                 >
                   <button data-cart-update-open class="cart-drawer__note--open inline-icon--wrapper icon--left">
-                    {% render 'theme-icon' with icon: 'gift', iconSize: 16 %}
+                    {% render 'theme-icon' with icon, icon: 'gift', iconSize: 16 %}
                     <span data-cart-update-open-text>{{ gift_note_label }}</span>
                   </button>
                   <span data-cart-update-close class="cart-drawer__note--modal-overlay"></span>
@@ -498,4 +498,42 @@
 
     </div>
   </div>
-</cart-drawer>
+</cart-drawer>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'theme-icon' with icon: 'close', iconSize: 20 %}"
+  to: "{% render 'theme-icon' with icon, icon: 'close', iconSize: 20 %}"
+  position: 699..763
+- from: '{% render ''theme-icon'' with icon: ''minus'', iconAttributes: ''aria-hidden="true"''
+    %}'
+  to: '{% render ''theme-icon'' with icon, icon: ''minus'', iconAttributes: ''aria-hidden="true"''
+    %}'
+  position: 9890..9978
+- from: '{% render ''theme-icon'' with icon: ''plus'', iconAttributes: ''aria-hidden="true"''
+    %}'
+  to: '{% render ''theme-icon'' with icon, icon: ''plus'', iconAttributes: ''aria-hidden="true"''
+    %}'
+  position: 11092..11179
+- from: "{% render 'theme-icon' with icon: 'close', iconSize: 16 %}"
+  to: "{% render 'theme-icon' with icon, icon: 'close', iconSize: 16 %}"
+  position: 11743..11807
+- from: "{% render 'product-card-basic' with card_product: recommendation, show_vendor:
+    settings.cart_vendor_enable %}"
+  to: "{% render 'product-card-basic' with card_product, card_product: recommendation,
+    show_vendor: settings.cart_vendor_enable %}"
+  position: 16530..16653
+- from: "{% render 'product-card-basic' with card_product: recommendation, show_vendor:
+    settings.cart_vendor_enable %}"
+  to: "{% render 'product-card-basic' with card_product, card_product: recommendation,
+    show_vendor: settings.cart_vendor_enable %}"
+  position: 17052..17175
+- from: "{% render 'theme-icon' with icon: 'note', iconSize: 16 %}"
+  to: "{% render 'theme-icon' with icon, icon: 'note', iconSize: 16 %}"
+  position: 18331..18394
+- from: "{% render 'theme-icon' with icon: 'gift', iconSize: 16 %}"
+  to: "{% render 'theme-icon' with icon, icon: 'gift', iconSize: 16 %}"
+  position: 20225..20288
+{%- endcomment -%}

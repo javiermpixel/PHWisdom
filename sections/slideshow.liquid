@@ -112,17 +112,17 @@
 
                         {% if block.settings.mobile_image %}
                           {% assign img-mobile_alt = block.settings.mobile_image.alt | default: shop.name %}
-                          {% render 'responsive-image' with block.settings.mobile_image, alt: img-mobile_alt | escape, wrapper_class: ' slideshow-mobile-image', sizes: '100vw', allow_stretch: true %}
+                          {% render 'responsive-image' with block.settings.mobile_image, alt: img-mobile_alt, wrapper_class: ' slideshow-mobile-image', sizes: '100vw', allow_stretch: true %}
                         {% endif %}
                       {% else %}
                         {% if block.settings.mobile_image %}
                           {% assign img-mobile_alt = block.settings.mobile_image.alt | default: shop.name %}
                           {% assign img-desktop_alt = block.settings.image.alt | default: shop.name %}
-                          {% render 'responsive-image' with block.settings.mobile_image, alt: img-mobile_alt | escape, wrapper_class: ' slideshow-mobile-image', sizes: '100vw', allow_stretch: true %}
-                          {% render 'responsive-image' with block.settings.image, alt: img-desktop_alt | escape, wrapper_class: ' slideshow-desktop-image', allow_stretch: true, sizes: '100vw' %}
+                          {% render 'responsive-image' with block.settings.mobile_image, alt: img-mobile_alt, wrapper_class: ' slideshow-mobile-image', sizes: '100vw', allow_stretch: true %}
+                          {% render 'responsive-image' with block.settings.image, alt: img-desktop_alt, wrapper_class: ' slideshow-desktop-image', allow_stretch: true, sizes: '100vw' %}
                         {% else %}
                           {% assign img_alt = block.settings.image.alt | default: shop.name %}
-                          {% render 'responsive-image' with block.settings.image, alt: img_alt | escape, wrapper_class: ' slideshow-desktop-as-mobile-image', allow_stretch: true, sizes: '100vw' %}
+                          {% render 'responsive-image' with block.settings.image, alt: img_alt, wrapper_class: ' slideshow-desktop-as-mobile-image', allow_stretch: true, sizes: '100vw' %}
                         {% endif %}
 											{% endif %}
 
@@ -156,36 +156,15 @@
 
 													<div class="slide-buttons">
                             {% if block.settings.first_button_label != blank %}
-                              {% render 'dynamic-section-button' with
-                                id: block.id,
-                                link: block.settings.first_button_link,
-                                label: block.settings.first_button_label,
-                                style: block.settings.buttons_style,
-                                div_classes: 'homepage-section-btn-container',
-                                a_classes: 'homepage-section-btn',
-                                attributes: 'data-section-main-link'
-                              %}
+                              {% render 'dynamic-section-button' with id, id: block.id, link: block.settings.first_button_link, label: block.settings.first_button_label, style: block.settings.buttons_style, div_classes: 'homepage-section-btn-container', a_classes: 'homepage-section-btn', attributes: 'data-section-main-link' %}
                             {% endif %}
                             
                             {% if block.settings.second_button_label != blank %}
-                              {% render 'dynamic-section-button' with
-                                id: block.id,
-                                link: block.settings.second_button_link,
-                                label: block.settings.second_button_label,
-                                style: block.settings.buttons_style,
-                                div_classes: 'homepage-section-btn-container',
-                                a_classes: 'homepage-section-btn',
-                                attributes: 'data-section-main-link'
-                              %}
+                              {% render 'dynamic-section-button' with id, id: block.id, link: block.settings.second_button_link, label: block.settings.second_button_label, style: block.settings.buttons_style, div_classes: 'homepage-section-btn-container', a_classes: 'homepage-section-btn', attributes: 'data-section-main-link' %}
                             {% endif %}
 													</div>
                           {% if block.settings.override_button_colors %}
-                            {% render 'button-color-overrides' with
-                              id: block.id,
-                              style: block.settings.buttons_style,
-                              text_color: block.settings.button-text,
-                              background_color: block.settings.button-background
-                            %}
+                            {% render 'button-color-overrides' with id, id: block.id, style: block.settings.buttons_style, text_color: block.settings.button-text, background_color: block.settings.button-background %}
                           {% endif %}
 												</div>
 											</div>
@@ -198,13 +177,13 @@
 								{% when 'arrows' %}
 									<div class="image--slideshow__navigation arrows">
 										<a href="#" class="flex-prev standalone-icon--wrapper">
-											{% render 'theme-icon' with icon: 'chevron_left', iconWidth: 24, iconHeight: 24, iconColor: 'currentColor' %}
+											{% render 'theme-icon' with icon, icon: 'chevron_left', iconWidth: 24, iconHeight: 24, iconColor: 'currentColor' %}
 										</a>
 
 										<div class="swiper-pagination"></div>
 
 										<a href="#" class="flex-next standalone-icon--wrapper">
-											{% render 'theme-icon' with icon: 'chevron_right', iconWidth: 24, iconHeight: 24, iconColor: 'currentColor' %}
+											{% render 'theme-icon' with icon, icon: 'chevron_right', iconWidth: 24, iconHeight: 24, iconColor: 'currentColor' %}
 										</a>
 									</div>
 								{% when 'bars' %}
@@ -736,3 +715,88 @@
   }
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'responsive-image' with block.settings.mobile_image, alt: img-mobile_alt
+    | escape, wrapper_class: ' slideshow-mobile-image', sizes: '100vw', allow_stretch:
+    true %}"
+  to: "{% render 'responsive-image' with block.settings.mobile_image, alt: img-mobile_alt,
+    wrapper_class: ' slideshow-mobile-image', sizes: '100vw', allow_stretch: true
+    %}"
+  position: 6767..6931
+- from: "{% render 'responsive-image' with block.settings.mobile_image, alt: img-mobile_alt
+    | escape, wrapper_class: ' slideshow-mobile-image', sizes: '100vw', allow_stretch:
+    true %}"
+  to: "{% render 'responsive-image' with block.settings.mobile_image, alt: img-mobile_alt,
+    wrapper_class: ' slideshow-mobile-image', sizes: '100vw', allow_stretch: true
+    %}"
+  position: 7300..7464
+- from: "{% render 'responsive-image' with block.settings.image, alt: img-desktop_alt
+    | escape, wrapper_class: ' slideshow-desktop-image', allow_stretch: true, sizes:
+    '100vw' %}"
+  to: "{% render 'responsive-image' with block.settings.image, alt: img-desktop_alt,
+    wrapper_class: ' slideshow-desktop-image', allow_stretch: true, sizes: '100vw'
+    %}"
+  position: 7491..7650
+- from: "{% render 'responsive-image' with block.settings.image, alt: img_alt | escape,
+    wrapper_class: ' slideshow-desktop-as-mobile-image', allow_stretch: true, sizes:
+    '100vw' %}"
+  to: "{% render 'responsive-image' with block.settings.image, alt: img_alt, wrapper_class:
+    ' slideshow-desktop-as-mobile-image', allow_stretch: true, sizes: '100vw' %}"
+  position: 7807..7968
+- from: |-
+    {% render 'dynamic-section-button' with
+                                    id: block.id,
+                                    link: block.settings.first_button_link,
+                                    label: block.settings.first_button_label,
+                                    style: block.settings.buttons_style,
+                                    div_classes: 'homepage-section-btn-container',
+                                    a_classes: 'homepage-section-btn',
+                                    attributes: 'data-section-main-link'
+                                  %}
+  to: "{% render 'dynamic-section-button' with id, id: block.id, link: block.settings.first_button_link,
+    label: block.settings.first_button_label, style: block.settings.buttons_style,
+    div_classes: 'homepage-section-btn-container', a_classes: 'homepage-section-btn',
+    attributes: 'data-section-main-link' %}"
+  position: 9766..10064
+- from: |-
+    {% render 'dynamic-section-button' with
+                                    id: block.id,
+                                    link: block.settings.second_button_link,
+                                    label: block.settings.second_button_label,
+                                    style: block.settings.buttons_style,
+                                    div_classes: 'homepage-section-btn-container',
+                                    a_classes: 'homepage-section-btn',
+                                    attributes: 'data-section-main-link'
+                                  %}
+  to: "{% render 'dynamic-section-button' with id, id: block.id, link: block.settings.second_button_link,
+    label: block.settings.second_button_label, style: block.settings.buttons_style,
+    div_classes: 'homepage-section-btn-container', a_classes: 'homepage-section-btn',
+    attributes: 'data-section-main-link' %}"
+  position: 10245..10545
+- from: |-
+    {% render 'button-color-overrides' with
+                                  id: block.id,
+                                  style: block.settings.buttons_style,
+                                  text_color: block.settings.button-text,
+                                  background_color: block.settings.button-background
+                                %}
+  to: "{% render 'button-color-overrides' with id, id: block.id, style: block.settings.buttons_style,
+    text_color: block.settings.button-text, background_color: block.settings.button-background
+    %}"
+  position: 10707..10895
+- from: "{% render 'theme-icon' with icon: 'chevron_left', iconWidth: 24, iconHeight:
+    24, iconColor: 'currentColor' %}"
+  to: "{% render 'theme-icon' with icon, icon: 'chevron_left', iconWidth: 24, iconHeight:
+    24, iconColor: 'currentColor' %}"
+  position: 11262..11377
+- from: "{% render 'theme-icon' with icon: 'chevron_right', iconWidth: 24, iconHeight:
+    24, iconColor: 'currentColor' %}"
+  to: "{% render 'theme-icon' with icon, icon: 'chevron_right', iconWidth: 24, iconHeight:
+    24, iconColor: 'currentColor' %}"
+  position: 11520..11636
+{% endcomment %}

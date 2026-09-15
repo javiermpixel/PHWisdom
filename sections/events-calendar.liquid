@@ -9,18 +9,13 @@
   <div class="width--content">
 
     {% comment %} Section title and description {% endcomment %}
-    {% render 'dynamic-section-header' with section_title: section.settings.title, section_description: section.settings.description %}
+    {% render 'dynamic-section-header' with section_title, section_title: section.settings.title, section_description: section.settings.description %}
 
     <div class="events-calendar--inner">
 
       {% if section.blocks.size > 0 %}
         {% if section.settings.override_button_colors %}
-          {% render 'button-color-overrides' with
-            id: section.id,
-            style: section.settings.buttons_style,
-            text_color: section.settings.button_text_color,
-            background_color: section.settings.button_background_color
-          %}
+          {% render 'button-color-overrides' with id, id: section.id, style: section.settings.buttons_style, text_color: section.settings.button_text_color, background_color: section.settings.button_background_color %}
         {% endif %}
         <ul class="events-layout--{{ section.settings.layout }}{% if section.settings.layout == 'grid' %} events-cols--{{ section.settings.cards_per_row }}{% if section.settings.expand_card %} event-card--expand{% endif %}{% endif %}">
           {% for block in section.blocks %}
@@ -54,9 +49,9 @@
                 assign cta_style = section.settings.buttons_style
 
                 if section.settings.layout == 'grid'
-                  render 'events-calendar--grid' with day: day, month: month, tbc: tbc, day_time: day_time, price: price, heading: heading, event_location: event_location, cta_link: cta_link, cta_text: cta_text, cta_style: cta_style, section_id: section.id, event_image: event_image, event_image_alt: event_image_alt, event_image_aspect_ratio: event_image_aspect_ratio, placeholder_number: placeholder_number
+                  render 'events-calendar--grid' with day, day: day, month: month, tbc: tbc, day_time: day_time, price: price, heading: heading, event_location: event_location, cta_link: cta_link, cta_text: cta_text, cta_style: cta_style, section_id: section.id, event_image: event_image, event_image_alt: event_image_alt, event_image_aspect_ratio: event_image_aspect_ratio, placeholder_number: placeholder_number
                 else
-                  render 'events-calendar--list' with day: day, month: month, tbc: tbc, day_time: day_time, price: price, heading: heading, event_location: event_location, cta_link: cta_link, cta_text: cta_text, cta_style: cta_style, section_id: section.id
+                  render 'events-calendar--list' with day, day: day, month: month, tbc: tbc, day_time: day_time, price: price, heading: heading, event_location: event_location, cta_link: cta_link, cta_text: cta_text, cta_style: cta_style, section_id: section.id
                 endif
               %}
             </li>
@@ -394,3 +389,46 @@
   }
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'dynamic-section-header' with section_title: section.settings.title,
+    section_description: section.settings.description %}"
+  to: "{% render 'dynamic-section-header' with section_title, section_title: section.settings.title,
+    section_description: section.settings.description %}"
+  position: 552..698
+- from: |-
+    {% render 'button-color-overrides' with
+                id: section.id,
+                style: section.settings.buttons_style,
+                text_color: section.settings.button_text_color,
+                background_color: section.settings.button_background_color
+              %}
+  to: "{% render 'button-color-overrides' with id, id: section.id, style: section.settings.buttons_style,
+    text_color: section.settings.button_text_color, background_color: section.settings.button_background_color
+    %}"
+  position: 848..1056
+- from: "                  render 'events-calendar--grid' with day: day, month: month,
+    tbc: tbc, day_time: day_time, price: price, heading: heading, event_location:
+    event_location, cta_link: cta_link, cta_text: cta_text, cta_style: cta_style,
+    section_id: section.id, event_image: event_image, event_image_alt: event_image_alt,
+    event_image_aspect_ratio: event_image_aspect_ratio, placeholder_number: placeholder_number"
+  to: "                  render 'events-calendar--grid' with day, day: day, month:
+    month, tbc: tbc, day_time: day_time, price: price, heading: heading, event_location:
+    event_location, cta_link: cta_link, cta_text: cta_text, cta_style: cta_style,
+    section_id: section.id, event_image: event_image, event_image_alt: event_image_alt,
+    event_image_aspect_ratio: event_image_aspect_ratio, placeholder_number: placeholder_number"
+  position: 2773..3186
+- from: "                  render 'events-calendar--list' with day: day, month: month,
+    tbc: tbc, day_time: day_time, price: price, heading: heading, event_location:
+    event_location, cta_link: cta_link, cta_text: cta_text, cta_style: cta_style,
+    section_id: section.id"
+  to: "                  render 'events-calendar--list' with day, day: day, month:
+    month, tbc: tbc, day_time: day_time, price: price, heading: heading, event_location:
+    event_location, cta_link: cta_link, cta_text: cta_text, cta_style: cta_style,
+    section_id: section.id"
+  position: 3208..3469
+{% endcomment %}

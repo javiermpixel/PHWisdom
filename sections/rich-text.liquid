@@ -48,12 +48,7 @@
                     {% when 'button' %}
                         {% if block.settings.button_text != blank %}
                           {% if block.settings.override_button_colors %}
-                            {% render 'button-color-overrides' with
-                              id: block.id,
-                              style: block.settings.buttons_style,
-                              text_color: block.settings.button_text_color,
-                              background_color: block.settings.button_background_color
-                            %}
+                            {% render 'button-color-overrides' with id, id: block.id, style: block.settings.buttons_style, text_color: block.settings.button_text_color, background_color: block.settings.button_background_color %}
                           {% endif %}
                           
                           <div 
@@ -61,14 +56,7 @@
                             style="padding-bottom: {{ block.settings.button_bottom_spacing }}px;"
                             {{ block.shopify_attributes }}
                           >
-                            {% render 'dynamic-section-button' with
-                              id: block.id,
-                              link: block.settings.button_link,
-                              label: block.settings.button_text,
-                              style: block.settings.buttons_style,
-                              wrapper: false,
-                              a_classes: 'homepage-featured-box-btn'
-                            %}
+                            {% render 'dynamic-section-button' with id, id: block.id, link: block.settings.button_link, label: block.settings.button_text, style: block.settings.buttons_style, wrapper: false, a_classes: 'homepage-featured-box-btn' %}
                           </div>
                         {% endif %}
 
@@ -405,3 +393,34 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'button-color-overrides' with
+                                  id: block.id,
+                                  style: block.settings.buttons_style,
+                                  text_color: block.settings.button_text_color,
+                                  background_color: block.settings.button_background_color
+                                %}
+  to: "{% render 'button-color-overrides' with id, id: block.id, style: block.settings.buttons_style,
+    text_color: block.settings.button_text_color, background_color: block.settings.button_background_color
+    %}"
+  position: 2566..2766
+- from: |-
+    {% render 'dynamic-section-button' with
+                                  id: block.id,
+                                  link: block.settings.button_link,
+                                  label: block.settings.button_text,
+                                  style: block.settings.buttons_style,
+                                  wrapper: false,
+                                  a_classes: 'homepage-featured-box-btn'
+                                %}
+  to: "{% render 'dynamic-section-button' with id, id: block.id, link: block.settings.button_link,
+    label: block.settings.button_text, style: block.settings.buttons_style, wrapper:
+    false, a_classes: 'homepage-featured-box-btn' %}"
+  position: 3222..3443
+{% endcomment %}

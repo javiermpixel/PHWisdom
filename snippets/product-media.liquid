@@ -129,17 +129,17 @@
     {% if product != blank %}
       {% if product.available %}
         {% if preorder_product %}
-          {% render 'badge' with badge: 'preorder', preorder_badge: preorder_string %}
+          {% render 'badge' with badge, badge: 'preorder', preorder_badge: preorder_string %}
         {% elsif custom_badge %}
-          {% render 'badge' with badge: 'custom', custom_badge: custom_badge %}
+          {% render 'badge' with badge, badge: 'custom', custom_badge: custom_badge %}
         {% else %}
-          {% render 'badge' with badge: 'sale', badge_product: product, use_variant: true %}
+          {% render 'badge' with badge, badge: 'sale', badge_product: product, use_variant: true %}
         {% endif %}
       {% else %}
-        {% render 'badge' with badge: 'sold-out', badge_product: product %}
+        {% render 'badge' with badge, badge: 'sold-out', badge_product: product %}
       {% endif %}
     {% else %}
-      {% render 'badge' with badge: 'sold-out' %}
+      {% render 'badge' with badge, badge: 'sold-out' %}
     {% endif %}
   {% endcapture %}
 {% endif %}
@@ -227,7 +227,7 @@
             
               </a>
             {% else %}
-              {% render 'deferred-media' with delayed_media: media, section_id: section_id, enable_video_loop: enable_video_loop, enable_autoplay: enable_autoplay, media_wrapper_classes: 'product-single__media__wrapper', aspect_ratio: image_crop, media_product: product, media_type: 'slider', show_controls: show_video_controls %}
+              {% render 'deferred-media' with delayed_media, delayed_media: media, section_id: section_id, enable_video_loop: enable_video_loop, enable_autoplay: enable_autoplay, media_wrapper_classes: 'product-single__media__wrapper', aspect_ratio: image_crop, media_product: product, media_type: 'slider', show_controls: show_video_controls %}
             {% endif %}
 
             
@@ -264,24 +264,24 @@
       {% if has_pagination %}
         <div class="media-slider-navigation arrows">
           <a href="#" class="flex-prev arrow-prev-{{ id }}-{{ section_id }} standalone-icon--wrapper">
-            {% render 'theme-icon' with icon: 'chevron_left', iconWidth: 24, iconHeight: 24, iconColor: 'currentColor' %}
+            {% render 'theme-icon' with icon, icon: 'chevron_left', iconWidth: 24, iconHeight: 24, iconColor: 'currentColor' %}
           </a>
 
           <div class="swiper-pagination-{{ id }}-{{ section_id }}"></div>
 
           <a href="#" class="flex-next arrow-next-{{ id }}-{{ section_id }} standalone-icon--wrapper">
-            {% render 'theme-icon' with icon: 'chevron_right', iconWidth: 24, iconHeight: 24, iconColor: 'currentColor' %}
+            {% render 'theme-icon' with icon, icon: 'chevron_right', iconWidth: 24, iconHeight: 24, iconColor: 'currentColor' %}
           </a>
         </div>
       {% endif %}
 
       {% if type == 'thumbnails' %}
         <a href="#" class="thumb-prev arrow-prev-{{ id }}-{{ section_id }}">
-          {% render 'theme-icon' with icon: 'chevron_left', iconWidth: 24, iconHeight: 24, iconColor: 'currentColor' %}
+          {% render 'theme-icon' with icon, icon: 'chevron_left', iconWidth: 24, iconHeight: 24, iconColor: 'currentColor' %}
         </a>
 
         <a href="#" class="thumb-next arrow-next-{{ id }}-{{ section_id }}">
-          {% render 'theme-icon' with icon: 'chevron_right', iconWidth: 24, iconHeight: 24, iconColor: 'currentColor' %}
+          {% render 'theme-icon' with icon, icon: 'chevron_right', iconWidth: 24, iconHeight: 24, iconColor: 'currentColor' %}
         </a>
       {% endif %}
     </div>
@@ -318,11 +318,11 @@
               >
                 {% if media.media_type == 'model' %}
                   <div class="product-medias__emblem">
-                    {% render 'theme-icon' with icon: 'cube', iconSize: 20 %}
+                    {% render 'theme-icon' with icon, icon: 'cube', iconSize: 20 %}
                   </div>
                 {% elsif media.media_type == 'video' or media.media_type == 'external_video' %}
                   <div class="product-medias__emblem">
-                    {% render 'theme-icon' with icon: 'play', iconSize: 20 %}
+                    {% render 'theme-icon' with icon, icon: 'play', iconSize: 20 %}
                   </div>
                 {% endif %}
 
@@ -346,7 +346,7 @@
                   {% endif %}
                 {% endcapture %}
 
-                {% render 'responsive-image' with media.preview_image, class: class, alt: thumbalt | escape, default_size: '300x', props: props, blur: false, styles: styles, adaptive_ratio: adapt_ratio %}
+                {% render 'responsive-image' with media.preview_image, class: class, alt: thumbalt, default_size: '300x', props: props, blur: false, styles: styles, adaptive_ratio: adapt_ratio %}
               </div>
             {% endunless %}
           {% endfor %}
@@ -363,4 +363,72 @@
     {% assign svg_classes = 'icon icon--placeholder product-media-ratio--' | append: image_crop %}
     {{ 'product-1' | append: current | placeholder_svg_tag: svg_classes }}
   {% endif %}
-</product-media>
+</product-media>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'badge' with badge: 'preorder', preorder_badge: preorder_string
+    %}"
+  to: "{% render 'badge' with badge, badge: 'preorder', preorder_badge: preorder_string
+    %}"
+  position: 3820..3903
+- from: "{% render 'badge' with badge: 'custom', custom_badge: custom_badge %}"
+  to: "{% render 'badge' with badge, badge: 'custom', custom_badge: custom_badge %}"
+  position: 3947..4023
+- from: "{% render 'badge' with badge: 'sale', badge_product: product, use_variant:
+    true %}"
+  to: "{% render 'badge' with badge, badge: 'sale', badge_product: product, use_variant:
+    true %}"
+  position: 4053..4142
+- from: "{% render 'badge' with badge: 'sold-out', badge_product: product %}"
+  to: "{% render 'badge' with badge, badge: 'sold-out', badge_product: product %}"
+  position: 4188..4262
+- from: "{% render 'badge' with badge: 'sold-out' %}"
+  to: "{% render 'badge' with badge, badge: 'sold-out' %}"
+  position: 4302..4352
+- from: "{% render 'deferred-media' with delayed_media: media, section_id: section_id,
+    enable_video_loop: enable_video_loop, enable_autoplay: enable_autoplay, media_wrapper_classes:
+    'product-single__media__wrapper', aspect_ratio: image_crop, media_product: product,
+    media_type: 'slider', show_controls: show_video_controls %}"
+  to: "{% render 'deferred-media' with delayed_media, delayed_media: media, section_id:
+    section_id, enable_video_loop: enable_video_loop, enable_autoplay: enable_autoplay,
+    media_wrapper_classes: 'product-single__media__wrapper', aspect_ratio: image_crop,
+    media_product: product, media_type: 'slider', show_controls: show_video_controls
+    %}"
+  position: 8541..8872
+- from: "{% render 'theme-icon' with icon: 'chevron_left', iconWidth: 24, iconHeight:
+    24, iconColor: 'currentColor' %}"
+  to: "{% render 'theme-icon' with icon, icon: 'chevron_left', iconWidth: 24, iconHeight:
+    24, iconColor: 'currentColor' %}"
+  position: 10301..10416
+- from: "{% render 'theme-icon' with icon: 'chevron_right', iconWidth: 24, iconHeight:
+    24, iconColor: 'currentColor' %}"
+  to: "{% render 'theme-icon' with icon, icon: 'chevron_right', iconWidth: 24, iconHeight:
+    24, iconColor: 'currentColor' %}"
+  position: 10623..10739
+- from: "{% render 'theme-icon' with icon: 'chevron_left', iconWidth: 24, iconHeight:
+    24, iconColor: 'currentColor' %}"
+  to: "{% render 'theme-icon' with icon, icon: 'chevron_left', iconWidth: 24, iconHeight:
+    24, iconColor: 'currentColor' %}"
+  position: 10912..11027
+- from: "{% render 'theme-icon' with icon: 'chevron_right', iconWidth: 24, iconHeight:
+    24, iconColor: 'currentColor' %}"
+  to: "{% render 'theme-icon' with icon, icon: 'chevron_right', iconWidth: 24, iconHeight:
+    24, iconColor: 'currentColor' %}"
+  position: 11129..11245
+- from: "{% render 'theme-icon' with icon: 'cube', iconSize: 20 %}"
+  to: "{% render 'theme-icon' with icon, icon: 'cube', iconSize: 20 %}"
+  position: 12733..12796
+- from: "{% render 'theme-icon' with icon: 'play', iconSize: 20 %}"
+  to: "{% render 'theme-icon' with icon, icon: 'play', iconSize: 20 %}"
+  position: 12993..13056
+- from: "{% render 'responsive-image' with media.preview_image, class: class, alt:
+    thumbalt | escape, default_size: '300x', props: props, blur: false, styles: styles,
+    adaptive_ratio: adapt_ratio %}"
+  to: "{% render 'responsive-image' with media.preview_image, class: class, alt: thumbalt,
+    default_size: '300x', props: props, blur: false, styles: styles, adaptive_ratio:
+    adapt_ratio %}"
+  position: 14139..14318
+{%- endcomment -%}

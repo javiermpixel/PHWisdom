@@ -57,7 +57,7 @@
         <span data-dropdown-text>{{ 'general.forms.choose_an_option' | t }}</span>
 
         <span class="dropdown-icon inline-icon--wrapper">
-          {% render 'theme-icon' with icon: 'chevron_down' %}
+          {% render 'theme-icon' with icon, icon: 'chevron_down' %}
         </span>
       </button>
 
@@ -87,4 +87,13 @@
     {% if form_id %}form="{{ form_id }}"{% endif %}
     {% if error_message %}data-error-message="{{ error_message | escape }}"{% endif %}
   >
-</theme-dropdown>
+</theme-dropdown>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'theme-icon' with icon: 'chevron_down' %}"
+  to: "{% render 'theme-icon' with icon, icon: 'chevron_down' %}"
+  position: 2482..2539
+{%- endcomment -%}

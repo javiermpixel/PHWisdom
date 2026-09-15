@@ -21,7 +21,7 @@
 >
 	<div {% unless full_width %}class="width--{{ section.settings.section_width }}"{% endunless %}>
 		{% comment %} Section title and description {% endcomment %}
-    {% render 'dynamic-section-header' with section_title: section.settings.title, section_description: section.settings.description %}
+    {% render 'dynamic-section-header' with section_title, section_title: section.settings.title, section_description: section.settings.description %}
 
     {% if section.blocks.size == 0 %}
       <div class="placeholder-noblocks">
@@ -44,12 +44,7 @@
             </div>
 
             {% if section.settings.override_navigation_button_colors %}
-              {% render 'button-color-overrides' with
-                id: navigation_id,
-                style: 'filled',
-                text_color: section.settings.button_text_color,
-                background_color: section.settings.button_background_color
-              %}
+              {% render 'button-color-overrides' with id, id: navigation_id, style: 'filled', text_color: section.settings.button_text_color, background_color: section.settings.button_background_color %}
             {% endif %}
           {% endif %}
 
@@ -81,7 +76,7 @@
                           {% endif %}
                           {% if block.settings.video != blank %}
                             <div class="image-with-text-slideshow__video type-mp4" data-video-content>
-                              {% render 'native-video' with video: block.settings.video, autoplay: true, loop: true, muted: true, overlay: true, overlay_button: false, controls: false %}
+                              {% render 'native-video' with video, video: block.settings.video, autoplay: true, loop: true, muted: true, overlay: true, overlay_button: false, controls: false %}
                             </div>
                           {% else %}
                             <div class="image-with-text-slideshow__video type-youtube" data-video-content>
@@ -166,30 +161,13 @@
                       {% if has_button %}
                         <div class="image-with-text-slideshow__buttons{% if block.settings.buttons_style == 'underlined' %} text-link-animated{% endif %}">
                           {% if block.settings.override_button_colors %}
-                            {% render 'button-color-overrides' with
-                              id: block.id,
-                              style: block.settings.buttons_style,
-                              text_color: block.settings.color_button_text,
-                              background_color: block.settings.color_button_background
-                            %}
+                            {% render 'button-color-overrides' with id, id: block.id, style: block.settings.buttons_style, text_color: block.settings.color_button_text, background_color: block.settings.color_button_background %}
                           {% endif %}
                           {% if has_first_button %}
-                            {% render 'dynamic-section-button' with
-                              id: block.id,
-                              link: block.settings.first_button_link,
-                              label: block.settings.first_button_label,
-                              style: block.settings.buttons_style,
-                              wrapper: false
-                            %}
+                            {% render 'dynamic-section-button' with id, id: block.id, link: block.settings.first_button_link, label: block.settings.first_button_label, style: block.settings.buttons_style, wrapper: false %}
                           {% endif %}
                           {% if has_second_button %}
-                            {% render 'dynamic-section-button' with
-                              id: block.id,
-                              link: block.settings.second_button_link,
-                              label: block.settings.second_button_label,
-                              style: block.settings.buttons_style,
-                              wrapper: false
-                            %}
+                            {% render 'dynamic-section-button' with id, id: block.id, link: block.settings.second_button_link, label: block.settings.second_button_label, style: block.settings.buttons_style, wrapper: false %}
                           {% endif %}
                         </div>
                       {% endif %}
@@ -923,3 +901,68 @@
   }
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'dynamic-section-header' with section_title: section.settings.title,
+    section_description: section.settings.description %}"
+  to: "{% render 'dynamic-section-header' with section_title, section_title: section.settings.title,
+    section_description: section.settings.description %}"
+  position: 1439..1585
+- from: |-
+    {% render 'button-color-overrides' with
+                    id: navigation_id,
+                    style: 'filled',
+                    text_color: section.settings.button_text_color,
+                    background_color: section.settings.button_background_color
+                  %}
+  to: "{% render 'button-color-overrides' with id, id: navigation_id, style: 'filled',
+    text_color: section.settings.button_text_color, background_color: section.settings.button_background_color
+    %}"
+  position: 2649..2838
+- from: "{% render 'native-video' with video: block.settings.video, autoplay: true,
+    loop: true, muted: true, overlay: true, overlay_button: false, controls: false
+    %}"
+  to: "{% render 'native-video' with video, video: block.settings.video, autoplay:
+    true, loop: true, muted: true, overlay: true, overlay_button: false, controls:
+    false %}"
+  position: 4459..4622
+- from: |-
+    {% render 'button-color-overrides' with
+                                  id: block.id,
+                                  style: block.settings.buttons_style,
+                                  text_color: block.settings.color_button_text,
+                                  background_color: block.settings.color_button_background
+                                %}
+  to: "{% render 'button-color-overrides' with id, id: block.id, style: block.settings.buttons_style,
+    text_color: block.settings.color_button_text, background_color: block.settings.color_button_background
+    %}"
+  position: 9523..9723
+- from: |-
+    {% render 'dynamic-section-button' with
+                                  id: block.id,
+                                  link: block.settings.first_button_link,
+                                  label: block.settings.first_button_label,
+                                  style: block.settings.buttons_style,
+                                  wrapper: false
+                                %}
+  to: "{% render 'dynamic-section-button' with id, id: block.id, link: block.settings.first_button_link,
+    label: block.settings.first_button_label, style: block.settings.buttons_style,
+    wrapper: false %}"
+  position: 9842..10036
+- from: |-
+    {% render 'dynamic-section-button' with
+                                  id: block.id,
+                                  link: block.settings.second_button_link,
+                                  label: block.settings.second_button_label,
+                                  style: block.settings.buttons_style,
+                                  wrapper: false
+                                %}
+  to: "{% render 'dynamic-section-button' with id, id: block.id, link: block.settings.second_button_link,
+    label: block.settings.second_button_label, style: block.settings.buttons_style,
+    wrapper: false %}"
+  position: 10156..10352
+{% endcomment %}

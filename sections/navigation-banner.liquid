@@ -18,12 +18,7 @@
   </safe-load-scripts>
 
   {% if section.settings.override_button_colors %}
-    {% render 'button-color-overrides' with
-      id: section.id,
-      style: section.settings.buttons_style,
-      text_color: section.settings.nav_text_color,
-      background_color: section.settings.nav_background_color
-    %}
+    {% render 'button-color-overrides' with id, id: section.id, style: section.settings.buttons_style, text_color: section.settings.nav_text_color, background_color: section.settings.nav_background_color %}
   {% endif %}
   
   <div
@@ -34,7 +29,7 @@
   >
     <div class="width--content">
       {% comment %} Section title and description {% endcomment %}
-      {% render 'dynamic-section-header' with section_title: section.settings.title, section_description: section.settings.description %}
+      {% render 'dynamic-section-header' with section_title, section_title: section.settings.title, section_description: section.settings.description %}
 
       {% liquid
         if section.settings.buttons_style == 'underlined'
@@ -52,13 +47,7 @@
             <div class="swiper-wrapper">
               {% for link in list %}
                 <div class="swiper-slide{% if section.settings.buttons_style == 'underlined' %} text-link-animated{% endif %}">
-                  {% render 'dynamic-section-button' with
-                    id: section.id,
-                    link: link.url,
-                    label: link.title,
-                    style: section.settings.buttons_style,
-                    wrapper: false
-                  %}
+                  {% render 'dynamic-section-button' with id, id: section.id, link: link.url, label: link.title, style: section.settings.buttons_style, wrapper: false %}
                 </div>
               {% endfor %}
             </div>
@@ -72,13 +61,7 @@
           <ul class="navigation-banner__grid-list">
             {% for link in list %}
             <li class="{% if section.settings.buttons_style == 'underlined' %}text-link-animated{% endif %}">
-                {% render 'dynamic-section-button' with
-                  id: section.id,
-                  link: link.url,
-                  label: link.title,
-                  style: section.settings.buttons_style,
-                  wrapper: false
-                %}
+                {% render 'dynamic-section-button' with id, id: section.id, link: link.url, label: link.title, style: section.settings.buttons_style, wrapper: false %}
               </li>
             {% endfor %}
           </ul>
@@ -277,3 +260,48 @@
   }
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'button-color-overrides' with
+          id: section.id,
+          style: section.settings.buttons_style,
+          text_color: section.settings.nav_text_color,
+          background_color: section.settings.nav_background_color
+        %}
+  to: "{% render 'button-color-overrides' with id, id: section.id, style: section.settings.buttons_style,
+    text_color: section.settings.nav_text_color, background_color: section.settings.nav_background_color
+    %}"
+  position: 703..905
+- from: "{% render 'dynamic-section-header' with section_title: section.settings.title,
+    section_description: section.settings.description %}"
+  to: "{% render 'dynamic-section-header' with section_title, section_title: section.settings.title,
+    section_description: section.settings.description %}"
+  position: 1441..1587
+- from: |-
+    {% render 'dynamic-section-button' with
+                        id: section.id,
+                        link: link.url,
+                        label: link.title,
+                        style: section.settings.buttons_style,
+                        wrapper: false
+                      %}
+  to: "{% render 'dynamic-section-button' with id, id: section.id, link: link.url,
+    label: link.title, style: section.settings.buttons_style, wrapper: false %}"
+  position: 2291..2442
+- from: |-
+    {% render 'dynamic-section-button' with
+                      id: section.id,
+                      link: link.url,
+                      label: link.title,
+                      style: section.settings.buttons_style,
+                      wrapper: false
+                    %}
+  to: "{% render 'dynamic-section-button' with id, id: section.id, link: link.url,
+    label: link.title, style: section.settings.buttons_style, wrapper: false %}"
+  position: 3033..3184
+{% endcomment %}

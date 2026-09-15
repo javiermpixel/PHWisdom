@@ -46,16 +46,16 @@
       >
 
       <div data-drag-drop class="drag-drop text-link-animated">
-        {% render 'theme-icon' with icon: 'upload', iconSize: 20 %}
+        {% render 'theme-icon' with icon, icon: 'upload', iconSize: 20 %}
         <p class="large-hide">{{ 'products.general.file_upload_browse_html' | t }}</p>
         <p class="small-hide">{{ 'products.general.file_upload_html' | t }}</p>
       </div>
 
       <div data-file-list>
         <div data-file-list-content>
-          <div data-file-icon>{% render 'theme-icon' with icon: 'clipboard', iconSize: 16 %}</div>
+          <div data-file-icon>{% render 'theme-icon' with icon, icon: 'clipboard', iconSize: 16 %}</div>
           <div data-file-list-item class="file-list-item"></div>
-          <button aria-label="{{ 'cart.general.remove' | t }}" class="button-unstyled" data-file-remove>{% render 'theme-icon' with icon: 'close', iconSize: 16 %}</button>
+          <button aria-label="{{ 'cart.general.remove' | t }}" class="button-unstyled" data-file-remove>{% render 'theme-icon' with icon, icon: 'close', iconSize: 16 %}</button>
         </div>
       </div>
     </div>
@@ -64,4 +64,19 @@
       <label class="input-label--secondary">{{ secondary_label }}</label>
     {% endif %}
   </file-upload>
-{% endif %}
+{% endif %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'theme-icon' with icon: 'upload', iconSize: 20 %}"
+  to: "{% render 'theme-icon' with icon, icon: 'upload', iconSize: 20 %}"
+  position: 1811..1876
+- from: "{% render 'theme-icon' with icon: 'clipboard', iconSize: 16 %}"
+  to: "{% render 'theme-icon' with icon, icon: 'clipboard', iconSize: 16 %}"
+  position: 2152..2220
+- from: "{% render 'theme-icon' with icon: 'close', iconSize: 16 %}"
+  to: "{% render 'theme-icon' with icon, icon: 'close', iconSize: 16 %}"
+  position: 2396..2460
+{%- endcomment -%}
