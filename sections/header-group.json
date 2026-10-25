@@ -148,10 +148,11 @@
         "phw_category_5": {
           "type": "phw_category",
           "settings": {
-            "collection": "olive-oil",
-            "title": "Pantry & Kitchen",
-            "eyebrow": "Pure Culinary",
-            "description": "Discover extra virgin olive oils for your kitchen.",
+            "collection": "roots-protein-powder",
+            "title": "Protein",
+            "eyebrow": "Roots Protein Powder",
+            "description": "100% Grass-Fed Whey Protein Powder",
+            "image": "shopify://shop_images/Roots_Banner.webp",
             "fallback_asset": "phw-menu-category-5.png"
           }
         },
